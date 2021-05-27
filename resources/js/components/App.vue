@@ -1,3 +1,12 @@
 <template>
-  <h1>Volty</h1>
+  <router-view></router-view>
 </template>
+
+<style lang="scss">
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+</style>

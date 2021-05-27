@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AppController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'app');
+
+Route::get(
+  '/{vue_router?}',
+  [AppController::class, 'index'
+])->name('app')
+  ->where('vue_router', '[\/\w\.-]*');

@@ -1,0 +1,21 @@
+.root {
+  padding: 45px;
+
+  border-radius: 5px;
+
+  background-color: #fff;
+
+  box-shadow: 0px 0px 15px 1px darken(#fff, 25%);
+
+  @for $i from 0 to 4 {
+    &--shadow-#{$i} {
+      box-shadow: 0px 0px calc(#{$i} * 5px) 1px darken(#fff, 25%);
+    }
+  }
+
+  @for $i from 0 to 3 {
+    &--rounding-#{$i} {
+      border-radius: calc(#{$i} * 5px);
+    }
+  }
+}
