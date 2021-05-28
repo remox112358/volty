@@ -23,6 +23,6 @@
         <i-icon name="eye-disabled" color="dark" v-else />
       </div>
     </div>
-    <span :class="styles.message" v-if="invalid">{{ message }}</span>
+    <span :class="styles.error" v-if="invalid">{{ error }}</span>
   </div>
 </template>

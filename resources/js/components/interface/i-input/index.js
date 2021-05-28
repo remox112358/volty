@@ -38,7 +38,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    message: {
+    error: {
       type: String,
       default: 'Something wents wrong...',
     },
