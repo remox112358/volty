@@ -1,4 +1,6 @@
 .root {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
@@ -18,8 +20,12 @@
 
     &:focus {
       border-color: dodgerBlue;
-      
+
       box-shadow:0 0 3px 0 dodgerBlue;
+    }
+
+    &--password {
+      padding-right: 40px;
     }
 
     @for $i from 0 to 3 {
@@ -33,5 +39,21 @@
         border-radius: calc(#{$i} * 3px);
       }
     }
+  }
+
+  .toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 40px;
+    height: 100%;
+
+    cursor: pointer;
   }
 }

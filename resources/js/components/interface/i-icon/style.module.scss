@@ -1,0 +1,21 @@
+@import '../../../../scss/variables.scss';
+
+.root {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+  max-width: 100%;
+
+  color: inherit;
+
+  vertical-align: middle;
+
+  @each $type, $color in $COLORS {
+    &--#{$type} {
+      color: $color;
+    }
+  }
+}
