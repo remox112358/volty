@@ -22,17 +22,25 @@ export default {
       type: Number,
       default: 2,
     },
-    autofocus: {
-      type: Boolean,
-      default: false,
-    },
     width: {
       type: String,
-      default: 'auto',
+      default: '100%',
     },
     height: {
       type: String,
       default: 'auto',
+    },
+    valid: {
+      type: Boolean,
+      default: false,
+    },
+    invalid: {
+      type: Boolean,
+      default: false,
+    },
+    message: {
+      type: String,
+      default: 'Something wents wrong...',
     },
   },
   setup() {

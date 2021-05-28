@@ -1,8 +1,12 @@
-.root {
-  position: relative;
+@import '../../../../scss/variables.scss';
 
+.root {
   display: flex;
   flex-direction: column;
+
+  .field {
+    position: relative;
+  }
 
   .input {
     outline: none;
@@ -26,6 +30,14 @@
 
     &--password {
       padding-right: 40px;
+    }
+
+    &--valid {
+      border-color: map-get($COLORS, 'success');
+    }
+
+    &--invalid {
+      border-color: map-get($COLORS, 'danger');
     }
 
     @for $i from 0 to 3 {
@@ -55,5 +67,14 @@
     height: 100%;
 
     cursor: pointer;
+  }
+
+  .message {
+    font-size: 12px;
+    font-weight: 500;
+
+    margin-top: 3px;
+
+    color: map-get($COLORS, 'danger');
   }
 }
