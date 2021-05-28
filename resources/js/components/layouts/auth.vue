@@ -14,6 +14,8 @@
     width: 100vw;
     height: 100vh;
 
+    padding: 0 25px;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
