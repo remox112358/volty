@@ -5,11 +5,11 @@
 
   background-color: #fff;
 
-  box-shadow: 0px 0px 15px 1px darken(#fff, 25%);
+  box-shadow: 0px 0px 15px 1px lighten(#000, 75%);
 
   @for $i from 0 to 4 {
     &--shadow-#{$i} {
-      box-shadow: 0px 0px calc(#{$i} * 5px) 1px darken(#fff, 25%);
+      box-shadow: 0px 0px calc(#{$i} * 5px) 1px lighten(#000, 75%);
     }
   }
 

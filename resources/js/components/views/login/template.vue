@@ -1,5 +1,5 @@
 <template>
-  <i-card :rounding="2">
+  <i-card :rounding="2" :shadow="0">
     <div :class="styles.root">
       <img :class="styles.logo" src="../../../../img/logo.png" alt="Logo">
       <div :class="styles.form">

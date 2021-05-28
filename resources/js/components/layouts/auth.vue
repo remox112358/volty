@@ -6,8 +6,6 @@
 
 <style lang="scss" scoped>
 
-  @import '../../../scss/reset.scss';
-
   .wrapper {
     display: flex;
     align-items: center;
@@ -15,6 +13,11 @@
 
     width: 100vw;
     height: 100vh;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../../img/bg.jpg');
   }
 
 </style>

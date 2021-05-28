@@ -6,12 +6,21 @@
   min-width: 300px;
 
   .logo {
-    margin-bottom: 20px;
+    width: 60px;
+
+    margin-bottom: 40px;
   }
 
-  .field {
-    &:not(:last-of-type) {
-      margin-bottom: 10px;
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    .field {
+      &:not(:last-of-type) {
+        margin-bottom: 10px;
+      }
     }
   }
 }
