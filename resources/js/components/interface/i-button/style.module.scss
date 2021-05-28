@@ -1,0 +1,57 @@
+@import '../../../../scss/variables.scss';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-width: 0px;
+
+  margin: 0;
+  padding: 7.5px 10px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  transition-duration: .2s;
+  transition-property: color, border-color, background-color;
+
+  @each $type, $color in $COLORS {
+    &--#{$type} {
+      border-color: $color;
+
+      background-color: $color;
+
+      &:hover {
+        background-color: darken($color, 10%);
+      }
+
+      &:active {
+        background-color: darken($color, 15%);
+      }
+
+      &.root--outline {
+        color: $color;
+
+        border-width: 2px;
+        border-color: $color;
+
+        background-color: transparent;
+
+        &:hover {
+          color: #fff;
+          border-color: $color;
+          background-color: $color;
+        }
+
+        &:active {
+          background-color: darken($color, 10%);
+        }
+      }
+    }
+  }
+}

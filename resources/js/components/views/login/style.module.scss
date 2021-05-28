@@ -1,13 +1,13 @@
+@import '../../../../scss/variables.scss';
+
 .root {
   display: flex;
   align-items: center;
   flex-direction: column;
 
-  min-width: 300px;
+  width: 100%;
 
   .logo {
-    width: 60px;
-
     margin-bottom: 40px;
   }
 
@@ -20,6 +20,14 @@
     .field {
       &:not(:last-of-type) {
         margin-bottom: 10px;
+      }
+    }
+
+    .hint {
+      margin-top: 10px;
+
+      a {
+        color: map-get($COLORS, 'info');
       }
     }
   }

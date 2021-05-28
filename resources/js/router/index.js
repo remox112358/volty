@@ -22,9 +22,9 @@ const routes = [
         component: require('../components/views/login').default,
       },
       {
-        path: 'registration',
-        name: 'registration',
-        component: require('../components/views/registration').default,
+        path: 'signup',
+        name: 'signup',
+        component: require('../components/views/signup').default,
       },
     ],
   },
