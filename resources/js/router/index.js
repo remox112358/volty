@@ -6,9 +6,19 @@ const routes = [
     component: require('../components/layouts/main').default,
     children: [
       {
-        path: '',
+        path: 'boards',
+        name: 'boards',
+        component: require('../components/views/boards').default,
+      },
+      {
+        path: 'board',
         name: 'board',
-        component: require('../components/views/board').default,
+        component: require('../components/views/boards/board').default,
+      },
+      {
+        path: 'settings',
+        name: 'settings',
+        component: require('../components/views/settings').default,
       },
     ]
   },

@@ -1,0 +1,29 @@
+@import '../../../../scss/variables.scss';
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px;
+
+  color: #fff;
+  background-color: map-get($COLORS, 'dark');
+
+  &::after {
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    height: 2px;
+
+    background-color: map-get($COLORS, 'primary');
+  }
+}

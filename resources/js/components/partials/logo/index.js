@@ -12,6 +12,10 @@ export default {
       type: String,
       default: 'auto',
     },
+    white: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup() {
 
