@@ -1,5 +1,51 @@
 <template>
   <router-view>
-    <h1>BOARDS PAGE</h1>
+    <div :class="styles.group">
+      <h3 :class="styles.group__heading">
+        <i-icon name="star" />
+        Marked boards
+      </h3>
+      <div :class="styles.boards">
+        <i-board
+          :key="$i"
+          :href="`/boards/1`"
+          :name="`Board ${$i}`"
+
+          v-for="$i in 12"
+
+          marked
+        />
+      </div>
+    </div>
+    <div :class="styles.group">
+      <h3 :class="styles.group__heading">
+        <i-icon name="clock" />
+        Recently viewed
+      </h3>
+      <div :class="styles.boards">
+        <i-board
+          :key="$i"
+          :href="`/boards/1`"
+          :name="`Board ${$i}`"
+
+          v-for="$i in 12"
+        />
+      </div>
+    </div>
+    <div :class="styles.group">
+      <h3 :class="styles.group__heading">
+        <i-icon name="user" />
+        Personal boards
+      </h3>
+      <div :class="styles.boards">
+        <i-board
+          :key="$i"
+          :href="`/boards/1`"
+          :name="`Board ${$i}`"
+
+          v-for="$i in 12"
+        />
+      </div>
+    </div>
   </router-view>
 </template>
