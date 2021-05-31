@@ -3,7 +3,7 @@
     <p-header />
     <main>
       <p-sidebar />
-      <section>
+      <section :class="styles.content">
         <router-view></router-view>
       </section>
     </main>
