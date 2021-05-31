@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 10px;
+  height: 50px;
 
   color: #fff;
   background-color: map-get($COLORS, 'dark');
@@ -24,6 +24,48 @@
 
     height: 2px;
 
-    background-color: map-get($COLORS, 'primary');
+    background-size: 400% 400%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+
+    animation: gradient 15s ease infinite;
   }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+
+    transition-duration: .3s;
+    transition-property: background-color;
+
+    &:hover {
+      background-color: lighten(map-get($COLORS, 'dark'), 10%);
+    }
+  }
+}
+
+@keyframes gradient {
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

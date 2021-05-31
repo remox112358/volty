@@ -13,12 +13,12 @@ export default {
         heading: 'General',
         links: [
           {
-            icon: 'eye',
+            icon: 'board',
             text: 'Boards',
             url: '/boards',
           },
           {
-            icon: 'eye',
+            icon: 'settings',
             text: 'Settings',
             url: '/settings',
           },
@@ -28,19 +28,19 @@ export default {
         heading: 'Boards',
         links: [
           {
-            icon: 'eye',
+            icon: 'todo',
             text: 'Board 1',
-            url: '/board',
+            url: '/boards/1',
           },
           {
-            icon: 'eye',
+            icon: 'todo',
             text: 'Board 2',
-            url: '/board',
+            url: '/boards/2',
           },
           {
-            icon: 'eye',
+            icon: 'todo',
             text: 'Board 3',
-            url: '/board',
+            url: '/boards/3',
           },
         ],
       }

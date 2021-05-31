@@ -2,7 +2,7 @@
   <aside :class="styles.root">
     <div :class="styles.actions">
       <div :class="styles.action">
-        <i-icon name="eye" />
+        <i-icon name="add" />
         Add new board
       </div>
     </div>
@@ -17,7 +17,7 @@
         v-for="link in group.links"
       >
         <i-icon :name="link.icon" />
-        {{ link.text }}
+        <span>{{ link.text }}</span>
       </router-link>
     </div>
   </aside>

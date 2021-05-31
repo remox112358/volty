@@ -2,7 +2,7 @@
   <svg
     :class="{
       [styles.root]: true,
-      [styles[`root--${color}`]]: true,
+      [styles[`root--${color}`]]: color,
     }"
   >
     <use :xlink:href="xlink"></use>
