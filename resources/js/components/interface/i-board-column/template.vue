@@ -6,5 +6,8 @@
         <i-icon name="dots" />
       </div>
     </div>
+    <div :class="styles.body">
+      <slot />
+    </div>
   </div>
 </template>

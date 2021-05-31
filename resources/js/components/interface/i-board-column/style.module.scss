@@ -4,7 +4,9 @@
   width: 275px;
   height: 100%;
 
-  background-color: #fff;
+  border-radius: 5px;
+
+  overflow: hidden;
 
   box-shadow: 0 0 5px rgba(#000, .5);
 
@@ -38,6 +40,22 @@
       &:hover {
         background-color: lighten(map-get($COLORS, 'dark'), 10%);
       }
+
+      svg {
+        width: 15px;
+        height: 15px;
+      }
     }
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    height: 100%;
+
+    padding: 10px;
+
+    background-color: #fff;
   }
 }
