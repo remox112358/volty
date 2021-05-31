@@ -1,0 +1,67 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 9999;
+
+  background-color: rgba(#000, .8);
+
+  .loader {
+    position: relative;
+
+    display: inline-block;
+
+    width: 80px;
+    height: 80px;
+
+    > div {
+      transform-origin: 40px 40px;
+
+      animation: fade 1.2s linear infinite;
+
+      &::after {
+        content: "";
+
+        display: block;
+
+        position: absolute;
+
+        top: 3px;
+        left: 37px;
+
+        width: 6px;
+        height: 18px;
+
+        border-radius: 20%;
+
+        background: #fff;
+      }
+
+      @for $i from 1 to 13 {
+        &:nth-child(#{$i}) {
+          transform: rotate(calc((#{$i} - 1) * 30deg));
+
+          animation-delay: calc(-1.2s + (#{$i} * 0.1s));
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
