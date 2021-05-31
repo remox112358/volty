@@ -4,6 +4,7 @@ export const IInput = require('./i-input').default
 export const IBoard = require('./i-board').default
 export const IButton = require('./i-button').default
 export const ILoader = require('./i-loader').default
+export const IBoardCard = require('./i-board-card').default
 export const IBoardColumn = require('./i-board-column').default
 
 export default {
@@ -13,5 +14,6 @@ export default {
   IBoard,
   IButton,
   ILoader,
+  IBoardCard,
   IBoardColumn,
 }

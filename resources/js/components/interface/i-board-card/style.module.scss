@@ -1,0 +1,22 @@
+@import '../../../../scss/variables.scss';
+
+.root {
+  width: 100%;
+  height: min-content;
+
+  padding: 5px;
+
+  color: #fff;
+  background-color: map-get($COLORS, 'dark');
+
+  .edit {
+    float: right;
+
+    cursor: pointer;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}

@@ -49,13 +49,19 @@
   }
 
   .body {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
 
     height: 100%;
 
     padding: 10px;
 
     background-color: #fff;
+
+    > div {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
   }
 }
