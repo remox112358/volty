@@ -16887,9 +16887,9 @@ function render(_ctx, _cache) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.name), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-        "class": _ctx.styles.root__overlay
+        "class": _ctx.styles.overlay
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-        "class": _ctx.styles.root__mark
+        "class": _ctx.styles.mark
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_icon, {
         name: "star"
       })], 2
@@ -17087,7 +17087,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+  return _ctx.modelValue ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+    key: 0,
     "class": _ctx.styles.root
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.loader
@@ -17101,7 +17102,7 @@ function render(_ctx, _cache) {
   /* CLASS */
   )], 2
   /* CLASS */
-  );
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),
@@ -17434,6 +17435,8 @@ function render(_ctx, _cache) {
 
   var _component_i_board = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-board");
 
+  var _component_i_loader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-loader");
+
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_view, null, {
@@ -17511,7 +17514,14 @@ function render(_ctx, _cache) {
       /* CLASS */
       )], 2
       /* CLASS */
-      )];
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_loader, {
+        modelValue: _ctx.loadingStatus,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.loadingStatus = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])];
     }),
     _: 1
     /* STABLE */
@@ -18206,6 +18216,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   "extends": _template__WEBPACK_IMPORTED_MODULE_0__.default,
+  props: {
+    modelValue: {
+      type: Boolean,
+      "default": true
+    }
+  },
   setup: function setup() {
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_1___default())
@@ -18446,16 +18462,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template */ "./resources/js/components/views/boards/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/views/boards/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template */ "./resources/js/components/views/boards/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/views/boards/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_0__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_1__.default,
   setup: function setup() {
+    /**
+     * Loading status state.
+     */
+    var loadingStatus = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
+    /**
+     * Loading status state change.
+     *
+     * TODO: Remove to async request.
+     */
+
+    setTimeout(function () {
+      loadingStatus.value = false;
+    }, 500);
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_1___default())
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
+      loadingStatus: loadingStatus
     };
   }
 });
@@ -18678,12 +18710,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- COLORS ---------------- */\n._211ReeHxeY2jwhpuwkf-o9 {\n  position: relative;\n  overflow: hidden;\n  height: 100px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  background-color: #60a217;\n}\n._211ReeHxeY2jwhpuwkf-o9 > span {\n  position: relative;\n  white-space: nowrap;\n  overflow: hidden;\n  font-size: 16px;\n  font-weight: 500;\n  text-overflow: ellipsis;\n  max-width: 200px;\n  z-index: 20;\n  color: #fff;\n}\n._2mTzLe0wYhVCA1QZXajbae {\n  opacity: 0;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 2;\n  border-radius: 5px;\n  background-color: rgba(0, 0, 0, 0.3);\n  transition-duration: 0.2s;\n  transition-property: opacity;\n}\n._2mTzLe0wYhVCA1QZXajbae:hover {\n  opacity: 1;\n}\n._2mTzLe0wYhVCA1QZXajbae:hover .TfIcylLQRuk-w0pXMecZm {\n  transform: translateX(0);\n}\n.TfIcylLQRuk-w0pXMecZm {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  right: 10px;\n  bottom: 10px;\n  width: 20px;\n  height: 20px;\n  transform: translateX(calc(100% + 10px));\n  transition-duration: 0.2s;\n  transition-property: transform;\n}\n.TfIcylLQRuk-w0pXMecZm:hover svg {\n  transform: scale(1.2);\n}\n.TfIcylLQRuk-w0pXMecZm svg {\n  width: 15px;\n  height: 15px;\n  transition-duration: 0.2s;\n  transition-property: transform, opacity;\n}\n._2mL4-1sH029kMAN4DwuW5L .TfIcylLQRuk-w0pXMecZm svg {\n  opacity: 1;\n  color: gold;\n}\n._2mL4-1sH029kMAN4DwuW5L .TfIcylLQRuk-w0pXMecZm:hover svg {\n  opacity: 0.8;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) .TfIcylLQRuk-w0pXMecZm svg {\n  opacity: 0.8;\n  color: #fff;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) .TfIcylLQRuk-w0pXMecZm:hover svg {\n  opacity: 1;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- COLORS ---------------- */\n._211ReeHxeY2jwhpuwkf-o9 {\n  position: relative;\n  overflow: hidden;\n  height: 100px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  background-color: #60a217;\n}\n._211ReeHxeY2jwhpuwkf-o9:hover .z3wIg9nuSbhqZudt4KISe {\n  opacity: 1;\n}\n._211ReeHxeY2jwhpuwkf-o9:hover .z3wIg9nuSbhqZudt4KISe ._2Pv4yMPZd-dG45EcJ7XJmf {\n  transform: translateX(0);\n}\n._211ReeHxeY2jwhpuwkf-o9 > span {\n  position: relative;\n  white-space: nowrap;\n  overflow: hidden;\n  font-size: 16px;\n  font-weight: 500;\n  text-overflow: ellipsis;\n  max-width: 200px;\n  z-index: 20;\n  color: #fff;\n}\n._211ReeHxeY2jwhpuwkf-o9 .z3wIg9nuSbhqZudt4KISe {\n  opacity: 0;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 2;\n  border-radius: 5px;\n  background-color: rgba(0, 0, 0, 0.3);\n  transition-duration: 0.2s;\n  transition-property: opacity;\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  right: 10px;\n  bottom: 10px;\n  width: 20px;\n  height: 20px;\n  transform: translateX(calc(100% + 10px));\n  transition-duration: 0.2s;\n  transition-property: transform;\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  transform: scale(1.2);\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  width: 15px;\n  height: 15px;\n  transition-duration: 0.2s;\n  transition-property: transform, opacity;\n}\n._2mL4-1sH029kMAN4DwuW5L ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  opacity: 1;\n  color: gold;\n}\n._2mL4-1sH029kMAN4DwuW5L ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  opacity: 0.8;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  opacity: 0.8;\n  color: #fff;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  opacity: 1;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_211ReeHxeY2jwhpuwkf-o9",
-	"root__overlay": "_2mTzLe0wYhVCA1QZXajbae",
-	"root__mark": "TfIcylLQRuk-w0pXMecZm",
+	"overlay": "z3wIg9nuSbhqZudt4KISe",
+	"mark": "_2Pv4yMPZd-dG45EcJ7XJmf",
 	"root--marked": "_2mL4-1sH029kMAN4DwuW5L"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -18911,7 +18943,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1VfVg1JUOwSuxXPunHQ5Zq {\n  display: grid;\n  grid-template-rows: auto 1fr;\n  width: 100vw;\n  height: 100vh;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  background-color: #f4f5f7;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X {\n  padding: 20px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1VfVg1JUOwSuxXPunHQ5Zq {\n  display: grid;\n  grid-template-rows: auto 1fr;\n  width: 100vw;\n  height: 100vh;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  background-color: #f4f5f7;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X {\n  padding: 20px;\n  position: relative;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1VfVg1JUOwSuxXPunHQ5Zq",

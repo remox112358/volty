@@ -15,6 +15,16 @@
 
   background-color: map-get($COLORS, 'success');
 
+  &:hover {
+    .overlay {
+      opacity: 1;
+
+      .mark {
+        transform: translateX(0);
+      }
+    }
+  }
+
   > span {
     position: relative;
 
@@ -33,7 +43,7 @@
     color: #fff;
   }
 
-  &__overlay {
+  .overlay {
     opacity: 0;
 
     position: absolute;
@@ -51,17 +61,9 @@
 
     transition-duration: .2s;
     transition-property: opacity;
-
-    &:hover {
-      opacity: 1;
-
-      .root__mark {
-        transform: translateX(0);
-      }
-    }
   }
 
-  &__mark {
+  .mark {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,7 +97,7 @@
   }
 
   &--marked {
-    .root__mark {
+    .mark {
       svg {
         opacity: 1;
 
@@ -111,7 +113,7 @@
   }
 
   &:not(.root--marked) {
-    .root__mark {
+    .mark {
       svg {
         opacity: .8;
 

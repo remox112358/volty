@@ -47,5 +47,6 @@
         />
       </div>
     </div>
+    <i-loader v-model="loadingStatus" />
   </router-view>
 </template>
