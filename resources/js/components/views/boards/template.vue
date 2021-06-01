@@ -1,5 +1,5 @@
 <template>
-  <router-view>
+  <div :class="styles.root">
     <div :class="styles.group">
       <h3 :class="styles.group__heading">
         <i-icon name="star" />
@@ -47,6 +47,7 @@
         />
       </div>
     </div>
+
     <i-loader v-model="loadingStatus" />
-  </router-view>
+  </div>
 </template>

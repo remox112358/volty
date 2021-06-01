@@ -1,6 +1,8 @@
+@import '../../../../scss/variables.scss';
+
 .root {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 50px calc(100vh - 50px);
 
   width: 100vw;
   height: 100vh;
@@ -11,10 +13,24 @@
 
     background-color: #f4f5f7;
 
+    @media screen and (max-width: map-get($SCREENS, 'lg')) {
+      grid-template-columns: 0px 1fr;
+    }
+
     .content {
       padding: 20px;
 
+      overflow: auto;
+
+      max-height: 100%;
+
       position: relative;
+
+      @media screen and (min-width: map-get($SCREENS, 'lg')) {
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
     }
   }
 }
