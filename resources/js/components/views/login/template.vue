@@ -4,7 +4,7 @@
       <p-logo :class="styles.logo" width="60px" />
       <div :class="styles.form">
         <div :class="styles.field">
-          <i-input placeholder="Email" :stroke="1" :rounding="0" autofocus />
+          <i-input placeholder="Email" :stroke="1" :rounding="0" />
         </div>
         <div :class="styles.field">
           <i-input type="password" placeholder="Password" :stroke="1" :rounding="0" />

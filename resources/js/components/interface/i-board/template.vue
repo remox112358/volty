@@ -6,6 +6,10 @@
       [styles.root]: true,
       [styles['root--marked']]: marked,
     }"
+
+    :style="{
+      background: color,
+    }"
   >
     <span>{{ name }}</span>
     <div :class="styles.overlay">

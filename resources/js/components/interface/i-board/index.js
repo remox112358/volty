@@ -1,6 +1,8 @@
 import template from './template'
 import styles from './style.module.scss'
 
+import { getRandomColor } from './utils'
+
 export default {
   extends: template,
   props: {
@@ -10,7 +12,7 @@ export default {
     },
     color: {
       type: String,
-      default: '#60a217',
+      default: null,
     },
     href: {
       type: String,
@@ -21,11 +23,18 @@ export default {
       default: false,
     },
   },
-  setup() {
+  setup({ color }) {
+
+    /**
+     * Determines board color.
+     */
+    if (!color)
+      color = getRandomColor()
 
     return {
       styles,
 
+      color,
     }
 
   }

@@ -16881,7 +16881,10 @@ function render(_ctx, _cache) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     to: _ctx.href,
-    "class": (_class = {}, _defineProperty(_class, _ctx.styles.root, true), _defineProperty(_class, _ctx.styles['root--marked'], _ctx.marked), _class)
+    "class": (_class = {}, _defineProperty(_class, _ctx.styles.root, true), _defineProperty(_class, _ctx.styles['root--marked'], _ctx.marked), _class),
+    style: {
+      background: _ctx.color
+    }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.name), 1
@@ -16903,7 +16906,7 @@ function render(_ctx, _cache) {
 
   }, 8
   /* PROPS */
-  , ["to", "class"]);
+  , ["to", "class", "style"]);
 }
 
 /***/ }),
@@ -17577,8 +17580,7 @@ function render(_ctx, _cache) {
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
         placeholder: "Email",
         stroke: 1,
-        rounding: 0,
-        autofocus: ""
+        rounding: 0
       })], 2
       /* CLASS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
@@ -17701,8 +17703,7 @@ function render(_ctx, _cache) {
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
         placeholder: "Username",
         stroke: 1,
-        rounding: 0,
-        autofocus: ""
+        rounding: 0
       })], 2
       /* CLASS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
@@ -17919,6 +17920,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board/template.vue");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./resources/js/components/interface/i-board/utils.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -17930,7 +17933,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     color: {
       type: String,
-      "default": '#60a217'
+      "default": null
     },
     href: {
       type: String,
@@ -17941,12 +17944,47 @@ __webpack_require__.r(__webpack_exports__);
       "default": false
     }
   },
-  setup: function setup() {
+  setup: function setup(_ref) {
+    var color = _ref.color;
+
+    /**
+     * Determines board color.
+     */
+    if (!color) color = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.getRandomColor)();
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_1___default())
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_1___default()),
+      color: color
     };
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/components/interface/i-board/utils.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/interface/i-board/utils.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "COLORS": () => (/* binding */ COLORS),
+/* harmony export */   "getRandomColor": () => (/* binding */ getRandomColor)
+/* harmony export */ });
+/**
+ * Default colors.
+ */
+var COLORS = ['#60a217', '#b3b20a', '#da7909', '#a50a0a', '#09a585', '#096fa5', '#512490', '#922487'];
+/**
+ * Returns random color.
+ *
+ * @returns {String} - Color in HEX format.
+ */
+
+var getRandomColor = function getRandomColor() {
+  return COLORS[Math.floor(Math.random() * COLORS.length)];
+};
 
 /***/ }),
 
@@ -18705,7 +18743,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._211ReeHxeY2jwhpuwkf-o9 {\n  position: relative;\n  overflow: hidden;\n  height: 100px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n  background-color: #60a217;\n}\n._211ReeHxeY2jwhpuwkf-o9:hover .z3wIg9nuSbhqZudt4KISe {\n  opacity: 1;\n}\n._211ReeHxeY2jwhpuwkf-o9:hover .z3wIg9nuSbhqZudt4KISe ._2Pv4yMPZd-dG45EcJ7XJmf {\n  transform: translateX(0);\n}\n._211ReeHxeY2jwhpuwkf-o9 > span {\n  position: relative;\n  white-space: nowrap;\n  overflow: hidden;\n  font-size: 16px;\n  font-weight: 500;\n  text-overflow: ellipsis;\n  max-width: 200px;\n  z-index: 20;\n  color: #fff;\n}\n._211ReeHxeY2jwhpuwkf-o9 .z3wIg9nuSbhqZudt4KISe {\n  opacity: 0;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 2;\n  border-radius: 5px;\n  background-color: rgba(0, 0, 0, 0.3);\n  transition-duration: 0.2s;\n  transition-property: opacity;\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  right: 10px;\n  bottom: 10px;\n  width: 20px;\n  height: 20px;\n  transform: translateX(calc(100% + 10px));\n  transition-duration: 0.2s;\n  transition-property: transform;\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  transform: scale(1.2);\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  width: 15px;\n  height: 15px;\n  transition-duration: 0.2s;\n  transition-property: transform, opacity;\n}\n._2mL4-1sH029kMAN4DwuW5L ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  opacity: 1;\n  color: gold;\n}\n._2mL4-1sH029kMAN4DwuW5L ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  opacity: 0.8;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  opacity: 0.8;\n  color: #fff;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  opacity: 1;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._211ReeHxeY2jwhpuwkf-o9 {\n  position: relative;\n  overflow: hidden;\n  height: 100px;\n  padding: 10px;\n  cursor: pointer;\n  border-radius: 5px;\n}\n._211ReeHxeY2jwhpuwkf-o9:hover .z3wIg9nuSbhqZudt4KISe {\n  opacity: 1;\n}\n._211ReeHxeY2jwhpuwkf-o9:hover .z3wIg9nuSbhqZudt4KISe ._2Pv4yMPZd-dG45EcJ7XJmf {\n  transform: translateX(0);\n}\n._211ReeHxeY2jwhpuwkf-o9 > span {\n  position: relative;\n  white-space: nowrap;\n  overflow: hidden;\n  font-size: 16px;\n  font-weight: 500;\n  text-overflow: ellipsis;\n  max-width: 200px;\n  z-index: 20;\n  color: #fff;\n}\n@media screen and (max-width: 768px) {\n  ._211ReeHxeY2jwhpuwkf-o9 > span {\n    font-size: 14px;\n  }\n}\n._211ReeHxeY2jwhpuwkf-o9 .z3wIg9nuSbhqZudt4KISe {\n  opacity: 0;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 2;\n  border-radius: 5px;\n  background-color: rgba(0, 0, 0, 0.3);\n  transition-duration: 0.2s;\n  transition-property: opacity;\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  right: 10px;\n  bottom: 10px;\n  width: 20px;\n  height: 20px;\n  transform: translateX(calc(100% + 10px));\n  transition-duration: 0.2s;\n  transition-property: transform;\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  transform: scale(1.2);\n}\n._211ReeHxeY2jwhpuwkf-o9 ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  width: 15px;\n  height: 15px;\n  transition-duration: 0.2s;\n  transition-property: transform, opacity;\n}\n._2mL4-1sH029kMAN4DwuW5L ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  opacity: 1;\n  color: gold;\n}\n._2mL4-1sH029kMAN4DwuW5L ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  opacity: 0.8;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) ._2Pv4yMPZd-dG45EcJ7XJmf svg {\n  opacity: 0.8;\n  color: #fff;\n}\n._211ReeHxeY2jwhpuwkf-o9:not(._2mL4-1sH029kMAN4DwuW5L) ._2Pv4yMPZd-dG45EcJ7XJmf:hover svg {\n  opacity: 1;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_211ReeHxeY2jwhpuwkf-o9",
