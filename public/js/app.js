@@ -17370,7 +17370,9 @@ function render(_ctx, _cache) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ab nemo velit. Beatae, odit ipsa. Porro quo pariatur impedit repudiandae obcaecati quisquam eveniet consectetur, excepturi voluptates amet quos laboriosam incidunt?"
+        text: "Card text"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
+        text: "Card text"
       })];
     }),
     _: 1
@@ -17396,6 +17398,43 @@ function render(_ctx, _cache) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
         text: "Card text"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
+        text: "Card text"
+      })];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_column, {
+    name: "Column 4"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
+        text: "Card text"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
+        text: "Card text"
+      })];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_column, {
+    name: "Column 5"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
+        text: "Card text"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
+        text: "Card text"
+      })];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_column, {
+    name: "Column 6"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
         text: "Card text"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
         text: "Card text"
@@ -18713,7 +18752,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  width: 275px;\n  height: 100%;\n  border-radius: 5px;\n  overflow: hidden;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 40px;\n  color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  padding: 10px;\n  background-color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div:not(:last-child) {\n  margin-bottom: 10px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  height: 100%;\n  min-width: 275px;\n  border-radius: 5px;\n  overflow: hidden;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 40px;\n  color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  padding: 10px;\n  background-color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div:not(:last-child) {\n  margin-bottom: 10px;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1zEHmiZlP5zQyUxTkmpnfd",
@@ -18976,7 +19015,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1VfVg1JUOwSuxXPunHQ5Zq {\n  display: grid;\n  grid-template-rows: 50px calc(100vh - 50px);\n  width: 100vw;\n  height: 100vh;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  background-color: #f4f5f7;\n}\n@media screen and (max-width: 992px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main {\n    grid-template-columns: 0px 1fr;\n  }\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X {\n  padding: 20px;\n  overflow: auto;\n  max-height: 100%;\n  position: relative;\n}\n@media screen and (min-width: 992px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X::-webkit-scrollbar {\n    display: none;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1VfVg1JUOwSuxXPunHQ5Zq {\n  display: grid;\n  grid-template-rows: 50px calc(100vh - 50px);\n  width: 100vw;\n  height: 100vh;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  background-color: #f4f5f7;\n}\n@media screen and (max-width: 992px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main {\n    grid-template-columns: 0px 1fr;\n  }\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X {\n  padding: 20px;\n  overflow: auto;\n  max-height: 100%;\n  position: relative;\n}\n@media screen and (min-width: 992px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X::-webkit-scrollbar {\n    width: 7.5px;\n    height: 10px;\n    background-color: transparent;\n  }\n  ._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X::-webkit-scrollbar-thumb {\n    border-radius: 10px;\n    background-color: #1f1f1f;\n  }\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1VfVg1JUOwSuxXPunHQ5Zq",
