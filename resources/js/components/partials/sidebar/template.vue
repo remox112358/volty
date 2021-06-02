@@ -18,6 +18,8 @@
         :active-class="styles['tab--active']"
 
         v-for="link in group.links"
+
+        @click="redirectHandler"
       >
         <i-icon :name="link.icon" />
         <span>{{ link.text }}</span>

@@ -17323,7 +17323,8 @@ function render(_ctx, _cache) {
         to: link.url,
         key: link.url,
         "class": _ctx.styles.tab,
-        "active-class": _ctx.styles['tab--active']
+        "active-class": _ctx.styles['tab--active'],
+        onClick: _ctx.redirectHandler
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_icon, {
@@ -17339,7 +17340,7 @@ function render(_ctx, _cache) {
 
       }, 1032
       /* PROPS, DYNAMIC_SLOTS */
-      , ["to", "class", "active-class"]);
+      , ["to", "class", "active-class", "onClick"]);
     }), 128
     /* KEYED_FRAGMENT */
     ))], 2
@@ -18504,9 +18505,19 @@ __webpack_require__.r(__webpack_exports__);
      * Global store.
      */
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
+    /**
+     * Handler for redirect action.
+     */
+
+    var redirectHandler = function redirectHandler() {
+      var isMobile = window.innerWidth <= 576;
+      if (isMobile) store.dispatch('sidebar/hide');
+    };
+
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
       groups: _groups_json__WEBPACK_IMPORTED_MODULE_3__,
+      redirectHandler: redirectHandler,
       showStatus: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
         return store.state.sidebar.show;
       })
@@ -19105,7 +19116,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1VfVg1JUOwSuxXPunHQ5Zq {\n  display: grid;\n  grid-template-rows: 50px calc(100vh - 50px);\n  width: 100vw;\n  height: 100vh;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  background-color: #f4f5f7;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X {\n  padding: 20px;\n  overflow: auto;\n  max-height: 100%;\n  margin-left: -250px;\n  position: relative;\n  transition-duration: 0.3s;\n  transition-property: margin-left, opacity;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main ._2YBVq9GTyfa3PDttc3UHzy {\n  margin-left: 0;\n}\n@media screen and (max-width: 576px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main ._2YBVq9GTyfa3PDttc3UHzy {\n    opacity: 0;\n  }\n}\n@media screen and (min-width: 992px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X::-webkit-scrollbar {\n    width: 7.5px;\n    height: 10px;\n    background-color: transparent;\n  }\n  ._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X::-webkit-scrollbar-thumb {\n    border-radius: 10px;\n    background-color: #1f1f1f;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1VfVg1JUOwSuxXPunHQ5Zq {\n  display: grid;\n  grid-template-rows: 50px calc(100vh - 50px);\n  width: 100vw;\n  height: 100vh;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  background-color: #f4f5f7;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X {\n  padding: 20px;\n  overflow: auto;\n  max-height: 100%;\n  margin-left: -250px;\n  position: relative;\n  transition-duration: 0.3s;\n  transition-property: margin-left, opacity;\n}\n._1VfVg1JUOwSuxXPunHQ5Zq main ._2YBVq9GTyfa3PDttc3UHzy {\n  margin-left: 0;\n}\n@media screen and (max-width: 576px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main ._2YBVq9GTyfa3PDttc3UHzy {\n    opacity: 0;\n  }\n}\n@media screen and (min-width: 992px) {\n  ._1VfVg1JUOwSuxXPunHQ5Zq main .WwOPoJHn7kfqiK2HwHG7X::-webkit-scrollbar {\n    display: none;\n  }\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1VfVg1JUOwSuxXPunHQ5Zq",

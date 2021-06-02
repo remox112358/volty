@@ -35,18 +35,10 @@
         }
       }
 
+
       @media screen and (min-width: map-get($SCREENS, 'lg')) {
         &::-webkit-scrollbar {
-          width: 7.5px;
-          height: 10px;
-
-          background-color: transparent;
-        }
-
-        &::-webkit-scrollbar-thumb {
-          border-radius: 10px;
-
-          background-color: map-get($COLORS, 'dark');
+          display: none;
         }
       }
     }

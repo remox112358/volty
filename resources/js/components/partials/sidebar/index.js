@@ -15,10 +15,22 @@ export default {
      */
     const store = useStore()
 
+    /**
+     * Handler for redirect action.
+     */
+    const redirectHandler = () => {
+      const isMobile = window.innerWidth <= 576
+
+      if (isMobile)
+        store.dispatch('sidebar/hide')
+    }
+
     return {
       styles,
 
       groups,
+
+      redirectHandler,
 
       showStatus: computed(() => store.state.sidebar.show),
     }
