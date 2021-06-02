@@ -1,6 +1,6 @@
 <template>
   <header :class="styles.root">
-    <div :class="styles.trigger">
+    <div :class="styles.trigger" @click="showSidebar">
       <i-icon name="menu" />
     </div>
     <router-link to="/" :class="styles.logo">

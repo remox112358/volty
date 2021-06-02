@@ -13,10 +13,6 @@
 
     background-color: #f4f5f7;
 
-    @media screen and (max-width: map-get($SCREENS, 'lg')) {
-      grid-template-columns: 0px 1fr;
-    }
-
     .content {
       padding: 20px;
 
@@ -24,7 +20,20 @@
 
       max-height: 100%;
 
+      margin-left: -250px;
+
       position: relative;
+
+      transition-duration: .3s;
+      transition-property: margin-left, opacity;
+
+      &--compressed {
+        margin-left: 0;
+
+        @media screen and (max-width: map-get($SCREENS, 'sm')) {
+          opacity: 0;
+        }
+      }
 
       @media screen and (min-width: map-get($SCREENS, 'lg')) {
         &::-webkit-scrollbar {

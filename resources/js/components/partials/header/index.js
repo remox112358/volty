@@ -1,3 +1,5 @@
+import { useStore } from 'vuex'
+
 import template from './template'
 import styles from './style.module.scss'
 
@@ -10,9 +12,22 @@ export default {
   },
   setup() {
 
+    /**
+     * Global store.
+     */
+    const store = useStore()
+
+    /**
+     * Sidebar show action.
+     */
+    const showSidebar = () => {
+      store.dispatch('sidebar/toggle')
+    }
+
     return {
       styles,
 
+      showSidebar,
     }
 
   }

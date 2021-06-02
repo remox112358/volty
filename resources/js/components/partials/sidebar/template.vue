@@ -1,5 +1,8 @@
 <template>
-  <aside :class="styles.root">
+  <aside :class="{
+    [styles.root]: true,
+    [styles['root--show']]: showStatus,
+  }">
     <div :class="styles.actions">
       <div :class="styles.action">
         <i-icon name="add" />

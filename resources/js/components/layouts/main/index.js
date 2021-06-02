@@ -1,3 +1,6 @@
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 import template from './template'
 import styles from './style.module.scss'
 
@@ -12,9 +15,15 @@ export default {
   },
   setup() {
 
+    /**
+     * Global store.
+     */
+    const store = useStore()
+
     return {
       styles,
 
+      sidebarIsOpen: computed(() => store.state.sidebar.show)
     }
 
   }
