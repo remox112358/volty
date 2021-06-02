@@ -16798,8 +16798,10 @@ function render(_ctx, _cache) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
     "class": _ctx.styles.root
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.text) + " ", 1
-  /* TEXT */
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+    "class": _ctx.styles.text
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.text), 3
+  /* TEXT, CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.edit
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_icon, {
@@ -16826,6 +16828,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "Add another card", -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache) {
   var _component_i_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-icon");
 
@@ -16848,7 +16855,15 @@ function render(_ctx, _cache) {
   /* CLASS, STYLE */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.body
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    "class": _ctx.styles.list
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 2
+  /* CLASS */
+  )], 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    "class": _ctx.styles.action
+  }, [_hoisted_1], 2
   /* CLASS */
   )], 2
   /* CLASS */
@@ -17381,11 +17396,16 @@ function render(_ctx, _cache) {
     name: "Column 1"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
-        text: "Card text"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
-        text: "Card text"
-      })];
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(30, function (i) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board_card, {
+          text: "#".concat(i, " Card text"),
+          key: i
+        }, null, 8
+        /* PROPS */
+        , ["text"]);
+      }), 64
+      /* STABLE_FRAGMENT */
+      ))];
     }),
     _: 1
     /* STABLE */
@@ -18755,11 +18775,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.createStore)({
   state: function state() {
-    return {};
+    return {// ...
+    };
   },
-  getters: {},
-  mutations: {},
-  actions: {},
+  getters: {// ...
+  },
+  mutations: {// ...
+  },
+  actions: {// ...
+  },
   modules: {
     sidebar: _modules_sidebar__WEBPACK_IMPORTED_MODULE_0__.default
   }
@@ -18825,7 +18849,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._2oUsGsY_2ZChps1QeqDRzG {\n  position: relative;\n  width: 100%;\n  height: -webkit-min-content;\n  height: -moz-min-content;\n  height: min-content;\n  padding: 5px;\n  color: #fff;\n  background-color: #1f1f1f;\n}\n._2oUsGsY_2ZChps1QeqDRzG ._2rswIJ1C7GSE5DB_FeCLsb {\n  position: absolute;\n  top: 3px;\n  right: 3px;\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #808080;\n  transition-duration: 0.3s;\n  transition-property: color;\n}\n._2oUsGsY_2ZChps1QeqDRzG ._2rswIJ1C7GSE5DB_FeCLsb:hover {\n  color: #fff;\n}\n._2oUsGsY_2ZChps1QeqDRzG ._2rswIJ1C7GSE5DB_FeCLsb svg {\n  width: 15px;\n  height: 15px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._2oUsGsY_2ZChps1QeqDRzG {\n  position: relative;\n  padding: 5px;\n  width: 100%;\n  overflow: hidden;\n  border-radius: 5px;\n  border: 1px solid #b7b7b7;\n  background-color: #e8e8e8;\n  cursor: pointer;\n}\n._2oUsGsY_2ZChps1QeqDRzG:hover ._2rswIJ1C7GSE5DB_FeCLsb {\n  opacity: 1;\n}\n._2oUsGsY_2ZChps1QeqDRzG ._2rswIJ1C7GSE5DB_FeCLsb {\n  position: absolute;\n  top: 3px;\n  right: 3px;\n  width: 22.5px;\n  height: 22.5px;\n  border-radius: 50%;\n  border: 1px solid #b7b7b7;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #808080;\n  background-color: #e8e8e8;\n  opacity: 0;\n  transition-duration: 0.3s;\n  transition-property: color, border-color, opacity;\n}\n._2oUsGsY_2ZChps1QeqDRzG ._2rswIJ1C7GSE5DB_FeCLsb:hover {\n  color: #000;\n  border-color: #000;\n}\n._2oUsGsY_2ZChps1QeqDRzG ._2rswIJ1C7GSE5DB_FeCLsb svg {\n  width: 12.5px;\n  height: 12.5px;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_2oUsGsY_2ZChps1QeqDRzG",
@@ -18853,13 +18877,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  height: 100%;\n  min-width: 275px;\n  border-radius: 5px;\n  overflow: hidden;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 40px;\n  color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  padding: 10px;\n  background-color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div:not(:last-child) {\n  margin-bottom: 10px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  position: relative;\n  height: 100%;\n  min-width: 275px;\n  border-radius: 5px;\n  overflow: hidden;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 40px;\n  color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  padding: 10px;\n  height: calc(100% - 40px);\n  background-color: #fff;\n  overflow-y: auto;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE::-webkit-scrollbar {\n  display: none;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE ._31ImBP2Vij5nUVGlAp_HyW {\n  display: flex;\n  flex-direction: column;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE ._31ImBP2Vij5nUVGlAp_HyW > *:not(:last-child) {\n  margin-bottom: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU {\n  position: absolute;\n  text-align: center;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  padding: 10px;\n  border-top: 1px solid #b7b7b7;\n  background-color: #e8e8e8;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU:hover {\n  background-color: #cfcfcf;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU:active {\n  background-color: #c2c2c2;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1zEHmiZlP5zQyUxTkmpnfd",
 	"header": "_31896bHt704DBvMz26IV4r",
 	"settings": "CS2pCv0NH2pvdFcZyTfYU",
-	"body": "wXF6_rlX4mM1F5ts5HRoE"
+	"body": "wXF6_rlX4mM1F5ts5HRoE",
+	"list": "_31ImBP2Vij5nUVGlAp_HyW",
+	"action": "_1MnYCKH9BupN0W803JUpHU"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -2,8 +2,7 @@
   <div :class="styles.root">
     <div :class="styles.columns">
       <i-board-column name="Column 1">
-        <i-board-card text="Card text" />
-        <i-board-card text="Card text" />
+        <i-board-card :text="`#${i} Card text`" v-for="i in 30" :key="i" />
       </i-board-column>
       <i-board-column name="Column 2">
         <i-board-card text="Card text" />

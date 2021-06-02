@@ -7,7 +7,12 @@
       </div>
     </div>
     <div :class="styles.body">
-      <slot />
+      <div :class="styles.list">
+        <slot />
+      </div>
+    </div>
+    <div :class="styles.action">
+      <span>Add another card</span>
     </div>
   </div>
 </template>
