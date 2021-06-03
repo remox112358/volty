@@ -12,6 +12,7 @@
       </div>
     </div>
     <div :class="styles.action">
+      <i-icon name="add" />
       <span>Add another card</span>
     </div>
   </div>
