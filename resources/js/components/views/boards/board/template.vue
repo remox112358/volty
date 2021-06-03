@@ -1,29 +1,14 @@
 <template>
   <div :class="styles.root">
+    <h1>{{ data.name }}</h1>
     <div :class="styles.columns">
-      <i-board-column name="Column 1">
-        <i-board-card :text="`#${i} Card text`" v-for="i in 30" :key="i" />
-      </i-board-column>
-      <i-board-column name="Column 2">
-        <i-board-card text="Card text" />
-        <i-board-card text="Card text" />
-      </i-board-column>
-      <i-board-column name="Column 3">
-        <i-board-card text="Card text" />
-        <i-board-card text="Card text" />
-      </i-board-column>
-      <i-board-column name="Column 4">
-        <i-board-card text="Card text" />
-        <i-board-card text="Card text" />
-      </i-board-column>
-      <i-board-column name="Column 5">
-        <i-board-card text="Card text" />
-        <i-board-card text="Card text" />
-      </i-board-column>
-      <i-board-column name="Column 6">
-        <i-board-card text="Card text" />
-        <i-board-card text="Card text" />
-      </i-board-column>
+      <i-board-column
+        :id="column.id"
+        :key="column.id"
+        :name="column.name"
+
+        v-for="column in columns"
+      />
     </div>
   </div>
 </template>

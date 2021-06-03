@@ -5,10 +5,11 @@
 
   height: 100%;
   min-width: 275px;
-
-  border-radius: 5px;
+  max-width: 275px;
 
   overflow: hidden;
+
+  border-radius: 5px;
 
   box-shadow: 0 0 5px rgba(#000, .5);
 
@@ -63,7 +64,7 @@
       display: none;
     }
 
-    .list {
+    > div {
       display: flex;
       flex-direction: column;
 

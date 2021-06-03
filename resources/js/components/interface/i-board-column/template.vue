@@ -7,9 +7,17 @@
       </div>
     </div>
     <div :class="styles.body">
-      <div :class="styles.list">
-        <slot />
-      </div>
+      <draggable
+        group="cards"
+        item-key="id"
+        v-model="cards"
+
+        @change="onChange($event)"
+      >
+        <template #item="{element}">
+          <i-board-card :text="element.text" />
+        </template>
+      </draggable>
     </div>
     <div :class="styles.action">
       <i-icon name="add" />
