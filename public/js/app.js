@@ -16862,12 +16862,11 @@ function render(_ctx, _cache) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_draggable, {
     group: "cards",
     "item-key": "id",
+    animation: 200,
+    "ghost-class": _ctx.styles.ghost,
     modelValue: _ctx.cards,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return _ctx.cards = $event;
-    }),
-    onChange: _cache[2] || (_cache[2] = function ($event) {
-      return _ctx.onChange($event);
     })
   }, {
     item: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
@@ -16883,7 +16882,7 @@ function render(_ctx, _cache) {
 
   }, 8
   /* PROPS */
-  , ["modelValue"])], 2
+  , ["ghost-class", "modelValue"])], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.action
@@ -17904,22 +17903,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
-
-
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_2__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_1__.default,
   components: {
-    draggable: (vuedraggable__WEBPACK_IMPORTED_MODULE_1___default())
+    draggable: (vuedraggable__WEBPACK_IMPORTED_MODULE_0___default())
   },
   props: {
     id: {
@@ -17935,41 +17930,23 @@ __webpack_require__.r(__webpack_exports__);
       "default": '#1f1f1f'
     }
   },
-  setup: function setup(_ref) {
-    var id = _ref.id;
-
-    /**
-     * Global store.
-     */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
-    /**
-     * Columns cards.
-     */
-
-    var cards = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return store.getters['boards/cardsByColumnId'](id);
-    });
-    /**
-     * Draggable change handler.
-     *
-     * @param {Object} event
-     */
-
-    var onChange = function onChange(_ref2) {
-      var newIndex = _ref2.newIndex;
-      console.log(cards.value);
-      store.dispatch('boards/updateCardIndex', {
-        id: id,
-        newIndex: newIndex
-      });
-      console.log(cards.value);
-    };
-
+  data: function data() {
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_3___default()),
-      cards: cards,
-      onChange: onChange
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default())
     };
+  },
+  computed: {
+    cards: {
+      get: function get() {
+        return this.$store.getters['boards/cardsByColumnId'](this.id);
+      },
+      set: function set(value) {
+        this.$store.dispatch('boards/setCards', {
+          value: value,
+          columnId: this.id
+        });
+      }
+    }
   }
 });
 
@@ -18850,7 +18827,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }],
       columns: [{
         id: 1,
-        index: 1,
         boardId: 1,
         name: 'Column 1'
       }],
@@ -18901,27 +18877,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mutations: {
-    updateCardIndex: function updateCardIndex(state, _ref) {
-      var id = _ref.id,
-          oldIndex = _ref.oldIndex,
-          newIndex = _ref.newIndex;
-      state.cards.find(function (card) {
-        return card.id === id;
-      }).index = newIndex;
-      state.cards.find(function (card) {
-        return card.id === id;
-      }).index = newIndex;
+    setCards: function setCards(state, _ref) {
+      var value = _ref.value,
+          columnId = _ref.columnId;
+      state.cards = state.cards.filter(function (card) {
+        return card.columnId != columnId;
+      });
+      state.cards = [].concat(_toConsumableArray(state.cards), _toConsumableArray(value));
     }
   },
   actions: {
-    updateCardIndex: function updateCardIndex(context, _ref2) {
-      var id = _ref2.id,
-          oldIndex = _ref2.oldIndex,
-          newIndex = _ref2.newIndex;
-      context.commit('updateCardIndex', {
-        id: id,
-        oldIndex: oldIndex,
-        newIndex: newIndex
+    setCards: function setCards(context, _ref2) {
+      var value = _ref2.value,
+          columnId = _ref2.columnId;
+      value.forEach(function (card, index) {
+        card.index = index + 1;
+      });
+      context.commit('setCards', {
+        value: value,
+        columnId: columnId
       });
     }
   }
@@ -19014,14 +18988,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  position: relative;\n  height: 100%;\n  min-width: 275px;\n  max-width: 275px;\n  overflow: hidden;\n  border-radius: 5px;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 40px;\n  color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  padding: 10px;\n  height: calc(100% - 80px);\n  background-color: #fff;\n  overflow-y: auto;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE::-webkit-scrollbar {\n  display: none;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div {\n  display: flex;\n  flex-direction: column;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div > *:not(:last-child) {\n  margin-bottom: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU {\n  height: 40px;\n  line-height: 1;\n  text-align: center;\n  padding: 10px;\n  border-top: 1px solid #b7b7b7;\n  background-color: #e8e8e8;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU:hover {\n  background-color: #cfcfcf;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU:active {\n  background-color: #c2c2c2;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU svg {\n  margin-right: 10px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  position: relative;\n  height: 100%;\n  min-width: 275px;\n  max-width: 275px;\n  overflow: hidden;\n  border-radius: 5px;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 40px;\n  color: #fff;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  padding: 10px;\n  height: calc(100% - 80px);\n  background-color: #fff;\n  overflow-y: auto;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE::-webkit-scrollbar {\n  display: none;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div {\n  display: flex;\n  flex-direction: column;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div > *:not(:last-child) {\n  margin-bottom: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU {\n  height: 40px;\n  line-height: 1;\n  text-align: center;\n  padding: 10px;\n  border-top: 1px solid #b7b7b7;\n  background-color: #e8e8e8;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU:hover {\n  background-color: #cfcfcf;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU:active {\n  background-color: #c2c2c2;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._1MnYCKH9BupN0W803JUpHU svg {\n  margin-right: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._7vru10dND7r67E3xMmUuu {\n  opacity: 0.5;\n  border: 1px solid #1f1f1f;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1zEHmiZlP5zQyUxTkmpnfd",
 	"header": "_31896bHt704DBvMz26IV4r",
 	"settings": "CS2pCv0NH2pvdFcZyTfYU",
 	"body": "wXF6_rlX4mM1F5ts5HRoE",
-	"action": "_1MnYCKH9BupN0W803JUpHU"
+	"action": "_1MnYCKH9BupN0W803JUpHU",
+	"ghost": "_7vru10dND7r67E3xMmUuu"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

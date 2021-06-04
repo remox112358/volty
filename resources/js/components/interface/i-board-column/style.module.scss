@@ -105,4 +105,10 @@
       margin-right: 10px;
     }
   }
+
+  .ghost {
+    opacity: .5;
+
+    border: 1px solid map-get($COLORS, 'dark');
+  }
 }

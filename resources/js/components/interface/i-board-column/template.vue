@@ -10,9 +10,11 @@
       <draggable
         group="cards"
         item-key="id"
-        v-model="cards"
 
-        @change="onChange($event)"
+        :animation="200"
+        :ghost-class="styles.ghost"
+
+        v-model="cards"
       >
         <template #item="{element}">
           <i-board-card :text="element.text" />

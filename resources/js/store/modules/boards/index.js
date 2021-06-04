@@ -11,7 +11,6 @@ export default {
     columns: [
       {
         id: 1,
-        index: 1,
         boardId: 1,
         name: 'Column 1',
       },
@@ -58,15 +57,19 @@ export default {
   },
 
   mutations: {
-    updateCardIndex: (state, { id, oldIndex, newIndex }) => {
-      state.cards.find(card => card.id === id).index = newIndex
-      state.cards.find(card => card.id === id).index = newIndex
+    setCards: (state, { value, columnId }) => {
+      state.cards = state.cards.filter(card => card.columnId != columnId)
+      state.cards = [...state.cards, ...value]
     },
   },
 
   actions: {
-    updateCardIndex: (context, { id, oldIndex, newIndex }) => {
-      context.commit('updateCardIndex', { id, oldIndex, newIndex })
+    setCards: (context, { value, columnId }) => {
+      value.forEach((card, index) => {
+        card.index = index + 1
+      })
+
+      context.commit('setCards', { value, columnId })
     },
   },
 }
