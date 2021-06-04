@@ -12,6 +12,7 @@
         item-key="id"
 
         :animation="200"
+        :drag-class="styles['ghost-dragging']"
         :ghost-class="styles.ghost"
 
         v-model="cards"
@@ -21,9 +22,6 @@
         </template>
       </draggable>
     </div>
-    <div :class="styles.action">
-      <i-icon name="add" />
-      <span>Add another card</span>
-    </div>
+    <addAnotherCard />
   </div>
 </template>

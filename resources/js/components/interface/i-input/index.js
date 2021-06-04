@@ -1,4 +1,4 @@
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 import template from './template'
 import styles from './style.module.scss'
@@ -42,8 +42,12 @@ export default {
       type: String,
       default: 'Something wents wrong...',
     },
+    autofocus: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup() {
+  setup({ autofocus }) {
 
     /**
      * Input DOM element.
@@ -72,6 +76,14 @@ export default {
         input.value.type = 'text'
       else
         input.value.type = 'password'
+    })
+
+    /**
+     * When component mounted.
+     */
+    onMounted(() => {
+      if (autofocus)
+        input.value.focus()
     })
 
     return {

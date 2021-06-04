@@ -1,10 +1,8 @@
 <template>
-  <div :class="styles.root">
+  <div :class="styles.root" :style="{width, height}">
     <div :class="styles.field">
       <input
         ref="input"
-
-        :style="{width, height}"
 
         :class="{
           [styles.input]: true,

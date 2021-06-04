@@ -1,0 +1,45 @@
+.root {
+  position: relative;
+
+  height: 40px;
+
+  line-height: 1;
+  text-align: center;
+
+  padding: 10px;
+
+  border-top: 1px solid #b7b7b7;
+
+  background-color: #e8e8e8;
+
+  cursor: pointer;
+
+  transition-duration: .3s;
+  transition-property: background-color;
+
+  &:hover {
+    background-color: darken(#e8e8e8, 10%)
+  }
+
+  &:active {
+    background-color: darken(#e8e8e8, 15%)
+  }
+
+  &--creating {
+    padding: 0;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+
+  form {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}

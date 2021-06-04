@@ -3,10 +3,13 @@ import draggable from 'vuedraggable'
 import template from './template'
 import styles from './style.module.scss'
 
+import addAnotherCard from './components/addAnotherCard'
+
 export default {
   extends: template,
   components: {
     draggable,
+    addAnotherCard,
   },
   props: {
     id: {
