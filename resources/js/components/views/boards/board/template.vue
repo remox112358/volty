@@ -1,14 +1,19 @@
 <template>
   <div :class="styles.root">
     <h1>{{ data.name }}</h1>
-    <div :class="styles.columns">
-      <i-board-column
-        :id="column.id"
-        :key="column.id"
-        :name="column.name"
+    <draggable
+      item-key="id"
+      group="columns"
 
-        v-for="column in columns"
-      />
-    </div>
+      :animation="200"
+      :class="styles.columns"
+      :ghost-class="styles.ghost"
+
+      v-model="columns"
+    >
+      <template #item="{element}">
+        <i-board-column :id="element.id" :name="element.name" />
+      </template>
+    </draggable>
   </div>
 </template>
