@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 
 import template from './template'
 import styles from './style.module.scss'
@@ -10,8 +11,17 @@ export default {
       type: String,
       default: 'Add another card',
     },
+    columnId: {
+      type: Number,
+      default: null,
+    },
   },
-  setup() {
+  setup({ columnId }) {
+
+    /**
+     * Global store.
+     */
+    const store = useStore()
 
     /**
      * Creating status.
@@ -43,7 +53,12 @@ export default {
     const onSubmit = () => {
       creatingStatus.value = false
 
-      console.log(value.value)
+      store.commit('boards/addCard', {
+        columnId,
+        value: value.value
+      })
+
+      value.value = null
     }
 
     return {

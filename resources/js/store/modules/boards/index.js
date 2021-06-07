@@ -78,6 +78,14 @@ export default {
       state.cards = state.cards.filter(card => card.columnId != columnId)
       state.cards = [...state.cards, ...value]
     },
+    addCard: (state, { value, columnId }) => {
+      state.cards = [...state.cards, {
+        id: Math.floor(Math.random() * 100),
+        index: 10,
+        columnId: columnId,
+        text: value,
+      }]
+    },
   },
 
   actions: {

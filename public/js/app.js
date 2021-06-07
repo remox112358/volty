@@ -16864,7 +16864,7 @@ function render(_ctx, _cache) {
   }, null, 8
   /* PROPS */
   , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_button, {
-    color: "success",
+    color: "dark",
     width: "20%",
     height: "100%"
   }, {
@@ -16958,7 +16958,11 @@ function render(_ctx, _cache) {
   /* PROPS */
   , ["drag-class", "ghost-class", "modelValue"])], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_addAnotherCard)], 2
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_addAnotherCard, {
+    columnId: _ctx.id
+  }, null, 8
+  /* PROPS */
+  , ["columnId"])], 2
   /* CLASS */
   );
 }
@@ -17151,13 +17155,17 @@ function render(_ctx, _cache) {
     ref: "input",
     "class": (_class = {}, _defineProperty(_class, _ctx.styles.input, true), _defineProperty(_class, _ctx.styles['input--valid'], _ctx.valid), _defineProperty(_class, _ctx.styles['input--invalid'], _ctx.invalid), _defineProperty(_class, _ctx.styles["input--stroke-".concat(_ctx.stroke)], true), _defineProperty(_class, _ctx.styles["input--rounding-".concat(_ctx.rounding)], true), _defineProperty(_class, _ctx.styles['input--password'], _ctx.type === 'password'), _class),
     type: _ctx.type,
-    placeholder: _ctx.placeholder
-  }, null, 10
-  /* CLASS, PROPS */
-  , ["type", "placeholder"]), _ctx.type === 'password' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
+    value: _ctx.modelValue,
+    placeholder: _ctx.placeholder,
+    onChange: _cache[1] || (_cache[1] = function ($event) {
+      return _ctx.$emit('update:modelValue', $event.target.value);
+    })
+  }, null, 42
+  /* CLASS, PROPS, HYDRATE_EVENTS */
+  , ["type", "value", "placeholder"]), _ctx.type === 'password' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
     key: 0,
     "class": _ctx.styles.toggler,
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[2] || (_cache[2] = function () {
       return _ctx.visibilityToggle && _ctx.visibilityToggle.apply(_ctx, arguments);
     })
   }, [!_ctx.visibilityStatus ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_i_icon, {
@@ -17985,9 +17993,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/template.vue");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -17997,12 +18007,23 @@ __webpack_require__.r(__webpack_exports__);
     text: {
       type: String,
       "default": 'Add another card'
+    },
+    columnId: {
+      type: Number,
+      "default": null
     }
   },
-  setup: function setup() {
+  setup: function setup(_ref) {
+    var columnId = _ref.columnId;
+
+    /**
+     * Global store.
+     */
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     /**
      * Creating status.
      */
+
     var creatingStatus = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     /**
      * Creating card value.
@@ -18031,7 +18052,11 @@ __webpack_require__.r(__webpack_exports__);
 
     var onSubmit = function onSubmit() {
       creatingStatus.value = false;
-      console.log(value.value);
+      store.commit('boards/addCard', {
+        columnId: columnId,
+        value: value.value
+      });
+      value.value = null;
     };
 
     return {
@@ -18360,6 +18385,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   "extends": _template__WEBPACK_IMPORTED_MODULE_1__.default,
   props: {
+    modelValue: {
+      type: String,
+      "default": null
+    },
     type: {
       type: String,
       "default": 'text'
@@ -19072,12 +19101,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return card.columnId != columnId;
       });
       state.cards = [].concat(_toConsumableArray(state.cards), _toConsumableArray(value));
+    },
+    addCard: function addCard(state, _ref3) {
+      var value = _ref3.value,
+          columnId = _ref3.columnId;
+      state.cards = [].concat(_toConsumableArray(state.cards), [{
+        id: Math.floor(Math.random() * 100),
+        index: 10,
+        columnId: columnId,
+        text: value
+      }]);
     }
   },
   actions: {
-    setColumns: function setColumns(context, _ref3) {
-      var value = _ref3.value,
-          boardId = _ref3.boardId;
+    setColumns: function setColumns(context, _ref4) {
+      var value = _ref4.value,
+          boardId = _ref4.boardId;
       value.forEach(function (column, index) {
         column.index = index + 1;
       });
@@ -19086,9 +19125,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         boardId: boardId
       });
     },
-    setCards: function setCards(context, _ref4) {
-      var value = _ref4.value,
-          columnId = _ref4.columnId;
+    setCards: function setCards(context, _ref5) {
+      var value = _ref5.value,
+          columnId = _ref5.columnId;
       value.forEach(function (card, index) {
         card.index = index + 1;
         card.columnId = columnId;
@@ -19600,7 +19639,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._2CMEIBC7TX6FlLzLLLGxpc {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 100%;\n}\n._2CMEIBC7TX6FlLzLLLGxpc h1 {\n  flex: 0 auto;\n  font-size: 24px;\n  font-weight: 500;\n  margin-bottom: 20px;\n}\n._2CMEIBC7TX6FlLzLLLGxpc ._3wVosxaa0Iul6WIM2JL6jS {\n  flex: 1;\n  display: flex;\n  flex-direction: row;\n  height: 100%;\n}\n._2CMEIBC7TX6FlLzLLLGxpc ._3wVosxaa0Iul6WIM2JL6jS > div:not(:last-child) {\n  margin-right: 20px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "._2CMEIBC7TX6FlLzLLLGxpc {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 100%;\n}\n._2CMEIBC7TX6FlLzLLLGxpc h1 {\n  flex: 0 auto;\n  font-size: 24px;\n  font-weight: 500;\n  margin-bottom: 20px;\n}\n._2CMEIBC7TX6FlLzLLLGxpc ._3wVosxaa0Iul6WIM2JL6jS {\n  flex: 1;\n  display: flex;\n  flex-direction: row;\n  height: calc(100% - 55px);\n}\n._2CMEIBC7TX6FlLzLLLGxpc ._3wVosxaa0Iul6WIM2JL6jS > div:not(:last-child) {\n  margin-right: 20px;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_2CMEIBC7TX6FlLzLLLGxpc",

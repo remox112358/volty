@@ -22,6 +22,6 @@
         </template>
       </draggable>
     </div>
-    <addAnotherCard />
+    <addAnotherCard :columnId="id" />
   </div>
 </template>

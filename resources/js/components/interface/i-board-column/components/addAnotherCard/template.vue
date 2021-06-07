@@ -10,7 +10,7 @@
     <template v-if="creatingStatus">
       <form @submit.prevent="onSubmit">
         <i-input v-model="value" width="80%" height="100%" :rounding="0" autofocus />
-        <i-button color="success" width="20%" height="100%">+</i-button>
+        <i-button color="dark" width="20%" height="100%">+</i-button>
       </form>
     </template>
     <template v-else>

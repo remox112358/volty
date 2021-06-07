@@ -14,7 +14,10 @@
         }"
 
         :type="type"
+        :value="modelValue"
         :placeholder="placeholder"
+
+        @change="$emit('update:modelValue', $event.target.value)"
       >
       <button :class="styles.toggler" v-if="type === 'password'" @click="visibilityToggle">
         <i-icon name="eye" color="dark" v-if="!visibilityStatus" />

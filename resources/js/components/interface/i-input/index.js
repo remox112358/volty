@@ -6,6 +6,10 @@ import styles from './style.module.scss'
 export default {
   extends: template,
   props: {
+    modelValue: {
+      type: String,
+      default: null,
+    },
     type: {
       type: String,
       default: 'text',
