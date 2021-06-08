@@ -17336,9 +17336,6 @@ __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" modal content ");
-
 function render(_ctx, _cache) {
   var _class;
 
@@ -17348,7 +17345,7 @@ function render(_ctx, _cache) {
 
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
 
-  var _component_i_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-modal");
+  var _component_m_add_new_board = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("m-add-new-board");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
     "class": _ctx.styles.root
@@ -17356,13 +17353,39 @@ function render(_ctx, _cache) {
     "class": (_class = {}, _defineProperty(_class, _ctx.styles.content, true), _defineProperty(_class, _ctx.styles['content--compressed'], _ctx.sidebarIsOpen), _class)
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_modal, {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_m_add_new_board)])], 2
+  /* CLASS */
+  );
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modals/m-add-new-board/template.vue?vue&type=template&id=5ed5d42c":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modals/m-add-new-board/template.vue?vue&type=template&id=5ed5d42c ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" modal content ");
+
+function render(_ctx, _cache) {
+  var _component_i_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-modal");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_i_modal, {
     title: "Add new board",
-    modelValue: _ctx.modalShow,
+    modelValue: _ctx.show,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.modalShow = $event;
+      return _ctx.show = $event;
     }),
-    onClose: _ctx.modalClose
+    onClose: _ctx.close
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_1];
@@ -17372,9 +17395,7 @@ function render(_ctx, _cache) {
 
   }, 8
   /* PROPS */
-  , ["modelValue", "onClose"])])], 2
-  /* CLASS */
-  );
+  , ["modelValue", "onClose"]);
 }
 
 /***/ }),
@@ -18807,20 +18828,82 @@ __webpack_require__.r(__webpack_exports__);
      * Global store.
      */
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
-
-    var modalClose = function modalClose() {
-      return store.dispatch('modals/close', 'addNewBoard');
-    };
-
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
       sidebarIsOpen: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
         return store.state.sidebar.show;
-      }),
-      modalShow: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-        return store.state.modals.addNewBoard;
-      }),
-      modalClose: modalClose
+      })
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/autoload.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/modals/autoload.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MAddNewBoard": () => (/* binding */ MAddNewBoard),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var MAddNewBoard = __webpack_require__(/*! ./m-add-new-board */ "./resources/js/components/modals/m-add-new-board/index.js").default;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  MAddNewBoard: MAddNewBoard
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/m-add-new-board/index.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/modals/m-add-new-board/index.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-new-board/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-add-new-board/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  "extends": _template__WEBPACK_IMPORTED_MODULE_1__.default,
+  setup: function setup() {
+    /**
+     * Global store.
+     */
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    /**
+     * Show status.
+     */
+
+    var show = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return store.state.modals.addNewBoard;
+    });
+    /**
+     * Close action.
+     */
+
+    var close = function close() {
+      store.dispatch('modals/close', 'addNewBoard');
+    };
+
+    return {
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
+      show: show,
+      close: close
     };
   }
 });
@@ -19856,6 +19939,31 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"content": "WwOPoJHn7kfqiK2HwHG7X",
 	"content--compressed": "_2YBVq9GTyfa3PDttc3UHzy"
 };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/components/modals/m-add-new-board/style.module.scss":
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/components/modals/m-add-new-board/style.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -41766,6 +41874,30 @@ script.__file = "resources/js/components/layouts/main/template.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/modals/m-add-new-board/template.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/modals/m-add-new-board/template.vue ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _template_vue_vue_type_template_id_5ed5d42c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.vue?vue&type=template&id=5ed5d42c */ "./resources/js/components/modals/m-add-new-board/template.vue?vue&type=template&id=5ed5d42c");
+
+const script = {}
+script.render = _template_vue_vue_type_template_id_5ed5d42c__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+script.__file = "resources/js/components/modals/m-add-new-board/template.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (script);
+
+/***/ }),
+
 /***/ "./resources/js/components/partials/header/template.vue":
 /*!**************************************************************!*\
   !*** ./resources/js/components/partials/header/template.vue ***!
@@ -42162,6 +42294,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_template_vue_vue_type_template_id_456f1ccf__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_template_vue_vue_type_template_id_456f1ccf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./template.vue?vue&type=template&id=456f1ccf */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/layouts/main/template.vue?vue&type=template&id=456f1ccf");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/m-add-new-board/template.vue?vue&type=template&id=5ed5d42c":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/modals/m-add-new-board/template.vue?vue&type=template&id=5ed5d42c ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_template_vue_vue_type_template_id_5ed5d42c__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_template_vue_vue_type_template_id_5ed5d42c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./template.vue?vue&type=template&id=5ed5d42c */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modals/m-add-new-board/template.vue?vue&type=template&id=5ed5d42c");
 
 
 /***/ }),
@@ -45969,6 +46117,27 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! !../../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
 var update = add("0aa62975", content, false, {});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/m-add-new-board/style.module.scss":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/modals/m-add-new-board/style.module.scss ***!
+  \**************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!../../../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./style.module.scss */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-11.use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-11.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-11.use[3]!./resources/js/components/modals/m-add-new-board/style.module.scss");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! !../../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("2b1938fa", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -53597,7 +53766,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
-/* harmony import */ var _components_interface_autoload__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/interface/autoload */ "./resources/js/components/interface/autoload.js");
+/* harmony import */ var _components_modals_autoload__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/modals/autoload */ "./resources/js/components/modals/autoload.js");
+/* harmony import */ var _components_interface_autoload__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/interface/autoload */ "./resources/js/components/interface/autoload.js");
+
 
 
 
@@ -53610,11 +53781,18 @@ __webpack_require__.r(__webpack_exports__);
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)(_components_App_vue__WEBPACK_IMPORTED_MODULE_4__.default);
 /**
+ * Modals components.
+ */
+
+Object.keys(_components_modals_autoload__WEBPACK_IMPORTED_MODULE_5__.default).forEach(function (name) {
+  app.component(name, _components_modals_autoload__WEBPACK_IMPORTED_MODULE_5__.default[name]);
+});
+/**
  * Interface components.
  */
 
-Object.keys(_components_interface_autoload__WEBPACK_IMPORTED_MODULE_5__.default).forEach(function (name) {
-  app.component(name, _components_interface_autoload__WEBPACK_IMPORTED_MODULE_5__.default[name]);
+Object.keys(_components_interface_autoload__WEBPACK_IMPORTED_MODULE_6__.default).forEach(function (name) {
+  app.component(name, _components_interface_autoload__WEBPACK_IMPORTED_MODULE_6__.default[name]);
 });
 /**
  * App configuration.

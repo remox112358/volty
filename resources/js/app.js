@@ -6,12 +6,20 @@ import store from './store'
 import router from './router'
 
 import App from './components/App.vue'
+import IModals from './components/modals/autoload'
 import IComponents from './components/interface/autoload'
 
 /**
  * App initialization.
  */
 const app = createApp(App)
+
+/**
+ * Modals components.
+ */
+Object.keys(IModals).forEach(name => {
+  app.component(name, IModals[name])
+})
 
 /**
  * Interface components.

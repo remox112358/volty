@@ -9,9 +9,7 @@
       }">
         <router-view></router-view>
       </section>
-      <i-modal title="Add new board" v-model="modalShow" @close="modalClose">
-        modal content
-      </i-modal>
+      <m-add-new-board />
     </main>
   </div>
 </template>
