@@ -4,7 +4,7 @@
     [styles['root--show']]: showStatus,
   }">
     <div :class="styles.actions">
-      <div :class="styles.action">
+      <div :class="styles.action" @click="openAddNewBoardModal">
         <i-icon name="add" />
         Add new board
       </div>

@@ -20,24 +20,14 @@ export default {
      */
     const store = useStore()
 
-    const modalShow = ref(false)
-
-    const modalOpen = () => {
-      modalShow.value = true
-    }
-
-    const modalClose = () => {
-      modalShow.value = false
-    }
+    const modalClose = () => store.dispatch('modals/close', 'addNewBoard')
 
     return {
       styles,
 
       sidebarIsOpen: computed(() => store.state.sidebar.show),
+      modalShow: computed(() => store.state.modals.addNewBoard),
 
-      modalShow,
-
-      modalOpen,
       modalClose,
     }
 

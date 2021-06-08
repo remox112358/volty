@@ -25,12 +25,15 @@ export default {
         store.dispatch('sidebar/hide')
     }
 
+    const openAddNewBoardModal = () => store.dispatch('modals/open', 'addNewBoard')
+
     return {
       styles,
 
       groups,
 
       redirectHandler,
+      openAddNewBoardModal,
 
       showStatus: computed(() => store.state.sidebar.show),
     }

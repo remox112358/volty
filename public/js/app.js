@@ -17354,16 +17354,12 @@ function render(_ctx, _cache) {
     "class": _ctx.styles.root
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_p_header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_p_sidebar), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", {
     "class": (_class = {}, _defineProperty(_class, _ctx.styles.content, true), _defineProperty(_class, _ctx.styles['content--compressed'], _ctx.sidebarIsOpen), _class)
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-    onClick: _cache[1] || (_cache[1] = function () {
-      return _ctx.modalOpen && _ctx.modalOpen.apply(_ctx, arguments);
-    })
-  }, "click"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)], 2
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_modal, {
     title: "Add new board",
     modelValue: _ctx.modalShow,
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return _ctx.modalShow = $event;
     }),
     onClose: _ctx.modalClose
@@ -17514,7 +17510,10 @@ function render(_ctx, _cache) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.actions
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-    "class": _ctx.styles.action
+    "class": _ctx.styles.action,
+    onClick: _cache[1] || (_cache[1] = function () {
+      return _ctx.openAddNewBoardModal && _ctx.openAddNewBoardModal.apply(_ctx, arguments);
+    })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_icon, {
     name: "add"
   }), _hoisted_1], 2
@@ -18808,14 +18807,9 @@ __webpack_require__.r(__webpack_exports__);
      * Global store.
      */
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
-    var modalShow = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
-
-    var modalOpen = function modalOpen() {
-      modalShow.value = true;
-    };
 
     var modalClose = function modalClose() {
-      modalShow.value = false;
+      return store.dispatch('modals/close', 'addNewBoard');
     };
 
     return {
@@ -18823,8 +18817,9 @@ __webpack_require__.r(__webpack_exports__);
       sidebarIsOpen: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
         return store.state.sidebar.show;
       }),
-      modalShow: modalShow,
-      modalOpen: modalOpen,
+      modalShow: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+        return store.state.modals.addNewBoard;
+      }),
       modalClose: modalClose
     };
   }
@@ -18958,10 +18953,15 @@ __webpack_require__.r(__webpack_exports__);
       if (isMobile) store.dispatch('sidebar/hide');
     };
 
+    var openAddNewBoardModal = function openAddNewBoardModal() {
+      return store.dispatch('modals/open', 'addNewBoard');
+    };
+
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
       groups: _groups_json__WEBPACK_IMPORTED_MODULE_3__,
       redirectHandler: redirectHandler,
+      openAddNewBoardModal: openAddNewBoardModal,
       showStatus: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
         return store.state.sidebar.show;
       })
@@ -19215,13 +19215,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _modules_boards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/boards */ "./resources/js/store/modules/boards/index.js");
-/* harmony import */ var _modules_sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/sidebar */ "./resources/js/store/modules/sidebar/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals/index.js");
+/* harmony import */ var _modules_boards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/boards */ "./resources/js/store/modules/boards/index.js");
+/* harmony import */ var _modules_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/sidebar */ "./resources/js/store/modules/sidebar/index.js");
 
 
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
+
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   state: function state() {
     return {// ...
     };
@@ -19233,8 +19235,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
   actions: {// ...
   },
   modules: {
-    boards: _modules_boards__WEBPACK_IMPORTED_MODULE_0__.default,
-    sidebar: _modules_sidebar__WEBPACK_IMPORTED_MODULE_1__.default
+    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_0__.default,
+    boards: _modules_boards__WEBPACK_IMPORTED_MODULE_1__.default,
+    sidebar: _modules_sidebar__WEBPACK_IMPORTED_MODULE_2__.default
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -19384,6 +19387,51 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       context.commit('setCards', {
         value: value,
         columnId: columnId
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/modals/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/modals/index.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      addNewBoard: false
+    };
+  },
+  getters: {// ...
+  },
+  mutations: {
+    change: function change(state, _ref) {
+      var value = _ref.value,
+          modal = _ref.modal;
+      state[modal] = value;
+    }
+  },
+  actions: {
+    open: function open(context, modal) {
+      context.commit('change', {
+        value: true,
+        modal: modal
+      });
+    },
+    close: function close(context, modal) {
+      context.commit('change', {
+        value: false,
+        modal: modal
       });
     }
   }
