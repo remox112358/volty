@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 
 import template from './template'
@@ -20,10 +20,25 @@ export default {
      */
     const store = useStore()
 
+    const modalShow = ref(false)
+
+    const modalOpen = () => {
+      modalShow.value = true
+    }
+
+    const modalClose = () => {
+      modalShow.value = false
+    }
+
     return {
       styles,
 
-      sidebarIsOpen: computed(() => store.state.sidebar.show)
+      sidebarIsOpen: computed(() => store.state.sidebar.show),
+
+      modalShow,
+
+      modalOpen,
+      modalClose,
     }
 
   }
