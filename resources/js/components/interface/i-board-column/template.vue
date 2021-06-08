@@ -1,6 +1,6 @@
 <template>
   <div :class="styles.root">
-    <div :class="styles.header" :style="{backgroundColor: headerColor}">
+    <div :class="[styles.header, handleClass]" :style="{backgroundColor: headerColor}">
       <span>{{ name }}</span>
       <div :class="styles.settings">
         <i-icon name="dots" />
@@ -12,8 +12,8 @@
         item-key="id"
 
         :animation="200"
-        :drag-class="styles['ghost-dragging']"
         :ghost-class="styles.ghost"
+        :drag-class="styles['ghost-dragging']"
 
         v-model="cards"
       >

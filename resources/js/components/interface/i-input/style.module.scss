@@ -25,10 +25,12 @@
       color: #828282;
     }
 
-    &:focus {
-      border-color: lighten(map-get($COLORS, 'dark'), 25%);
+    &--focus-effect {
+      &:focus {
+        border-color: lighten(map-get($COLORS, 'dark'), 25%);
 
-      box-shadow: 0 0 3px 0  lighten(map-get($COLORS, 'dark'), 25%);
+        box-shadow: 0 0 3px 0  lighten(map-get($COLORS, 'dark'), 25%);
+      }
     }
 
     &--password {

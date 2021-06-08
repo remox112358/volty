@@ -1,21 +1,35 @@
 <template>
   <div
+    ref="root"
+
+    :id="componentId"
     :class="{
       [styles.root]: true,
       [styles['root--creating']]: creatingStatus,
     }"
-
-    @click="startCreating"
   >
-    <template v-if="creatingStatus">
+    <template v-if="creatingStatus" @click="startCreating">
       <form @submit.prevent="onSubmit">
-        <i-input v-model="value" width="80%" height="100%" :rounding="0" autofocus />
-        <i-button color="dark" width="20%" height="100%">+</i-button>
+        <i-input
+          width="80%"
+          height="100%"
+
+          v-model="value"
+
+          :rounding="0"
+          :focusEffect="false"
+
+          autofocus
+        />
+        <i-button
+          width="20%"
+          color="dark"
+          height="100%">+</i-button>
       </form>
     </template>
-    <template v-else>
+    <div :class="styles.trigger" @click.stop="startCreating" v-else>
       <i-icon name="add" />
       <span>{{ text }}</span>
-    </template>
+    </div>
   </div>
 </template>

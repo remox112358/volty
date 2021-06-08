@@ -9,6 +9,7 @@
           [styles['input--valid']]: valid,
           [styles['input--invalid']]: invalid,
           [styles[`input--stroke-${stroke}`]]: true,
+          [styles['input--focus-effect']]: focusEffect,
           [styles[`input--rounding-${rounding}`]]: true,
           [styles['input--password']]: type === 'password',
         }"

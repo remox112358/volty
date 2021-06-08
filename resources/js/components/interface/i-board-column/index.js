@@ -24,6 +24,10 @@ export default {
       type: String,
       default: '#1f1f1f',
     },
+    handleClass: {
+      type: String,
+      default: null,
+    },
   },
   data: () => ({
     styles,

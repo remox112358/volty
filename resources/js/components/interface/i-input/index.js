@@ -50,6 +50,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    focusEffect: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup({ autofocus }) {
 
