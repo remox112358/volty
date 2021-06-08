@@ -17374,12 +17374,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" modal content ");
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("SUBMIT");
 
 function render(_ctx, _cache) {
+  var _component_i_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-input");
+
+  var _component_i_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-button");
+
   var _component_i_modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-modal");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_i_modal, {
+    "class": _ctx.styles.root,
     title: "Add new board",
     modelValue: _ctx.show,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
@@ -17388,14 +17393,40 @@ function render(_ctx, _cache) {
     onClose: _ctx.close
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+        "class": _ctx.styles.form
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+        "class": _ctx.styles.field
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
+        placeholder: "Name",
+        stroke: 1,
+        rounding: 0
+      })], 2
+      /* CLASS */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+        "class": _ctx.styles.field
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_button, {
+        width: "100%",
+        height: "37px"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_1];
+        }),
+        _: 1
+        /* STABLE */
+
+      })], 2
+      /* CLASS */
+      )], 2
+      /* CLASS */
+      )];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["modelValue", "onClose"]);
+  , ["class", "modelValue", "onClose"]);
 }
 
 /***/ }),
@@ -19961,9 +19992,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1q9TNKlcURxpo91c8lApRA ._2yQcMzjnkpVo95qsmHAQv8 {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n._1q9TNKlcURxpo91c8lApRA ._2yQcMzjnkpVo95qsmHAQv8 .rHntJgSH2rOqSeV7uPkhw:not(:last-of-type) {\n  margin-bottom: 10px;\n}", ""]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"root": "_1q9TNKlcURxpo91c8lApRA",
+	"form": "_2yQcMzjnkpVo95qsmHAQv8",
+	"field": "rHntJgSH2rOqSeV7uPkhw"
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
