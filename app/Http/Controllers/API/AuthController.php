@@ -13,18 +13,18 @@ use Validator;
 class AuthController extends BaseController
 {
     /**
-     * Register API user.
+     * Signup API user.
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
+    public function signup(Request $request)
     {
         /**
          * Validation of transmitted parameters.
          */
         $validator = Validator::make($request->all(), [
-            'name'       => 'required',
+            'username'       => 'required',
             'email'      => 'required|email',
             'password'   => 'required',
         ]);
@@ -52,7 +52,7 @@ class AuthController extends BaseController
          * Success result.
          */
         $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['name']  = $user->name;
+        $success['username']  = $user->username;
 
         return $this->sendResponse($success, 'User registered successfuly');
     }
@@ -78,7 +78,7 @@ class AuthController extends BaseController
              * Success result.
              */
             $success['token'] = $user->createToken('MyApp')-> accessToken;
-            $success['name']  = $user->name;
+            $success['username']  = $user->username;
 
             return $this->sendResponse($success, 'User logged in successfully');
         } else {
