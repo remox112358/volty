@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import store from '../store'
+
 const routes = [
   {
     path: '/',
@@ -26,16 +28,25 @@ const routes = [
   {
     path: '/auth',
     component: require('../components/layouts/auth').default,
+    meta: {
+      public: true,
+    },
     children: [
       {
         path: 'login',
         name: 'login',
         component: require('../components/views/login').default,
+        meta: {
+          public: true,
+        },
       },
       {
         path: 'signup',
         name: 'signup',
         component: require('../components/views/signup').default,
+        meta: {
+          public: true,
+        },
       },
     ],
   },
@@ -44,6 +55,25 @@ const routes = [
 const router = createRouter({
   routes,
   history: createWebHistory('/'),
+})
+
+/**
+ * Middleware for unauthorized users.
+ */
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(route => !route.meta.public)) {
+    if (!store.state.user.authorized) {
+      store.dispatch('user/logout')
+
+      return next({ name: 'login' })
+    }
+  } else {
+    if (store.state.user.authorized) {
+      return next({ name: 'home' })
+    }
+  }
+
+  next()
 })
 
 export default router

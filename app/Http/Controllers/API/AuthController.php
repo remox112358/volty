@@ -71,9 +71,8 @@ class AuthController extends BaseController
             /**
              * Success result.
              */
-            $success['token']    = $user->createToken('MyApp')-> accessToken;
-            $success['username'] = $user->username;
-            $success['email']    = $user->email;
+            $success['user']  = $user;
+            $success['token'] = $user->createToken('MyApp')-> accessToken;
 
             return $this->sendResponse($success, 'User logged in successfully');
         } else {

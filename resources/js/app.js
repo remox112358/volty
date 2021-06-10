@@ -5,9 +5,16 @@ import { createApp } from 'vue'
 import store from './store'
 import router from './router'
 
+import { __ax_update_token } from './utils/axios'
+
 import App from './components/App.vue'
 import IModals from './components/modals/autoload'
 import IComponents from './components/interface/autoload'
+
+/**
+ * Access token update.
+ */
+__ax_update_token()
 
 /**
  * App initialization.
