@@ -25,5 +25,6 @@
         <span>{{ link.text }}</span>
       </router-link>
     </div>
+    <button style="margin-top: auto;" @click="onLogout">Logout</button>
   </aside>
 </template>

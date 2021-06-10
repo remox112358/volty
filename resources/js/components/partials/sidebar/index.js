@@ -1,5 +1,7 @@
-import { ref, watch, computed } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
+
+import router from '../../../router'
 
 import template from './template'
 import styles from './style.module.scss'
@@ -25,13 +27,25 @@ export default {
         store.dispatch('sidebar/hide')
     }
 
+    /**
+     * Modal open action.
+     */
     const openAddNewBoardModal = () => store.dispatch('modals/open', 'addNewBoard')
+
+    /**
+     * On logout action.
+     */
+    const onLogout = () => {
+      store.dispatch('user/logout')
+      router.push({ name: 'login' })
+    }
 
     return {
       styles,
 
       groups,
 
+      onLogout,
       redirectHandler,
       openAddNewBoardModal,
 

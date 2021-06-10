@@ -1,11 +1,11 @@
-import { __ax_update_token } from '../../../utils/axios'
 import { __ls_has, __ls_remove } from '../../../utils/localstorage'
+import { __ax_update_token, __ax_remove_token } from '../../../utils/axios'
 
 export default {
   namespaced: true,
 
   state: () => ({
-    authorized: false,
+    authorized: __ls_has('access_token'),
     data: {
       // ...
     },
@@ -37,6 +37,8 @@ export default {
 
       if (__ls_has('access_token'))
         __ls_remove('access_token')
+
+      __ax_remove_token()
     },
   },
 }
