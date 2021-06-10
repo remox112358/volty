@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
+    name: 'home',
     component: require('../components/layouts/main').default,
     children: [
       {

@@ -1,6 +1,8 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
+import router from '../../../router'
+
 import template from './template'
 import styles from './style.module.scss'
 
@@ -24,18 +26,19 @@ export default {
      * Form submit handler.
      */
     const onSubmit = async () => {
-        await axios
-          .post('/api/signup', {
-            username: username.value,
-            email: email.value,
-            password: password.value,
-          })
-          .then(response => {
-            console.log(response)
-          })
-          .catch(error => {
-            console.log(error.response)
-          })
+      await axios
+        .post('/api/signup', {
+          username: username.value,
+          email: email.value,
+          password: password.value,
+        })
+        .then(response => {
+          if (response.status === 200)
+            router.push({ name: 'login' })
+        })
+        .catch(error => {
+          console.log(error.response)
+        })
     }
 
     return {

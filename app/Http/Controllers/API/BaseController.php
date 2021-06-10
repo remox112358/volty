@@ -22,7 +22,6 @@ class BaseController extends Controller
          * Response that needs to send.
          */
         $response = [
-            'success'  => true,
             'data'    => $result,
             'message' => $message,
         ];
@@ -44,7 +43,6 @@ class BaseController extends Controller
          * Response that needs to send.
          */
         $response = [
-            'success' => false,
             'error'  => $error,
         ];
 

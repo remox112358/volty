@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 
+import user from './modules/user'
 import modals from './modules/modals'
 import boards from './modules/boards'
 import sidebar from './modules/sidebar'
@@ -22,6 +23,7 @@ const store = createStore({
   },
 
   modules: {
+    user,
     modals,
     boards,
     sidebar,

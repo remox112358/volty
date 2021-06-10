@@ -24,9 +24,9 @@ class AuthController extends BaseController
          * Validation of transmitted parameters.
          */
         $validator = Validator::make($request->all(), [
-            'username'       => 'required',
-            'email'      => 'required|email',
-            'password'   => 'required',
+            'username' => 'required',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required',
         ]);
 
         /**
@@ -48,13 +48,7 @@ class AuthController extends BaseController
          */
         $user = User::create($input);
 
-        /**
-         * Success result.
-         */
-        $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['username']  = $user->username;
-
-        return $this->sendResponse($success, 'User registered successfuly');
+        return $this->sendResponse([], 'User registered successfuly');
     }
 
     /**
@@ -77,8 +71,9 @@ class AuthController extends BaseController
             /**
              * Success result.
              */
-            $success['token'] = $user->createToken('MyApp')-> accessToken;
-            $success['username']  = $user->username;
+            $success['token']    = $user->createToken('MyApp')-> accessToken;
+            $success['username'] = $user->username;
+            $success['email']    = $user->email;
 
             return $this->sendResponse($success, 'User logged in successfully');
         } else {

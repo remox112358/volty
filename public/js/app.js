@@ -19285,10 +19285,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./template */ "./resources/js/components/views/signup/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/views/signup/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _partials_logo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../partials/logo */ "./resources/js/components/partials/logo/index.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/views/signup/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/views/signup/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _partials_logo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../partials/logo */ "./resources/js/components/partials/logo/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19300,10 +19301,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_3__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
   components: {
-    PLogo: _partials_logo__WEBPACK_IMPORTED_MODULE_5__.default
+    PLogo: _partials_logo__WEBPACK_IMPORTED_MODULE_6__.default
   },
   setup: function setup() {
     /**
@@ -19328,7 +19330,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   email: email.value,
                   password: password.value
                 }).then(function (response) {
-                  console.log(response);
+                  if (response.status === 200) _router__WEBPACK_IMPORTED_MODULE_3__.default.push({
+                    name: 'login'
+                  });
                 })["catch"](function (error) {
                   console.log(error.response);
                 });
@@ -19347,7 +19351,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_4___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
       email: email,
       username: username,
       password: password,
@@ -19373,6 +19377,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [{
   path: '/',
+  name: 'home',
   component: __webpack_require__(/*! ../components/layouts/main */ "./resources/js/components/layouts/main/index.js").default,
   children: [{
     path: 'boards',
@@ -19419,15 +19424,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals/index.js");
-/* harmony import */ var _modules_boards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/boards */ "./resources/js/store/modules/boards/index.js");
-/* harmony import */ var _modules_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/sidebar */ "./resources/js/store/modules/sidebar/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _modules_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/user */ "./resources/js/store/modules/user/index.js");
+/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals/index.js");
+/* harmony import */ var _modules_boards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/boards */ "./resources/js/store/modules/boards/index.js");
+/* harmony import */ var _modules_sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/sidebar */ "./resources/js/store/modules/sidebar/index.js");
 
 
 
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
+
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
   state: function state() {
     return {// ...
     };
@@ -19439,9 +19446,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   actions: {// ...
   },
   modules: {
-    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_0__.default,
-    boards: _modules_boards__WEBPACK_IMPORTED_MODULE_1__.default,
-    sidebar: _modules_sidebar__WEBPACK_IMPORTED_MODULE_2__.default
+    user: _modules_user__WEBPACK_IMPORTED_MODULE_0__.default,
+    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_1__.default,
+    boards: _modules_boards__WEBPACK_IMPORTED_MODULE_2__.default,
+    sidebar: _modules_sidebar__WEBPACK_IMPORTED_MODULE_3__.default
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -19677,6 +19685,50 @@ __webpack_require__.r(__webpack_exports__);
     },
     toggle: function toggle(context) {
       context.commit('updateShow', !context.state.show);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/user/index.js":
+/*!**************************************************!*\
+  !*** ./resources/js/store/modules/user/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      authorized: false,
+      data: {
+        id: null,
+        username: null,
+        email: null
+      }
+    };
+  },
+  getters: {// ...
+  },
+  mutations: {
+    setAuthorize: function setAuthorize(state, status) {
+      state.authorized = status;
+    },
+    setData: function setData(state, data) {
+      state.data = data;
+    }
+  },
+  actions: {
+    login: function login(context, data) {
+      console.log(data);
+    },
+    logout: function logout(context) {// ...
     }
   }
 });
