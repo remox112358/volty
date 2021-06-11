@@ -17494,7 +17494,10 @@ function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
     "class": (_class = {}, _defineProperty(_class, _ctx.styles.root, true), _defineProperty(_class, _ctx.styles["root--".concat(_ctx.type)], _ctx.type), _defineProperty(_class, _ctx.styles['root--show'], _ctx.showClass), _class)
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-    "class": _ctx.styles.close
+    "class": _ctx.styles.close,
+    onClick: _cache[1] || (_cache[1] = function () {
+      return _ctx.onClick && _ctx.onClick.apply(_ctx, arguments);
+    })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_icon, {
     name: "close"
   })], 2
@@ -19151,9 +19154,21 @@ __webpack_require__.r(__webpack_exports__);
         store.dispatch('alerts/remove', id);
       }, duration * 1000);
     });
+    /**
+     * Button click handler.
+     */
+
+    var onClick = function onClick() {
+      showClass.value = false;
+      setTimeout(function () {
+        store.dispatch('alerts/remove', id);
+      }, 500);
+    };
+
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
-      showClass: showClass
+      showClass: showClass,
+      onClick: onClick
     };
   }
 });
@@ -19543,7 +19558,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _router__WEBPACK_IMPORTED_MODULE_5__.default.push({
                       name: 'home'
                     });
-                    (0,_services_AlertService__WEBPACK_IMPORTED_MODULE_4__.success)(response.data.message, 'succes');
+                    (0,_services_AlertService__WEBPACK_IMPORTED_MODULE_4__.success)(response.data.message);
                   }
                 })["catch"](function (error) {
                   (0,_services_AlertService__WEBPACK_IMPORTED_MODULE_4__.danger)(error.response.data.error);
@@ -19616,11 +19631,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/views/signup/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/views/signup/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _partials_logo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../partials/logo */ "./resources/js/components/partials/logo/index.js");
+/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./template */ "./resources/js/components/views/signup/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/views/signup/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _partials_logo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../partials/logo */ "./resources/js/components/partials/logo/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19633,10 +19649,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_5__.default,
   components: {
-    PLogo: _partials_logo__WEBPACK_IMPORTED_MODULE_6__.default
+    PLogo: _partials_logo__WEBPACK_IMPORTED_MODULE_7__.default
   },
   setup: function setup() {
     /**
@@ -19661,11 +19678,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   email: email.value,
                   password: password.value
                 }).then(function (response) {
-                  if (response.status === 200) _router__WEBPACK_IMPORTED_MODULE_3__.default.push({
-                    name: 'login'
-                  });
+                  if (response.status === 200) {
+                    _router__WEBPACK_IMPORTED_MODULE_4__.default.push({
+                      name: 'login'
+                    });
+                    (0,_services_AlertService__WEBPACK_IMPORTED_MODULE_3__.success)(response.data.message);
+                  }
                 })["catch"](function (error) {
-                  console.log(error.response);
+                  (0,_services_AlertService__WEBPACK_IMPORTED_MODULE_3__.danger)(error.response.data.error);
                 });
 
               case 2:
@@ -19682,7 +19702,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_6___default()),
       email: email,
       username: username,
       password: password,
@@ -19789,7 +19809,8 @@ router.beforeEach(function (to, from, next) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "success": () => (/* binding */ success),
-/* harmony export */   "danger": () => (/* binding */ danger)
+/* harmony export */   "danger": () => (/* binding */ danger),
+/* harmony export */   "info": () => (/* binding */ info)
 /* harmony export */ });
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
 
@@ -19820,6 +19841,21 @@ var danger = function danger(text) {
   _store__WEBPACK_IMPORTED_MODULE_0__.default.dispatch('alerts/add', {
     text: text,
     type: 'danger',
+    duration: duration
+  });
+};
+/**
+ * Sends info alert.
+ *
+ * @param {String} text
+ * @param {Number} duration
+ */
+
+var info = function info(text) {
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3;
+  _store__WEBPACK_IMPORTED_MODULE_0__.default.dispatch('alerts/add', {
+    text: text,
+    type: 'info',
     duration: duration
   });
 };
@@ -20189,6 +20225,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _utils_localstorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/localstorage */ "./resources/js/utils/localstorage.js");
 /* harmony import */ var _utils_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/axios */ "./resources/js/utils/axios.js");
+/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -20223,6 +20261,8 @@ __webpack_require__.r(__webpack_exports__);
       if ((0,_utils_localstorage__WEBPACK_IMPORTED_MODULE_0__.__ls_has)('access_token')) (0,_utils_localstorage__WEBPACK_IMPORTED_MODULE_0__.__ls_remove)('access_token');
 
       (0,_utils_axios__WEBPACK_IMPORTED_MODULE_1__.__ax_remove_token)();
+
+      (0,_services_AlertService__WEBPACK_IMPORTED_MODULE_2__.info)('User logout successfully');
     }
   }
 });

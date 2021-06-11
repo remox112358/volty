@@ -60,10 +60,23 @@ export default {
 
     })
 
+    /**
+     * Button click handler.
+     */
+    const onClick = () => {
+      showClass.value = false
+
+      setTimeout(() => {
+        store.dispatch('alerts/remove', id)
+      }, 500)
+    }
+
     return {
       styles,
 
       showClass,
+
+      onClick,
     }
 
   }

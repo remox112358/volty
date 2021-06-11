@@ -1,6 +1,8 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
+import { success, danger } from '../../../services/AlertService'
+
 import router from '../../../router'
 
 import template from './template'
@@ -33,11 +35,14 @@ export default {
           password: password.value,
         })
         .then(response => {
-          if (response.status === 200)
+          if (response.status === 200) {
             router.push({ name: 'login' })
+
+            success(response.data.message)
+          }
         })
         .catch(error => {
-          console.log(error.response)
+          danger(error.response.data.error)
         })
     }
 

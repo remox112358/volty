@@ -7,7 +7,7 @@
     }"
   >
     <slot />
-    <button :class="styles.close">
+    <button :class="styles.close" @click="onClick">
       <i-icon name="close" />
     </button>
   </div>

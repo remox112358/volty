@@ -51,7 +51,7 @@ export default {
 
             router.push({ name: 'home' })
 
-            success(response.data.message, 'succes')
+            success(response.data.message)
           }
         })
         .catch(error => {
