@@ -5,11 +5,16 @@
 
   min-height: 40px;
 
+  opacity: 0;
+
   border-radius: 5px;
 
   padding: 10px 50px 10px 10px;
 
   background-color: lighten(map-get($COLORS, 'warning'), 30%);
+
+  transition-duration: .5s;
+  transition-property: opacity;
 
   .close {
     top: 0;
@@ -45,5 +50,9 @@
     &--#{$type} {
       background-color: lighten($color, 30%);
     }
+  }
+
+  &--show {
+    opacity: 1;
   }
 }

@@ -5,6 +5,8 @@ import axios from 'axios'
 
 import { __ls_has, __ls_save } from '../../../utils/localstorage'
 
+import { success, danger } from '../../../services/AlertService'
+
 import router from '../../../router'
 
 import template from './template'
@@ -48,10 +50,12 @@ export default {
             store.dispatch('user/login', user)
 
             router.push({ name: 'home' })
+
+            success(response.data.message, 'succes')
           }
         })
         .catch(error => {
-          console.log(error.response)
+          danger(error.response.data.error)
         })
     }
 

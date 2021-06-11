@@ -5,24 +5,7 @@ export default {
 
   state: () => ({
     list: [
-      {
-        id: 'random1',
-        text: 'Some message...',
-        type: 'warning',
-        duration: 3,
-      },
-      {
-        id: 'random2',
-        text: 'Some message...',
-        type: 'warning',
-        duration: 3,
-      },
-      {
-        id: 'random3',
-        text: 'Some message...',
-        type: 'warning',
-        duration: 3,
-      }
+      // ...
     ],
   }),
 

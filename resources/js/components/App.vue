@@ -1,6 +1,20 @@
 <template>
   <router-view></router-view>
+  <p-alert-box />
 </template>
+
+<script>
+import PAlertBox from './partials/alert-box'
+
+export default {
+  components: {
+    PAlertBox,
+  },
+  setup() {
+    return {}
+  }
+}
+</script>
 
 <style lang="scss">
 

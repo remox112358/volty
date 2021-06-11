@@ -1,4 +1,4 @@
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 import template from './template'
@@ -28,17 +28,42 @@ export default {
     const store = useStore()
 
     /**
+     * Show class status.
+     */
+    const showClass = ref(false)
+
+    /**
      * On component mount action.
      */
     onMounted(() => {
+
+      /**
+       * Fade-start action.
+       */
+      setTimeout(() => {
+        showClass.value = true
+      }, 1)
+
+      /**
+       * Fade-end action.
+       */
+      setTimeout(() => {
+        showClass.value = false
+      }, (duration * 1000) - 500)
+
+      /**
+       * Remove action.
+       */
       setTimeout(() => {
         store.dispatch('alerts/remove', id)
       }, duration * 1000)
+
     })
 
     return {
       styles,
 
+      showClass,
     }
 
   }
