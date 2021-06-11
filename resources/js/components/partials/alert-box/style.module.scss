@@ -1,0 +1,18 @@
+.root {
+  right: 20px;
+  bottom: 20px;
+  position: fixed;
+
+  display: flex;
+  align-items: stretch;
+  flex-direction: column-reverse;
+
+  width: 100%;
+  max-width: 350px;
+
+  > * {
+    &:not(:last-child) {
+      margin-top: 10px;
+    }
+  }
+}

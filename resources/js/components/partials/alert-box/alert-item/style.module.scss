@@ -1,0 +1,49 @@
+@import '../../../../../scss/variables.scss';
+
+.root {
+  position: relative;
+
+  min-height: 40px;
+
+  border-radius: 5px;
+
+  padding: 10px 50px 10px 10px;
+
+  background-color: lighten(map-get($COLORS, 'warning'), 30%);
+
+  .close {
+    top: 0;
+    right: 0;
+    position: absolute;
+
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+
+    &:hover {
+      svg {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      opacity: .5;
+
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  @each $type, $color in $COLORS {
+    &--#{$type} {
+      background-color: lighten($color, 30%);
+    }
+  }
+}
