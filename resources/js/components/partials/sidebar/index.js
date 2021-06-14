@@ -1,6 +1,10 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 
+import axios from 'axios'
+
+import AlertService from '../../../services/AlertService'
+
 import router from '../../../router'
 
 import template from './template'
@@ -16,6 +20,11 @@ export default {
      * Global store.
      */
     const store = useStore()
+
+    /**
+     * Data.
+     */
+    const username = computed(() => store.state.user.data.username)
 
     /**
      * Handler for redirect action.
@@ -35,15 +44,39 @@ export default {
     /**
      * On logout action.
      */
-    const onLogout = () => {
-      store.dispatch('user/logout')
-      router.push({ name: 'login' })
+    const onLogout = async () => {
+      store.commit('setLoading', true)
+
+      await axios
+        .get('/api/test')
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+      await axios
+        .get('/api/logout')
+        .then(response => {
+          AlertService.success(response.data.message)
+
+          store.dispatch('user/logout')
+          router.push({ name: 'login' })
+        })
+        .catch(error => {
+          AlertService.danger(error.response.data.error)
+        })
+        .finally(() => {
+          store.commit('setLoading', false)
+        })
     }
 
     return {
       styles,
 
       groups,
+      username,
 
       onLogout,
       redirectHandler,

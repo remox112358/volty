@@ -1,8 +1,6 @@
 import { __ls_has, __ls_remove } from '../../../utils/localstorage'
 import { __ax_update_token, __ax_remove_token } from '../../../utils/axios'
 
-import { info } from '../../../services/AlertService'
-
 export default {
   namespaced: true,
 
@@ -41,8 +39,6 @@ export default {
         __ls_remove('access_token')
 
       __ax_remove_token()
-
-      info('User logout successfully')
     },
   },
 }

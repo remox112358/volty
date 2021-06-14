@@ -20,12 +20,40 @@
     transform: translateX(0);
   }
 
-  .actions {
+  .user {
     display: flex;
+    align-items: center;
     flex-direction: column;
 
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    .avatar {
+      width: 75px;
+      height: 75px;
+
+      border-width: 2px;
+      border-radius: 50%;
+      border-style: solid;
+      border-color: map-get($COLORS, 'primary');
+
+      background-color: gray;
+
+      margin-bottom: 10px;
+    }
+
+    .logout {
+      margin-top: 20px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: auto;
+    margin-bottom: 10px;
 
     .action {
       display: flex;

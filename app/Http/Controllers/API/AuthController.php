@@ -63,6 +63,7 @@ class AuthController extends BaseController
          * Trying to authorize.
          */
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+
             /**
              * Authorized user.
              */
@@ -75,9 +76,10 @@ class AuthController extends BaseController
             $success['token'] = $user->createToken('MyApp')-> accessToken;
 
             return $this->sendResponse($success, 'User logged in successfully');
-        } else {
-            return $this->sendError('Unauthorized', ['error' => 'Unauthorized']);
+
         }
+
+        return $this->sendError('Invalid details');
     }
 
     /**
@@ -93,5 +95,10 @@ class AuthController extends BaseController
         Auth::logout();
 
         return $this->sendResponse([], 'User successfully logged out');
+    }
+
+    public function test()
+    {
+        return $this->sendResponse(['test' => Auth::user()], 'Test');
     }
 }
