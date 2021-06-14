@@ -10,8 +10,6 @@ import router from '../../../router'
 import template from './template'
 import styles from './style.module.scss'
 
-import groups from './groups.json'
-
 export default {
   extends: template,
   setup() {
@@ -24,6 +22,7 @@ export default {
     /**
      * Data.
      */
+    const boards   = computed(() => store.state.boards.boards)
     const username = computed(() => store.state.user.data.username)
 
     /**
@@ -75,7 +74,7 @@ export default {
     return {
       styles,
 
-      groups,
+      boards,
       username,
 
       onLogout,

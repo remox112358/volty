@@ -8,22 +8,47 @@
       <span :class="styles.username">{{ username }}</span>
       <i-button :class="styles.logout" width="125px" color="primary" @click="onLogout" outline>Logout</i-button>
     </div>
-    <div :class="styles.group" :key="group.heading" v-for="group in groups">
-      <h4 :class="styles.heading">{{ group.heading }}</h4>
+
+    <div :class="styles.group">
+      <h4 :class="styles.heading">General</h4>
       <router-link
-        :to="link.url"
-        :key="link.url"
+        :to="'/boards'"
         :class="styles.tab"
         :active-class="styles['tab--active']"
 
-        v-for="link in group.links"
+        @click="redirectHandler"
+      >
+        <i-icon name="board" />
+        <span>Boards</span>
+      </router-link>
+      <router-link
+        :to="'/settings'"
+        :class="styles.tab"
+        :active-class="styles['tab--active']"
 
         @click="redirectHandler"
       >
-        <i-icon :name="link.icon" />
-        <span>{{ link.text }}</span>
+        <i-icon name="settings" />
+        <span>Settings</span>
       </router-link>
     </div>
+    <div :class="styles.group">
+      <h4 :class="styles.heading">Boards</h4>
+      <router-link
+        :key="board.id"
+        :class="styles.tab"
+        :to="`/boards/${board.id}`"
+        :active-class="styles['tab--active']"
+
+        v-for="board in boards"
+
+        @click="redirectHandler"
+      >
+        <i-icon name="board" />
+        <span>{{ board.name }}</span>
+      </router-link>
+    </div>
+
     <div :class="styles.actions">
       <div :class="styles.action" @click="openAddNewBoardModal">
         <i-icon name="add" />

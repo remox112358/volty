@@ -4,20 +4,12 @@
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: map-get($SCREENS, 'xxl')) {
-    height: 100%;
-
-    justify-content: space-between;
-  }
-
   .group {
     display: flex;
     flex-direction: column;
 
-    @media screen and (max-width: map-get($SCREENS, 'xxl')) {
-      &:not(:last-of-type) {
-        margin-bottom: 50px;
-      }
+    &:not(:last-of-type) {
+      margin-bottom: 50px;
     }
 
     &__heading {
