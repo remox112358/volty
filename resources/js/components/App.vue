@@ -1,9 +1,13 @@
 <template>
   <router-view></router-view>
   <p-alert-box />
+  <i-loader v-model="loading" />
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 import PAlertBox from './partials/alert-box'
 
 export default {
@@ -11,7 +15,21 @@ export default {
     PAlertBox,
   },
   setup() {
-    return {}
+
+    /**
+     * Global store.
+     */
+    const store = useStore()
+
+    /**
+     * Loading status.
+     */
+    const loading = computed(() => store.state.loading)
+
+    return {
+      loading,
+    }
+
   }
 }
 </script>

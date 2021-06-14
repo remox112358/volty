@@ -1,7 +1,9 @@
 import { ref } from 'vue'
+import { useStore } from 'vuex'
+
 import axios from 'axios'
 
-import { success, danger } from '../../../services/AlertService'
+import AlertService from '../../../services/AlertService'
 
 import router from '../../../router'
 
@@ -18,31 +20,41 @@ export default {
   setup() {
 
     /**
+     * Global store.
+     */
+    const store = useStore()
+
+    /**
      * Form data.
      */
-    const username = ref(null)
     const email    = ref(null)
+    const username = ref(null)
     const password = ref(null)
 
     /**
      * Form submit handler.
      */
     const onSubmit = async () => {
+      store.commit('setLoading', true)
+
       await axios
         .post('/api/signup', {
-          username: username.value,
           email: email.value,
+          username: username.value,
           password: password.value,
         })
         .then(response => {
           if (response.status === 200) {
             router.push({ name: 'login' })
 
-            success(response.data.message)
+            AlertService.success(response.data.message)
           }
         })
         .catch(error => {
-          danger(error.response.data.error)
+          AlertService.danger(error.response.data.error)
+        })
+        .finally(() => {
+          store.commit('setLoading', false)
         })
     }
 

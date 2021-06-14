@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import { __ls_has, __ls_save } from '../../../utils/localstorage'
 
-import { success, danger } from '../../../services/AlertService'
+import AlertService from '../../../services/AlertService'
 
 import router from '../../../router'
 
@@ -36,6 +36,8 @@ export default {
      * Form submit handler.
      */
     const onSubmit = async () => {
+      store.commit('setLoading', true)
+
       await axios
         .post('/api/login', {
           email: email.value,
@@ -51,11 +53,14 @@ export default {
 
             router.push({ name: 'home' })
 
-            success(response.data.message)
+            AlertService.success(response.data.message)
           }
         })
         .catch(error => {
-          danger(error.response.data.error)
+          AlertService.danger(error.response.data.error)
+        })
+        .finally(() => {
+          store.commit('setLoading', false)
         })
     }
 

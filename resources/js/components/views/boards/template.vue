@@ -30,7 +30,5 @@
         />
       </div>
     </div>
-
-    <i-loader v-model="loadingStatus" />
   </div>
 </template>

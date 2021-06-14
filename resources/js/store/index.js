@@ -8,7 +8,7 @@ import sidebar from './modules/sidebar'
 
 const store = createStore({
   state: () => ({
-    // ...
+    loading: false,
   }),
 
   getters: {
@@ -16,7 +16,9 @@ const store = createStore({
   },
 
   mutations: {
-    // ...
+    setLoading: (state, payload) => {
+      state.loading = payload
+    },
   },
 
   actions: {

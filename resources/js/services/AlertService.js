@@ -29,3 +29,9 @@ export const danger = (text, duration = 3) => {
 export const info = (text, duration = 3) => {
   store.dispatch('alerts/add', { text, type: 'info', duration })
 }
+
+export default {
+  info,
+  danger,
+  success,
+}
