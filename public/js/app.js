@@ -19476,9 +19476,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/test').then(function (response) {
                   console.log(response);
-                })["catch"](function (error) {
-                  console.log(error);
-                });
+                })["catch"](function (error) {});
 
               case 3:
                 _context.next = 5;
@@ -19489,7 +19487,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     name: 'login'
                   });
                 })["catch"](function (error) {
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.data.error);
+                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.data.message);
                 })["finally"](function () {
                   store.commit('setLoading', false);
                 });
@@ -20971,7 +20969,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._2nLDso7etXs-rNczkhcIt_ {\n  position: relative;\n  min-height: 40px;\n  opacity: 0;\n  border-radius: 5px;\n  padding: 10px 50px 10px 10px;\n  background-color: #ffc399;\n  transition-duration: 0.5s;\n  transition-property: opacity;\n}\n._2nLDso7etXs-rNczkhcIt_ ._1uaHism1yZdBLMpCkQOxEl {\n  top: 0;\n  right: 0;\n  position: absolute;\n  width: 40px;\n  height: 40px;\n  padding: 0;\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n._2nLDso7etXs-rNczkhcIt_ ._1uaHism1yZdBLMpCkQOxEl:hover svg {\n  opacity: 1;\n}\n._2nLDso7etXs-rNczkhcIt_ ._1uaHism1yZdBLMpCkQOxEl svg {\n  opacity: 0.5;\n  width: 15px;\n  height: 15px;\n}\n._3MAzNUXz7xDUTmWqe2OMnx {\n  background-color: #6c6c6c;\n}\n.hJwLpcad6VOHcRsl2sswk {\n  background-color: #79c7ff;\n}\n.Ma_mnqKhSP8BE-hc0d16c {\n  background-color: #f29696;\n}\n._1mzM_wxZsBVwEPQdtGF3hl {\n  background-color: #ffc399;\n}\n._1oO73jDmcm6etO8VXjPJz7 {\n  background-color: #acea68;\n}\n._2HWGHTeznlCRTsOjB4Bx0D {\n  background-color: #c4ecff;\n}\n._3PTdymzkYYwDn6nW1BqOrN {\n  opacity: 1;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._2nLDso7etXs-rNczkhcIt_ {\n  position: relative;\n  overflow: hidden;\n  min-height: 40px;\n  opacity: 0;\n  border-radius: 5px;\n  padding: 10px 50px 10px 10px;\n  background-color: #ffc399;\n  transition-duration: 0.5s;\n  transition-property: opacity;\n}\n._2nLDso7etXs-rNczkhcIt_ ._1uaHism1yZdBLMpCkQOxEl {\n  top: 0;\n  right: 0;\n  position: absolute;\n  width: 40px;\n  height: 40px;\n  padding: 0;\n  border: none;\n  background: none;\n  cursor: pointer;\n}\n._2nLDso7etXs-rNczkhcIt_ ._1uaHism1yZdBLMpCkQOxEl:hover svg {\n  opacity: 1;\n}\n._2nLDso7etXs-rNczkhcIt_ ._1uaHism1yZdBLMpCkQOxEl svg {\n  opacity: 0.5;\n  width: 15px;\n  height: 15px;\n}\n._3MAzNUXz7xDUTmWqe2OMnx {\n  background-color: #6c6c6c;\n}\n.hJwLpcad6VOHcRsl2sswk {\n  background-color: #79c7ff;\n}\n.Ma_mnqKhSP8BE-hc0d16c {\n  background-color: #f29696;\n}\n._1mzM_wxZsBVwEPQdtGF3hl {\n  background-color: #ffc399;\n}\n._1oO73jDmcm6etO8VXjPJz7 {\n  background-color: #acea68;\n}\n._2HWGHTeznlCRTsOjB4Bx0D {\n  background-color: #c4ecff;\n}\n._3PTdymzkYYwDn6nW1BqOrN {\n  opacity: 1;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_2nLDso7etXs-rNczkhcIt_",

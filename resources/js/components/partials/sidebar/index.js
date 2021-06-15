@@ -52,7 +52,7 @@ export default {
           console.log(response)
         })
         .catch(error => {
-          console.log(error)
+
         })
 
       await axios
@@ -64,7 +64,7 @@ export default {
           router.push({ name: 'login' })
         })
         .catch(error => {
-          AlertService.danger(error.response.data.error)
+          AlertService.danger(error.response.data.message)
         })
         .finally(() => {
           store.commit('setLoading', false)

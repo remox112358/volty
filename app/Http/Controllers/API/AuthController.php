@@ -85,20 +85,16 @@ class AuthController extends BaseController
     /**
      * Logout API user.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function logout()
+    public function logout(Request $request)
     {
         /**
          * User logout
          */
-        Auth::logout();
+        $request->user()->token()->revoke();
 
         return $this->sendResponse([], 'User successfully logged out');
-    }
-
-    public function test()
-    {
-        return $this->sendResponse(['test' => Auth::user()], 'Test');
     }
 }
