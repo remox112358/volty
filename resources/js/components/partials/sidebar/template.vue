@@ -4,9 +4,11 @@
     [styles['root--show']]: showStatus,
   }">
     <div :class="styles.user">
-      <div :class="styles.avatar"></div>
+      <div :class="styles.avatar">
+        <img :src="avatar" alt="Avatar">
+      </div>
       <span :class="styles.username">{{ username }}</span>
-      <i-button :class="styles.logout" width="125px" color="primary" @click="onLogout" outline>Logout</i-button>
+      <i-button :class="styles.logout" width="125px" color="info" @click="onLogout" outline>Logout</i-button>
     </div>
 
     <div :class="styles.group">
