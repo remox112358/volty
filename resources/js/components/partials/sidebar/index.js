@@ -47,15 +47,6 @@ export default {
       store.commit('setLoading', true)
 
       await axios
-        .get('/api/test')
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-
-        })
-
-      await axios
         .get('/api/logout')
         .then(response => {
           AlertService.success(response.data.message)

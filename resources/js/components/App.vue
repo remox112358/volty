@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 import PAlertBox from './partials/alert-box'
@@ -25,6 +25,22 @@ export default {
      * Loading status.
      */
     const loading = computed(() => store.state.loading)
+
+    /**
+     * User auth status.
+     */
+    const authorized = computed(() => store.state.user.authorized)
+
+    /**
+     * On component mount action.
+     */
+    onMounted(async () => {
+      if (authorized.value) {
+        store.commit('setLoading', true)
+        await store.dispatch('user/doFetch')
+        store.commit('setLoading', false)
+      }
+    })
 
     return {
       loading,
