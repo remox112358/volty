@@ -50,6 +50,12 @@ export default {
   }),
 
   getters: {
+    boards: (state) => (count = state.boards.length) => {
+      return state.boards.slice(0, count)
+    },
+    boardById: (state) => (id) => {
+      return state.boards.find(board => board.id == id)
+    },
     columnsByBoardId: (state) => (id) => {
       let columns = [...state.columns]
 
@@ -112,7 +118,6 @@ export default {
       await axios
               .get('/api/boards/fetch')
               .then(response => {
-                console.log(response)
                 context.commit('setBoards', response.data.data)
               })
               .catch(error => {

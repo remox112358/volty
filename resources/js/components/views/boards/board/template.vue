@@ -1,6 +1,6 @@
 <template>
   <div :class="styles.root">
-    <h1>{{ data.name }}</h1>
+    <h1>{{ data?.name }}</h1>
     <draggable
       item-key="id"
       group="columns"

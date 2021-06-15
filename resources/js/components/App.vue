@@ -32,7 +32,7 @@ export default {
     const authorized = computed(() => store.state.user.authorized)
 
     /**
-     * On component mount action.
+     * On component create action.
      */
     onMounted(() => {
       if (authorized.value) {

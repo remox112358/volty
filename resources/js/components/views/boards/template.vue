@@ -9,7 +9,7 @@
         <i-board
           :key="$i"
           :href="`/boards/1`"
-          :name="`Board ${$i}`"
+          :name="`Fake ${$i}`"
 
           v-for="$i in 4"
         />
@@ -22,11 +22,12 @@
       </h3>
       <div :class="styles.boards">
         <i-board
-          :key="$i"
-          :href="`/boards/1`"
-          :name="`Board ${$i}`"
+          :key="board.id"
+          :name="board.name"
+          :color="board.color"
+          :href="`/boards/${board.id}`"
 
-          v-for="$i in 12"
+          v-for="board in boards"
         />
       </div>
     </div>

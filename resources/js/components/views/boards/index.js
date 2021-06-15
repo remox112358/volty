@@ -16,11 +16,12 @@ export default {
     /**
      * Boards list.
      */
-    const boards = computed(() => store.state.boards.boards)
+    const boards = computed(() => store.getters['boards/boards']())
 
     return {
       styles,
 
+      boards,
     }
 
   }

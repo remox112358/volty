@@ -16811,7 +16811,7 @@ __webpack_require__.r(__webpack_exports__);
       return store.state.user.authorized;
     });
     /**
-     * On component mount action.
+     * On component create action.
      */
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
@@ -17755,7 +17755,7 @@ function render(_ctx, _cache) {
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_button, {
     "class": _ctx.styles.logout,
     width: "125px",
-    color: "info",
+    color: "primary",
     onClick: _ctx.onLogout,
     outline: ""
   }, {
@@ -17874,13 +17874,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache) {
+  var _ctx$data;
+
   var _component_i_board_column = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-board-column");
 
   var _component_draggable = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("draggable");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
     "class": _ctx.styles.root
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data.name), 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_ctx$data = _ctx.data) === null || _ctx$data === void 0 ? void 0 : _ctx$data.name), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_draggable, {
     "item-key": "id",
@@ -17955,7 +17957,7 @@ function render(_ctx, _cache) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board, {
       key: $i,
       href: "/boards/1",
-      name: "Board ".concat($i)
+      name: "Fake ".concat($i)
     }, null, 8
     /* PROPS */
     , ["name"]);
@@ -17975,16 +17977,17 @@ function render(_ctx, _cache) {
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.boards
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(12, function ($i) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board, {
-      key: $i,
-      href: "/boards/1",
-      name: "Board ".concat($i)
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.boards, function (board) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_i_board, {
+      key: board.id,
+      name: board.name,
+      color: board.color,
+      href: "/boards/".concat(board.id)
     }, null, 8
     /* PROPS */
-    , ["name"]);
-  }), 64
-  /* STABLE_FRAGMENT */
+    , ["name", "color", "href"]);
+  }), 128
+  /* KEYED_FRAGMENT */
   ))], 2
   /* CLASS */
   )], 2
@@ -19525,7 +19528,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
     });
     var boards = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return store.state.boards.boards;
+      return store.getters['boards/boards'](3);
     });
     var username = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.state.user.data.username;
@@ -19631,17 +19634,20 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    id: function id() {
+      return this.$router.currentRoute.value.params.boardId;
+    },
     data: function data() {
-      return this.$store.state.boards.boards[0];
+      return this.$store.getters['boards/boardById'](this.id);
     },
     columns: {
       get: function get() {
-        return this.$store.getters['boards/columnsByBoardId'](1);
+        return this.$store.getters['boards/columnsByBoardId'](this.id);
       },
       set: function set(value) {
         this.$store.dispatch('boards/setColumns', {
           value: value,
-          boardId: 1
+          boardId: this.id
         });
       }
     }
@@ -19682,10 +19688,11 @@ __webpack_require__.r(__webpack_exports__);
      */
 
     var boards = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return store.state.boards.boards;
+      return store.getters['boards/boards']();
     });
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default())
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
+      boards: boards
     };
   }
 });
@@ -20289,6 +20296,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   },
   getters: {
+    boards: function boards(state) {
+      return function () {
+        var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.boards.length;
+        return state.boards.slice(0, count);
+      };
+    },
+    boardById: function boardById(state) {
+      return function (id) {
+        return state.boards.find(function (board) {
+          return board.id == id;
+        });
+      };
+    },
     columnsByBoardId: function columnsByBoardId(state) {
       return function (id) {
         var columns = _toConsumableArray(state.columns);
@@ -20382,7 +20402,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 });
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/boards/fetch').then(function (response) {
-                  console.log(response);
                   context.commit('setBoards', response.data.data);
                 })["catch"](function (error) {
                   console.log(error.response);
