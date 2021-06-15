@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\BoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,8 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/logout', [AuthController::class, 'logout']);
 
-  Route::get('/user/fetch', [UserController::class, 'fetch']);
+  Route::get('/users/fetch', [UserController::class, 'fetch']);
+
+  Route::get('/boards/fetch', [BoardController::class, 'fetch']);
+  Route::resource('boards', BoardController::class);
 });

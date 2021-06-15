@@ -17,5 +17,6 @@ class Board extends Model
     protected $fillable = [
         'name',
         'color',
+        'user_id',
     ];
 }

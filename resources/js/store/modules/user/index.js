@@ -43,13 +43,18 @@ export default {
       __ax_remove_token()
     },
     doFetch: async (context) => {
+      context.commit('setLoading', true, { root: true })
+
       await axios
-              .get('/api/user/fetch')
+              .get('/api/users/fetch')
               .then(response => {
                 context.commit('setData', response.data.data)
               })
               .catch(error => {
                 console.log(error.response.message)
+              })
+              .finally(() => {
+                context.commit('setLoading', false, { root: true })
               })
     },
   },

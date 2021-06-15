@@ -34,11 +34,10 @@ export default {
     /**
      * On component mount action.
      */
-    onMounted(async () => {
+    onMounted(() => {
       if (authorized.value) {
-        store.commit('setLoading', true)
-        await store.dispatch('user/doFetch')
-        store.commit('setLoading', false)
+        store.dispatch('user/doFetch')
+        store.dispatch('boards/doFetch')
       }
     })
 

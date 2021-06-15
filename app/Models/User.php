@@ -42,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Returns the user boards.
+     *
+     * @return \App\Models\Board
+     */
+    public function boards()
+    {
+      return $this->hasMany(Board::class);
+    }
 }

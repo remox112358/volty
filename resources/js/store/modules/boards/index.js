@@ -1,12 +1,11 @@
+import axios from 'axios'
+
 export default {
   namespaced: true,
 
   state: () => ({
     boards: [
-      {
-        id: 1,
-        name: 'Board 1',
-      },
+
     ],
     columns: [
       {
@@ -70,6 +69,9 @@ export default {
   },
 
   mutations: {
+    setBoards: (state, payload) => {
+      state.boards = payload
+    },
     setColumns: (state, { value, boardId }) => {
       state.columns = state.columns.filter(column => column.boardId != boardId)
       state.columns = [...state.columns, ...value]
@@ -103,6 +105,22 @@ export default {
       })
 
       context.commit('setCards', { value, columnId })
+    },
+    doFetch: async (context) => {
+      context.commit('setLoading', true, { root: true })
+
+      await axios
+              .get('/api/boards/fetch')
+              .then(response => {
+                console.log(response)
+                context.commit('setBoards', response.data.data)
+              })
+              .catch(error => {
+                console.log(error.response)
+              })
+              .finally(() => {
+                context.commit('setLoading', false, { root: true })
+              })
     },
   },
 }
