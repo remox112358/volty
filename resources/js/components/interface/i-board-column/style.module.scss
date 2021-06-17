@@ -7,8 +7,6 @@
   min-width: 275px;
   max-width: 275px;
 
-  overflow: hidden;
-
   border-radius: 5px;
 
   box-shadow: 0 0 5px rgba(#000, .5);
@@ -60,6 +58,7 @@
     background-color: #fff;
 
     overflow-y: auto;
+    overflow-x: hidden;
 
     &::-webkit-scrollbar {
       display: none;

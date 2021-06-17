@@ -5,6 +5,7 @@ export const IBoard = require('./i-board').default
 export const IModal = require('./i-modal').default
 export const IButton = require('./i-button').default
 export const ILoader = require('./i-loader').default
+export const IDropdown = require('./i-dropdown').default
 export const IBoardCard = require('./i-board-card').default
 export const IBoardColumn = require('./i-board-column').default
 
@@ -16,6 +17,7 @@ export default {
   IModal,
   IButton,
   ILoader,
+  IDropdown,
   IBoardCard,
   IBoardColumn,
 }
