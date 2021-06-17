@@ -9,7 +9,10 @@
       }">
         <router-view></router-view>
       </section>
+
+      <!-- Modals -->
       <m-add-new-board />
+      <m-add-new-column />
     </main>
   </div>
 </template>

@@ -4,6 +4,7 @@ import user from './modules/user'
 import alerts from './modules/alerts'
 import modals from './modules/modals'
 import boards from './modules/boards'
+import columns from './modules/columns'
 import sidebar from './modules/sidebar'
 
 const store = createStore({
@@ -30,6 +31,7 @@ const store = createStore({
     alerts,
     modals,
     boards,
+    columns,
     sidebar,
   },
 })

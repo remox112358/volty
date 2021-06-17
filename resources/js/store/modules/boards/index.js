@@ -7,26 +7,6 @@ export default {
     boards: [
 
     ],
-    columns: [
-      {
-        id: 1,
-        index: 1,
-        boardId: 1,
-        name: 'Column 1',
-      },
-      {
-        id: 2,
-        index: 2,
-        boardId: 1,
-        name: 'Column 2',
-      },
-      {
-        id: 3,
-        index: 3,
-        boardId: 1,
-        name: 'Column 3',
-      },
-    ],
     cards: [
       {
         id: 1,
@@ -56,14 +36,6 @@ export default {
     boardById: (state) => (id) => {
       return state.boards.find(board => board.id == id)
     },
-    columnsByBoardId: (state) => (id) => {
-      let columns = [...state.columns]
-
-      columns = columns.filter(column => column.boardId === id)
-      columns.sort((a, b) => a.index > b.index ? 1 : -1)
-
-      return columns
-    },
     cardsByColumnId: (state) => (id) => {
       let cards = [...state.cards]
 
@@ -77,10 +49,6 @@ export default {
   mutations: {
     setBoards: (state, payload) => {
       state.boards = payload
-    },
-    setColumns: (state, { value, boardId }) => {
-      state.columns = state.columns.filter(column => column.boardId != boardId)
-      state.columns = [...state.columns, ...value]
     },
     setCards: (state, { value, columnId }) => {
       state.cards = state.cards.filter(card => card.columnId != columnId)
@@ -97,13 +65,6 @@ export default {
   },
 
   actions: {
-    setColumns: (context, { value, boardId }) => {
-      value.forEach((column, index) => {
-        column.index = index + 1
-      })
-
-      context.commit('setColumns', { value, boardId })
-    },
     setCards: (context, { value, columnId }) => {
       value.forEach((card, index) => {
         card.index = index + 1

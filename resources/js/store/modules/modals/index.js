@@ -2,7 +2,18 @@ export default {
   namespaced: true,
 
   state: () => ({
-    addNewBoard: false,
+    addNewBoard: {
+      show: false,
+      data: {
+
+      },
+    },
+    addNewColumn: {
+      show: false,
+      data: {
+
+      },
+    },
   }),
 
   getters: {
@@ -16,16 +27,22 @@ export default {
   },
 
   actions: {
-    open: (context, modal) => {
+    open: (context, { modal, data = {} }) => {
       context.commit('change', {
-        value: true,
         modal: modal,
+        value: {
+          show: true,
+          data: data,
+        }
       })
     },
     close: (context, modal) => {
       context.commit('change', {
-        value: false,
         modal: modal,
+        value: {
+          show: false,
+          data: {},
+        },
       })
     },
   },

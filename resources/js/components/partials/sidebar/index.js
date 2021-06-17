@@ -39,7 +39,7 @@ export default {
     /**
      * Modal open action.
      */
-    const openAddNewBoardModal = () => store.dispatch('modals/open', 'addNewBoard')
+    const openAddNewBoardModal = () => store.dispatch('modals/open', { modal: 'addNewBoard' })
 
     /**
      * On logout action.

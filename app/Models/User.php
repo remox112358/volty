@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
       return $this->hasMany(Board::class);
     }
+
+    /**
+     * Returns the user columns.
+     *
+     * @return \App\Models\Column
+     */
+    public function columns()
+    {
+      return $this->hasMany(Column::class);
+    }
 }

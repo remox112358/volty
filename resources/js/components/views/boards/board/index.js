@@ -20,14 +20,27 @@ export default {
     },
     columns: {
       get() {
-        return this.$store.getters['boards/columnsByBoardId'](this.id)
+        return this.$store.getters['columns/columnsByBoardId'](this.id)
       },
       set(value) {
-        this.$store.dispatch('boards/setColumns', {
+        this.$store.dispatch('columns/updateColumns', {
           value,
           boardId: this.id,
         })
       },
+    },
+  },
+  methods: {
+    /**
+     * Modal open action.
+     */
+    openAddNewColumnModal() {
+      this.$store.dispatch('modals/open', {
+        modal: 'addNewColumn',
+        data: {
+          boardId: this.id,
+        },
+      })
     },
   },
 }

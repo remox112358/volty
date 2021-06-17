@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\BoardController;
+use App\Http\Controllers\API\ColumnController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
   Route::get('/boards/fetch', [BoardController::class, 'fetch']);
   Route::resource('boards', BoardController::class);
+
+  Route::get('/columns/fetch', [BoardController::class, 'fetch']);
+  Route::resource('columns', ColumnController::class);
 });

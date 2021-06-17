@@ -38,6 +38,7 @@ export default {
       if (authorized.value) {
         store.dispatch('user/doFetch')
         store.dispatch('boards/doFetch')
+        store.dispatch('columns/doFetch')
       }
     })
 

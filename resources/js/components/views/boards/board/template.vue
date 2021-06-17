@@ -1,6 +1,18 @@
 <template>
   <div :class="styles.root">
-    <h1>{{ data?.name }}</h1>
+    <div :class="styles.header">
+      <h1 :class="styles.heading">{{ data?.name }}</h1>
+      <i-button
+        color="dark"
+        height="30px"
+
+        :class="styles['add-column']"
+
+        @click="openAddNewColumnModal"
+
+        outline
+      >Add column</i-button>
+    </div>
     <draggable
       item-key="id"
       group="columns"

@@ -25,7 +25,12 @@ export default {
     /**
      * Show status.
      */
-    const show = computed(() => store.state.modals.addNewBoard.show)
+    const show = computed(() => store.state.modals.addNewColumn.show)
+
+    /**
+     * Data.
+     */
+    const data = computed(() => store.state.modals.addNewColumn.data)
 
     /**
      * Close action.
@@ -33,7 +38,7 @@ export default {
     const close = () => {
       name.value = ''
 
-      store.dispatch('modals/close', 'addNewBoard')
+      store.dispatch('modals/close', 'addNewColumn')
     }
 
     /**
@@ -43,8 +48,13 @@ export default {
       store.commit('setLoading', true)
 
       await axios
-              .post('/api/boards', { name: name.value, color: '#ff0000' })
+              .post('/api/columns', {
+                name: name.value,
+                color: '#ff0000',
+                board_id: data.value.boardId,
+              })
               .then(response => {
+                console.log(response.data.data)
                 AlertService.success(response.data.message)
 
                 close()
@@ -52,6 +62,7 @@ export default {
                 store.dispatch('boards/doFetch')
               })
               .catch(error => {
+                console.log(error.response)
                 AlertService.danger(error.response.message)
               })
               .finally(() => {
