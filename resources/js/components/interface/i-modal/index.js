@@ -21,8 +21,16 @@ export default {
   },
   setup(props, context) {
 
+    /**
+     * Root DOM element.
+     */
     const root = ref(null)
 
+    /**
+     * Backdrop click handler.
+     * 
+     * @param {Object} event 
+     */
     const backDropClick = (event) => {
       const isBackdrop = event.target === root.value
 

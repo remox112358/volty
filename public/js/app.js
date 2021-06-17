@@ -19297,7 +19297,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   setup: function setup(props, context) {
+    /**
+     * Root DOM element.
+     */
     var root = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    /**
+     * Backdrop click handler.
+     * 
+     * @param {Object} event 
+     */
 
     var backDropClick = function backDropClick(event) {
       var isBackdrop = event.target === root.value;
@@ -20193,6 +20201,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _services_AlertService__WEBPACK_IMPORTED_MODULE_4__.default.success(response.data.message);
                   }
                 })["catch"](function (error) {
+                  console.log(error.response);
                   _services_AlertService__WEBPACK_IMPORTED_MODULE_4__.default.danger(error.response.data.error);
                 })["finally"](function () {
                   store.commit('setLoading', false);
@@ -22063,7 +22072,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-fade-enter,\n  .modal-fade-leave-to {\n    opacity: 0;\n}\n.modal-fade-enter-active,\n  .modal-fade-leave-active {\n    transition: opacity .5s ease;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-fade-enter,\r\n  .modal-fade-leave-to {\r\n    opacity: 0;\n}\n.modal-fade-enter-active,\r\n  .modal-fade-leave-active {\r\n    transition: opacity .5s ease;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22246,7 +22255,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icons.svg?ed849d803646a4730034f6645770176c");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/icons.svg?c936d33ad9ac4f5abc98cbc2b7e7e79d");
 
 /***/ }),
 

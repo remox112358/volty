@@ -37,11 +37,10 @@ class ColumnController extends BaseController
          * Create column.
          */
         $column = Column::create([
-          'user_id'  => Auth::user()->id,
-          'board_id' => $request->input('board_id'),
-          'name'     => $request->input('name'),
-          'color'    => $request->input('color'),
-          'index'    => $lastColumnInBoard ? $lastColumnInBoard->index + 1 : 1,
+            'user_id'  => Auth::user()->id,
+            'board_id' => $request->input('board_id'),
+            'name'     => $request->input('name'),
+            'index'    => $lastColumnInBoard ? $lastColumnInBoard->index + 1 : 1,
         ]);
 
         return $this->sendResponse($column, 'Column "' . $request->input('name') . '" created successfully');
