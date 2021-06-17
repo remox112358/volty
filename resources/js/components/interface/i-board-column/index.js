@@ -20,10 +20,6 @@ export default {
       type: String,
       default: null,
     },
-    headerColor: {
-      type: String,
-      default: '#1f1f1f',
-    },
     handleClass: {
       type: String,
       default: null,

@@ -1,6 +1,6 @@
 <template>
   <div :class="styles.root">
-    <div :class="[styles.header, handleClass]" :style="{backgroundColor: headerColor}">
+    <div :class="[styles.header, handleClass]">
       <span>{{ name }}</span>
       <div :class="styles.settings">
         <i-icon name="dots" />

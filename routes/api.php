@@ -30,6 +30,6 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/boards/fetch', [BoardController::class, 'fetch']);
   Route::resource('boards', BoardController::class);
 
-  Route::get('/columns/fetch', [BoardController::class, 'fetch']);
+  Route::get('/columns/fetch', [ColumnController::class, 'fetch']);
   Route::resource('columns', ColumnController::class);
 });

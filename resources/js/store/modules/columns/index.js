@@ -5,24 +5,7 @@ export default {
 
   state: () => ({
     columns: [
-      {
-        id: 1,
-        index: 1,
-        boardId: 1,
-        name: 'Column 1',
-      },
-      {
-        id: 2,
-        index: 2,
-        boardId: 1,
-        name: 'Column 2',
-      },
-      {
-        id: 3,
-        index: 3,
-        boardId: 1,
-        name: 'Column 3',
-      },
+      // ...
     ],
   }),
 
@@ -30,7 +13,7 @@ export default {
     columnsByBoardId: (state) => (id) => {
       let columns = [...state.columns]
 
-      columns = columns.filter(column => column.boardId === id)
+      columns = columns.filter(column => column.board_id == id)
       columns.sort((a, b) => a.index > b.index ? 1 : -1)
 
       return columns

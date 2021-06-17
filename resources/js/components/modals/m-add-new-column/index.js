@@ -50,16 +50,15 @@ export default {
       await axios
               .post('/api/columns', {
                 name: name.value,
-                color: '#ff0000',
+                color: '#1f1f1f',
                 board_id: data.value.boardId,
               })
               .then(response => {
-                console.log(response.data.data)
                 AlertService.success(response.data.message)
 
                 close()
 
-                store.dispatch('boards/doFetch')
+                store.dispatch('columns/doFetch')
               })
               .catch(error => {
                 console.log(error.response)

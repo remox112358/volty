@@ -25,7 +25,12 @@
       v-model="columns"
     >
       <template #item="{element}">
-        <i-board-column handleClass="column-drag-handler" :id="element.id" :name="element.name" />
+        <i-board-column
+          handleClass="column-drag-handler"
+
+          :id="element.id"
+          :name="element.name"
+        />
       </template>
     </draggable>
   </div>
