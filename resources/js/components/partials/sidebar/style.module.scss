@@ -172,5 +172,11 @@
         }
       }
     }
+
+    .see-all {
+      float: right;
+
+      color: map-get($COLORS, 'primary');
+    }
   }
 }

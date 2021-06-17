@@ -35,7 +35,12 @@
       </router-link>
     </div>
     <div :class="styles.group">
-      <h4 :class="styles.heading">Boards</h4>
+      <h4 :class="styles.heading">
+        Boards
+        <router-link :to="{ name: 'boards' }" :class="styles['see-all']">
+          See all
+        </router-link>
+      </h4>
       <router-link
         :key="board.id"
         :class="styles.tab"
