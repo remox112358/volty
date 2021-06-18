@@ -40,7 +40,6 @@ class ColumnController extends BaseController
           'user_id'  => Auth::user()->id,
           'board_id' => $request->input('board_id'),
           'name'     => $request->input('name'),
-          'color'    => $request->input('color'),
           'index'    => $lastColumnInBoard ? $lastColumnInBoard->index + 1 : 1,
         ]);
 
@@ -84,11 +83,13 @@ class ColumnController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Column  $column
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Column $column)
     {
-        //
+        $column->delete();
+
+        return $this->sendResponse($column, 'Column "' . $column->name . '" deleted');
     }
 }

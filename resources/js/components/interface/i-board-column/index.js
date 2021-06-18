@@ -1,5 +1,9 @@
 import draggable from 'vuedraggable'
 
+import axios from 'axios'
+
+import AlertService from '../../../services/AlertService'
+
 import template from './template'
 import styles from './style.module.scss'
 
@@ -61,8 +65,23 @@ export default {
     rename() {
       console.log('RENAME')
     },
-    delete() {
-      console.log('DELETE')
+    async delete() {
+      this.$store.commit('setLoading', true)
+
+      await axios
+              .delete(`/api/columns/${this.id}`)
+              .then(response => {
+                this.$store.dispatch('columns/doFetch')
+
+                console.log(response.data)
+                AlertService.success(response.data.message)
+              })
+              .catch(error => {
+                AlertService.danger(error.response.data.message)
+              })
+              .finally(() => {
+                this.$store.commit('setLoading', false)
+              })
     },
     clear() {
       console.log('CLEAR')
