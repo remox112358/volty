@@ -25,12 +25,12 @@ export default {
     /**
      * Show status.
      */
-    const show = computed(() => store.state.modals.addNewColumn.show)
+    const show = computed(() => store.state.modals.renameColumn.show)
 
     /**
      * Data.
      */
-    const data = computed(() => store.state.modals.addNewColumn.data)
+    const data = computed(() => store.state.modals.renameColumn.data)
 
     /**
      * Close action.
@@ -38,7 +38,7 @@ export default {
     const close = () => {
       name.value = ''
 
-      store.dispatch('modals/close', 'addNewColumn')
+      store.dispatch('modals/close', 'renameColumn')
     }
 
     /**
@@ -48,9 +48,8 @@ export default {
       store.commit('setLoading', true)
 
       await axios
-              .post('/api/columns', {
+              .put(`/api/columns/${data.value.id}`, {
                 name: name.value,
-                board_id: data.value.boardId,
               })
               .then(response => {
                 store.dispatch('columns/doFetch')
@@ -60,6 +59,7 @@ export default {
                 AlertService.success(response.data.message)
               })
               .catch(error => {
+                console.log(error.response)
                 AlertService.danger(error.response.message)
               })
               .finally(() => {
@@ -72,6 +72,7 @@ export default {
 
       show,
       name,
+      data,
 
       close,
       onSubmit,

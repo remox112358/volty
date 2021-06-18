@@ -12,6 +12,7 @@
 
       <!-- Modals -->
       <m-add-new-board />
+      <m-rename-column />
       <m-add-new-column />
     </main>
   </div>

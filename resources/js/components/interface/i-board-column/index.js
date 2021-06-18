@@ -63,7 +63,13 @@ export default {
   },
   methods: {
     rename() {
-      console.log('RENAME')
+      this.$store.dispatch('modals/open', {
+        modal: 'renameColumn',
+        data: {
+          id: this.id,
+          oldName: this.name,
+        },
+      })
     },
     async delete() {
       this.$store.commit('setLoading', true)
@@ -94,7 +100,8 @@ export default {
               })
               .catch(error => {
                 AlertService.danger(error.response.data.message)
-
+              })
+              .finally(() => {
                 this.$store.commit('setLoading', false)
               })
     },

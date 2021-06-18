@@ -5,13 +5,19 @@ export default {
     addNewBoard: {
       show: false,
       data: {
-
+        // ...
       },
     },
     addNewColumn: {
       show: false,
       data: {
-
+        // ...
+      },
+    },
+    renameColumn: {
+      show: false,
+      data: {
+        // ...
       },
     },
   }),
