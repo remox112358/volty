@@ -73,7 +73,6 @@ export default {
               .then(response => {
                 this.$store.dispatch('columns/doFetch')
 
-                console.log(response.data)
                 AlertService.success(response.data.message)
               })
               .catch(error => {
@@ -83,8 +82,21 @@ export default {
                 this.$store.commit('setLoading', false)
               })
     },
-    clear() {
-      console.log('CLEAR')
+    async clear() {
+      this.$store.commit('setLoading', true)
+
+      await axios
+              .post(`/api/columns/${this.id}/clear`)
+              .then(response => {
+                this.$store.dispatch('columns/doFetch')
+
+                AlertService.success(response.data.message)
+              })
+              .catch(error => {
+                AlertService.danger(error.response.data.message)
+
+                this.$store.commit('setLoading', false)
+              })
     },
   },
 }

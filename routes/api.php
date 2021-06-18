@@ -31,5 +31,6 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::resource('boards', BoardController::class);
 
   Route::get('/columns/fetch', [ColumnController::class, 'fetch']);
+  Route::post('/columns/{column}/clear', [ColumnController::class, 'clear']);
   Route::resource('columns', ColumnController::class);
 });

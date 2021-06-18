@@ -92,4 +92,15 @@ class ColumnController extends BaseController
 
         return $this->sendResponse($column, 'Column "' . $column->name . '" deleted');
     }
+
+    /**
+     * Clear the column.
+     *
+     * @param \App\Models\Column $column
+     * @return \Illuminate\Http\Response
+     */
+    public function clear(Column $column)
+    {
+        return $this->sendResponse($column, 'Test');
+    }
 }

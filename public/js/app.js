@@ -18850,7 +18850,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/columns/".concat(_this.id)).then(function (response) {
                   _this.$store.dispatch('columns/doFetch');
 
-                  console.log(response.data);
                   _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
                 })["catch"](function (error) {
                   _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.data.message);
@@ -18867,7 +18866,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     clear: function clear() {
-      console.log('CLEAR');
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.$store.commit('setLoading', true);
+
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/columns/".concat(_this2.id, "/clear")).then(function (response) {
+                  _this2.$store.dispatch('columns/doFetch');
+
+                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
+                })["catch"](function (error) {
+                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.data.message);
+
+                  _this2.$store.commit('setLoading', false);
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
