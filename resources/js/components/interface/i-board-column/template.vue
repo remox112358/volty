@@ -2,15 +2,12 @@
   <div :class="styles.root">
     <div :class="[styles.header, handleClass]">
       <span>{{ name }}</span>
-      <i-dropdown width="300px">
+      <i-dropdown type="select" width="120px" :actions="actions">
         <template #trigger>
           <div :class="styles.settings">
             <i-icon name="dots" />
           </div>
         </template>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, iure blanditiis sit expedita recusandae aliquam nostrum libero, iusto inventore voluptates hic magni unde dolorem vitae doloribus, ducimus cum. Expedita, aut?
-        </p>
       </i-dropdown>
     </div>
     <div :class="styles.body">

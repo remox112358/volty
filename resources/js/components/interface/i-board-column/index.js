@@ -40,5 +40,32 @@ export default {
         })
       },
     },
+    actions() {
+      return [
+        {
+          name: 'Rename',
+          callback: this.rename,
+        },
+        {
+          name: 'Delete',
+          callback: this.delete,
+        },
+        {
+          name: 'Clear',
+          callback: this.clear,
+        }
+      ]
+    },
+  },
+  methods: {
+    rename() {
+      console.log('RENAME')
+    },
+    delete() {
+      console.log('DELETE')
+    },
+    clear() {
+      console.log('CLEAR')
+    },
   },
 }

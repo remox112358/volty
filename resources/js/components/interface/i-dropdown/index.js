@@ -20,6 +20,14 @@ export default {
       type: String,
       default: null,
     },
+    actions: {
+      type: Array,
+      default: [],
+    },
+    type: {
+      type: String,
+      default: 'default',
+    },
   },
   setup() {
 
@@ -63,6 +71,17 @@ export default {
         close()
     }
 
+    /**
+     * Action click handler.
+     *
+     * @param {Object} action
+     */
+    const onAction = action => {
+      close()
+
+      action.callback()
+    }
+
     return {
       styles,
 
@@ -71,6 +90,7 @@ export default {
 
       open,
       close,
+      onAction,
     }
 
   }

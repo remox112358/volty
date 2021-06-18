@@ -16991,11 +16991,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, iure blanditiis sit expedita recusandae aliquam nostrum libero, iusto inventore voluptates hic magni unde dolorem vitae doloribus, ducimus cum. Expedita, aut? ", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache) {
   var _component_i_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-icon");
 
@@ -17014,7 +17009,9 @@ function render(_ctx, _cache) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.name), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_dropdown, {
-    width: "300px"
+    type: "select",
+    width: "120px",
+    actions: _ctx.actions
   }, {
     trigger: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
@@ -17025,13 +17022,12 @@ function render(_ctx, _cache) {
       /* CLASS */
       )];
     }),
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1];
-    }),
     _: 1
     /* STABLE */
 
-  })], 2
+  }, 8
+  /* PROPS */
+  , ["actions"])], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.body
@@ -17216,11 +17212,30 @@ function render(_ctx, _cache) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "trigger")], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-    "class": (_class = {}, _defineProperty(_class, _ctx.styles.dropdown, true), _defineProperty(_class, "dropdownClass", _ctx.dropdownClass), _defineProperty(_class, _ctx.styles["dropdown--pos-".concat(_ctx.pos)], _ctx.pos), _class),
+    "class": (_class = {}, _defineProperty(_class, _ctx.styles.dropdown, true), _defineProperty(_class, "dropdownClass", _ctx.dropdownClass), _defineProperty(_class, _ctx.styles["dropdown--pos-".concat(_ctx.pos)], _ctx.pos), _defineProperty(_class, _ctx.styles['dropdown--select'], _ctx.type === 'select'), _class),
     style: {
       minWidth: _ctx.width
     }
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 6
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default", {}, function () {
+    return [_ctx.type === 'select' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+      key: 0,
+      "class": _ctx.styles.list
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.actions, function (action, index) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+        key: index,
+        "class": _ctx.styles.action,
+        onClick: function onClick() {
+          return _ctx.onAction(action);
+        }
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(action.name), 11
+      /* TEXT, CLASS, PROPS */
+      , ["onClick"]);
+    }), 128
+    /* KEYED_FRAGMENT */
+    ))], 2
+    /* CLASS */
+    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+  })], 6
   /* CLASS, STYLE */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.showStatus]])], 10
   /* CLASS, PROPS */
@@ -18790,6 +18805,29 @@ __webpack_require__.r(__webpack_exports__);
           columnId: this.id
         });
       }
+    },
+    actions: function actions() {
+      return [{
+        name: 'Rename',
+        callback: this.rename
+      }, {
+        name: 'Delete',
+        callback: this["delete"]
+      }, {
+        name: 'Clear',
+        callback: this.clear
+      }];
+    }
+  },
+  methods: {
+    rename: function rename() {
+      console.log('RENAME');
+    },
+    "delete": function _delete() {
+      console.log('DELETE');
+    },
+    clear: function clear() {
+      console.log('CLEAR');
     }
   }
 });
@@ -19009,6 +19047,14 @@ __webpack_require__.r(__webpack_exports__);
     dropdownClass: {
       type: String,
       "default": null
+    },
+    actions: {
+      type: Array,
+      "default": []
+    },
+    type: {
+      type: String,
+      "default": 'default'
     }
   },
   setup: function setup() {
@@ -19049,13 +19095,25 @@ __webpack_require__.r(__webpack_exports__);
       var inArea = event.target.closest("#".concat(componentId));
       if (!inArea) close();
     };
+    /**
+     * Action click handler.
+     *
+     * @param {Object} action
+     */
+
+
+    var onAction = function onAction(action) {
+      close();
+      action.callback();
+    };
 
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
       componentId: componentId,
       showStatus: showStatus,
       open: open,
-      close: close
+      close: close,
+      onAction: onAction
     };
   }
 });
@@ -19919,6 +19977,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
 
     var avatar = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return '';
+    });
+    var avatar1 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
     });
     var boards = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
@@ -21320,7 +21381,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  position: relative;\n  height: 100%;\n  min-width: 275px;\n  max-width: 275px;\n  border-radius: 5px;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 40px;\n  color: #fff;\n  background-color: #1f1f1f;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  padding: 10px;\n  height: calc(100% - 80px);\n  background-color: #fff;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE::-webkit-scrollbar {\n  display: none;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div {\n  display: flex;\n  flex-direction: column;\n  min-height: 100%;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div > *:not(:last-child) {\n  margin-bottom: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._7vru10dND7r67E3xMmUuu {\n  position: relative;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._7vru10dND7r67E3xMmUuu::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #bdbdbd;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1zEHmiZlP5zQyUxTkmpnfd {\n  position: relative;\n  height: 100%;\n  min-width: 275px;\n  max-width: 275px;\n  border-radius: 5px;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  border-radius: 5px 5px 0 0;\n  height: 40px;\n  color: #fff;\n  background-color: #1f1f1f;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r > span {\n  padding: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 40px;\n  height: 40px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU:hover {\n  background-color: #393939;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._31896bHt704DBvMz26IV4r .CS2pCv0NH2pvdFcZyTfYU svg {\n  width: 15px;\n  height: 15px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE {\n  padding: 10px;\n  height: calc(100% - 80px);\n  background-color: #fff;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE::-webkit-scrollbar {\n  display: none;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div {\n  display: flex;\n  flex-direction: column;\n  min-height: 100%;\n}\n._1zEHmiZlP5zQyUxTkmpnfd .wXF6_rlX4mM1F5ts5HRoE > div > *:not(:last-child) {\n  margin-bottom: 10px;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._7vru10dND7r67E3xMmUuu {\n  position: relative;\n}\n._1zEHmiZlP5zQyUxTkmpnfd ._7vru10dND7r67E3xMmUuu::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #bdbdbd;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1zEHmiZlP5zQyUxTkmpnfd",
@@ -21447,7 +21508,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._3dd718NPR63_3jVhT7VmU4 {\n  position: relative;\n}\n._3dd718NPR63_3jVhT7VmU4 .EoZHXffeJSrh7umrqfVLU {\n  width: auto;\n  height: auto;\n}\n._3dd718NPR63_3jVhT7VmU4 ._3i98MoMHtzlWUNnqjjsHYm {\n  position: absolute;\n  z-index: 5;\n  padding: 20px;\n  border-radius: 5px;\n  color: #000;\n  background-color: #fff;\n  box-shadow: 0px 0px 3px #000;\n}\n._3dd718NPR63_3jVhT7VmU4 ._1gXHbxETxDI-CsQ42_59ck {\n  top: 0;\n  right: 0;\n  transform: translate(100%, -100%);\n}\n._3dd718NPR63_3jVhT7VmU4 .GdO4pIqugOYnqu8f-fCFB {\n  right: 0;\n  bottom: 0;\n  transform: translate(100%, 100%);\n}\n._3dd718NPR63_3jVhT7VmU4 .bpZ08zZrV715BIuI6mD2K {\n  top: 0;\n  left: 0;\n  transform: translate(-100%, -100%);\n}\n._3dd718NPR63_3jVhT7VmU4 ._1SXG76GemPsvWkBBA1PM4s {\n  left: 0;\n  bottom: 0;\n  transform: translate(-100%, 100%);\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._3dd718NPR63_3jVhT7VmU4 {\n  position: relative;\n}\n._3dd718NPR63_3jVhT7VmU4 .EoZHXffeJSrh7umrqfVLU {\n  width: auto;\n  height: auto;\n}\n._3dd718NPR63_3jVhT7VmU4 ._3i98MoMHtzlWUNnqjjsHYm {\n  position: absolute;\n  z-index: 5;\n  padding: 20px;\n  border-radius: 5px;\n  overflow: hidden;\n  color: #000;\n  background-color: #fff;\n  box-shadow: 0px 0px 3px #000;\n}\n._3dd718NPR63_3jVhT7VmU4 ._1gXHbxETxDI-CsQ42_59ck {\n  top: 0;\n  right: 0;\n  transform: translate(100%, -100%);\n}\n._3dd718NPR63_3jVhT7VmU4 .GdO4pIqugOYnqu8f-fCFB {\n  right: 0;\n  bottom: 0;\n  transform: translate(100%, 100%);\n}\n._3dd718NPR63_3jVhT7VmU4 .bpZ08zZrV715BIuI6mD2K {\n  top: 0;\n  left: 0;\n  transform: translate(-100%, -100%);\n}\n._3dd718NPR63_3jVhT7VmU4 ._1SXG76GemPsvWkBBA1PM4s {\n  left: 0;\n  bottom: 0;\n  transform: translate(-100%, 100%);\n}\n._3dd718NPR63_3jVhT7VmU4 .vWVAJ8dvu7uCHS-JZpqwP {\n  padding: 0;\n}\n._3dd718NPR63_3jVhT7VmU4 .vWVAJ8dvu7uCHS-JZpqwP .xXjyPiropEnkelj4E5aNo {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n._3dd718NPR63_3jVhT7VmU4 .vWVAJ8dvu7uCHS-JZpqwP .xXjyPiropEnkelj4E5aNo ._1INtGC9MIqAhMLV6RBWKJj {\n  display: flex;\n  align-items: center;\n  flex-direction: row;\n  justify-content: center;\n  width: 100%;\n  height: 30px;\n  cursor: pointer;\n  font-weight: 500;\n  transition-duration: 0.2s;\n  transition-property: color, background-color;\n}\n._3dd718NPR63_3jVhT7VmU4 .vWVAJ8dvu7uCHS-JZpqwP .xXjyPiropEnkelj4E5aNo ._1INtGC9MIqAhMLV6RBWKJj:hover {\n  background-color: #ececec;\n}\n._3dd718NPR63_3jVhT7VmU4 .vWVAJ8dvu7uCHS-JZpqwP .xXjyPiropEnkelj4E5aNo ._1INtGC9MIqAhMLV6RBWKJj:active {\n  color: #fff;\n  background-color: #1f1f1f;\n}\n._3dd718NPR63_3jVhT7VmU4 .vWVAJ8dvu7uCHS-JZpqwP .xXjyPiropEnkelj4E5aNo ._1INtGC9MIqAhMLV6RBWKJj:not(:last-child) {\n  border-bottom: 1px solid #bbbbbb;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_3dd718NPR63_3jVhT7VmU4",
@@ -21456,7 +21517,10 @@ ___CSS_LOADER_EXPORT___.locals = {
 	"dropdown--pos-rt": "_1gXHbxETxDI-CsQ42_59ck",
 	"dropdown--pos-rb": "GdO4pIqugOYnqu8f-fCFB",
 	"dropdown--pos-lt": "bpZ08zZrV715BIuI6mD2K",
-	"dropdown--pos-lb": "_1SXG76GemPsvWkBBA1PM4s"
+	"dropdown--pos-lb": "_1SXG76GemPsvWkBBA1PM4s",
+	"dropdown--select": "vWVAJ8dvu7uCHS-JZpqwP",
+	"list": "xXjyPiropEnkelj4E5aNo",
+	"action": "_1INtGC9MIqAhMLV6RBWKJj"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
