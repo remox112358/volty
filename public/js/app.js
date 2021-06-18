@@ -21193,7 +21193,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var value = _ref.value,
           boardId = _ref.boardId;
       state.columns = state.columns.filter(function (column) {
-        return column.boardId != boardId;
+        return column.board_id != boardId;
       });
       state.columns = [].concat(_toConsumableArray(state.columns), _toConsumableArray(value));
     }
@@ -21202,24 +21202,50 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     updateColumns: function updateColumns(context, _ref2) {
       var value = _ref2.value,
           boardId = _ref2.boardId;
-      value.forEach(function (column, index) {
-        column.index = index + 1;
-      });
-      context.commit('updateColumns', {
+      var steps = 0;
+      value.forEach( /*#__PURE__*/function () {
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(column, index) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  column.index = index + 1;
+                  _context.next = 3;
+                  return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/columns/".concat(column.id), {
+                    index: column.index
+                  }).then(function (response) {
+                    steps++;
+                  })["catch"](function (error) {// ...
+                  });
+
+                case 3:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        }));
+
+        return function (_x, _x2) {
+          return _ref3.apply(this, arguments);
+        };
+      }()); // FIXME: Rewrite to better implementation
+
+      if (steps == 3) context.commit('updateColumns', {
         value: value,
         boardId: boardId
       });
     },
     doFetch: function () {
-      var _doFetch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(context) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      var _doFetch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 context.commit('setLoading', true, {
                   root: true
                 });
-                _context.next = 3;
+                _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/columns/fetch').then(function (response) {
                   context.commit('setColumns', response.data.data);
                 })["catch"](function (error) {
@@ -21232,13 +21258,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
               case 3:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }));
 
-      function doFetch(_x) {
+      function doFetch(_x3) {
         return _doFetch.apply(this, arguments);
       }
 

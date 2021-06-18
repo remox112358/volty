@@ -67,10 +67,11 @@ class ColumnController extends BaseController
     public function update(Request $request, Column $column)
     {
         $column->update([
-          'name' => $request->input('name'),
+          'name'  => $request->input('name') ?? $column->name,
+          'index' => $request->input('index') ?? $column->index,
         ]);
 
-        return $this->sendResponse($column, 'Column "' . $request->input('name') . '" updated successfully');
+        return $this->sendResponse($column, 'Column "' . $column->name . '" updated successfully');
     }
 
     /**
