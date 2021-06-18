@@ -19601,7 +19601,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   setup: function setup(props, context) {
+    /**
+     * Root DOM element.
+     */
     var root = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    /**
+     * Backdrop click handler.
+     * 
+     * @param {Object} event 
+     */
 
     var backDropClick = function backDropClick(event) {
       var isBackdrop = event.target === root.value;
@@ -20754,6 +20762,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _services_AlertService__WEBPACK_IMPORTED_MODULE_4__.default.success(response.data.message);
                   }
                 })["catch"](function (error) {
+                  console.log(error.response);
                   _services_AlertService__WEBPACK_IMPORTED_MODULE_4__.default.danger(error.response.data.error);
                 })["finally"](function () {
                   store.commit('setLoading', false);
