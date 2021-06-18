@@ -42,5 +42,18 @@ export default {
         },
       })
     },
+
+    /**
+     * Modal open action.
+     */
+    openEditBoardModal() {
+      this.$store.dispatch('modals/open', {
+        modal: 'editBoard',
+        data: {
+          id: this.id,
+          name: this.data.name,
+        },
+      })
+    },
   },
 }

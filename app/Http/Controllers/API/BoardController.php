@@ -77,12 +77,16 @@ class BoardController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Board  $board
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Board $board)
     {
-        //
+        $board->update([
+          'name' => $request->input('name'),
+        ]);
+
+        return $this->sendResponse($board, 'Board "' . $board->name . '" updated successfully');
     }
 
     /**

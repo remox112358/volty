@@ -12,6 +12,9 @@
 
         outline
       >Add column</i-button>
+      <div :class="styles.settings" @click="openEditBoardModal">
+        <i-icon name="settings" />
+      </div>
     </div>
     <draggable
       item-key="id"

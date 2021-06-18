@@ -2,6 +2,12 @@ export default {
   namespaced: true,
 
   state: () => ({
+    editBoard: {
+      show: false,
+      data: {
+        // ...
+      },
+    },
     addNewBoard: {
       show: false,
       data: {
@@ -27,8 +33,14 @@ export default {
   },
 
   mutations: {
-    change: (state, { value, modal }) => {
-      state[modal] = value
+    change: (state, { modal, show, data }) => {
+      state[modal].show = show
+
+      if (data)
+        state[modal].data = data
+    },
+    clear: (state, modal) => {
+      state[modal].data = {}
     },
   },
 
@@ -36,20 +48,19 @@ export default {
     open: (context, { modal, data = {} }) => {
       context.commit('change', {
         modal: modal,
-        value: {
-          show: true,
-          data: data,
-        }
+        show: true,
+        data: data,
       })
     },
     close: (context, modal) => {
       context.commit('change', {
         modal: modal,
-        value: {
-          show: false,
-          data: {},
-        },
+        show: false,
       })
+
+      setTimeout(() => {
+        context.commit('clear', modal)
+      }, 500)
     },
   },
 }
