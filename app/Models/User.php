@@ -62,4 +62,14 @@ class User extends Authenticatable
     {
       return $this->hasMany(Column::class);
     }
+
+    /**
+     * Returns the user cards.
+     *
+     * @return \App\Models\Card
+     */
+    public function cards()
+    {
+      return $this->hasMany(Card::class);
+    }
 }

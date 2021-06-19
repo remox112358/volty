@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Column extends Model
+class Board extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,9 @@ class Column extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'text',
         'index',
         'user_id',
-        'board_id',
+        'column_id',
     ];
 }

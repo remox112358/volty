@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\CardController;
 use App\Http\Controllers\API\BoardController;
 use App\Http\Controllers\API\ColumnController;
 
@@ -33,4 +34,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/columns/fetch', [ColumnController::class, 'fetch']);
   Route::post('/columns/{column}/clear', [ColumnController::class, 'clear']);
   Route::resource('columns', ColumnController::class);
+
+  Route::get('/cards/fetch', [CardController::class, 'fetch']);
+  Route::resource('cards', CardController::class);
 });

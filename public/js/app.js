@@ -20566,9 +20566,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
 
     var avatar = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return '';
-    });
-    var avatar1 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
     });
     var boards = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {

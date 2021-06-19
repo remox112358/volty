@@ -22,8 +22,7 @@ export default {
     /**
      * Data.
      */
-    const avatar   = computed(() => '')
-    const avatar1   = computed(() => 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png')
+    const avatar   = computed(() => 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png')
     const boards   = computed(() => store.getters['boards/boards'](3))
     const username = computed(() => store.state.user.data.username)
 
