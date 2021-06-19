@@ -17202,6 +17202,7 @@ function render(_ctx, _cache) {
   var _class;
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+    ref: "root",
     "class": _ctx.styles.root,
     id: _ctx.componentId
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
@@ -17212,6 +17213,7 @@ function render(_ctx, _cache) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "trigger")], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    ref: "dropdown",
     "class": (_class = {}, _defineProperty(_class, _ctx.styles.dropdown, true), _defineProperty(_class, "dropdownClass", _ctx.dropdownClass), _defineProperty(_class, _ctx.styles["dropdown--pos-".concat(_ctx.pos)], _ctx.pos), _defineProperty(_class, _ctx.styles['dropdown--select'], _ctx.type === 'select'), _class),
     style: {
       minWidth: _ctx.width
@@ -19275,6 +19277,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-dropdown/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/functions */ "./resources/js/utils/functions.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils */ "./resources/js/components/interface/i-dropdown/utils.js");
+
 
 
 
@@ -19305,8 +19309,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   setup: function setup() {
     /**
+     * DOM elements.
+     */
+    var root = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var dropdown = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    /**
      * Root DOM element id.
      */
+
     var componentId = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_3__.generateRandomString)();
     /**
      * Dropdown show status.
@@ -19314,8 +19324,36 @@ __webpack_require__.r(__webpack_exports__);
 
     var showStatus = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     /**
+     * Dropdown position.
+     */
+
+    var pos = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('rb');
+    /**
+     * Component mount action.
+     */
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      pos.value = (0,_utils__WEBPACK_IMPORTED_MODULE_4__.getPossiblePosition)(root.value, dropdown.value);
+      window.addEventListener('resize', onResize);
+    });
+    /**
+     * Component unmount action.
+     */
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUnmounted)(function () {
+      window.removeEventListener('resize', onResize);
+    });
+    /**
+     * Window resize handler.
+     */
+
+    var onResize = function onResize() {
+      pos.value = (0,_utils__WEBPACK_IMPORTED_MODULE_4__.getPossiblePosition)(root.value, dropdown.value);
+    };
+    /**
      * Dropdown open action.
      */
+
 
     var open = function open() {
       showStatus.value = true;
@@ -19355,14 +19393,70 @@ __webpack_require__.r(__webpack_exports__);
 
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
-      componentId: componentId,
+      pos: pos,
+      root: root,
+      dropdown: dropdown,
       showStatus: showStatus,
+      componentId: componentId,
       open: open,
       close: close,
       onAction: onAction
     };
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/components/interface/i-dropdown/utils.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/interface/i-dropdown/utils.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getPossiblePosition": () => (/* binding */ getPossiblePosition)
+/* harmony export */ });
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/functions */ "./resources/js/utils/functions.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+/**
+ * Returns the possible position for dropdown.
+ *
+ * @return {String}
+ */
+
+var getPossiblePosition = function getPossiblePosition(trigger, dropdown) {
+  var space = 20;
+  var size = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_0__.getHiddenElementSize)(dropdown);
+  var distance = (0,_utils_functions__WEBPACK_IMPORTED_MODULE_0__.getElementDistanceFromWindow)(trigger);
+  var possibility = {
+    rb: distance.right - size.width >= space && distance.bottom - size.height >= space,
+    lb: distance.left - size.width >= space && distance.bottom - size.height >= space,
+    rt: distance.right - size.width >= space && distance.top - size.height >= space,
+    lt: distance.left - size.width >= space && distance.top - size.height >= space
+  };
+
+  for (var _i = 0, _Object$entries = Object.entries(possibility); _i < _Object$entries.length; _i++) {
+    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        value = _Object$entries$_i[1];
+
+    if (value) return key;
+  }
+};
 
 /***/ }),
 
@@ -21768,7 +21862,9 @@ var __ax_remove_token = function __ax_remove_token() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "generateRandomString": () => (/* binding */ generateRandomString)
+/* harmony export */   "generateRandomString": () => (/* binding */ generateRandomString),
+/* harmony export */   "getElementDistanceFromWindow": () => (/* binding */ getElementDistanceFromWindow),
+/* harmony export */   "getHiddenElementSize": () => (/* binding */ getHiddenElementSize)
 /* harmony export */ });
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -21799,6 +21895,36 @@ var generateRandomString = function generateRandomString() {
   }
 
   return result.join('');
+};
+/**
+ * Returns the DOM element distance from window borders.
+ *
+ * @param {Object} el
+ */
+
+var getElementDistanceFromWindow = function getElementDistanceFromWindow(el) {
+  var rect = el.getBoundingClientRect();
+  return {
+    top: rect.y,
+    left: rect.x,
+    right: window.innerWidth - (rect.x + rect.width),
+    bottom: window.innerHeight - (rect.y + rect.height)
+  };
+};
+/**
+ * Returns the DOM element size.
+ *
+ * @param {Object} el
+ */
+
+var getHiddenElementSize = function getHiddenElementSize(el) {
+  el.style.display = '';
+  var result = {
+    width: el.getBoundingClientRect().width,
+    height: el.getBoundingClientRect().height
+  };
+  el.style.display = 'none';
+  return result;
 };
 
 /***/ }),

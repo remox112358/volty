@@ -1,9 +1,11 @@
 <template>
-  <div :class="styles.root" :id="componentId">
+  <div ref="root" :class="styles.root" :id="componentId">
     <div :class="styles.trigger" @click="open" >
       <slot name="trigger" />
     </div>
     <div
+      ref="dropdown"
+
       :class="{
         [styles.dropdown]: true,
         dropdownClass: dropdownClass,
