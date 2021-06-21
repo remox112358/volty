@@ -95,6 +95,10 @@ class ColumnController extends BaseController
      */
     public function clear(Column $column)
     {
-        return $this->sendResponse($column, 'Test');
+        foreach ($column->cards as $card) {
+          $card->delete();
+        }
+
+        return $this->sendResponse($column, 'Column "' . $column->name . '" cleared');
     }
 }

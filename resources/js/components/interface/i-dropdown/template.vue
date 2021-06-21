@@ -1,5 +1,13 @@
 <template>
-  <div ref="root" :class="styles.root" :id="componentId">
+  <div
+    ref="root"
+
+    :id="componentId"
+    :class="{
+      [styles.root]: true,
+      [rootClass]: rootClass,
+    }"
+  >
     <div :class="styles.trigger" @click="open" >
       <slot name="trigger" />
     </div>

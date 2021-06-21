@@ -94,7 +94,7 @@ export default {
       await axios
               .post(`/api/columns/${this.id}/clear`)
               .then(response => {
-                this.$store.dispatch('columns/doFetch')
+                this.$store.dispatch('cards/doFetch')
 
                 AlertService.success(response.data.message)
               })

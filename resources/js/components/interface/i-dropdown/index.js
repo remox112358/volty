@@ -10,9 +10,13 @@ import { getPossiblePosition } from './utils'
 export default {
   extends: template,
   props: {
-    pos: {
+    dropdownPos: {
       type: String,
       default: 'rb',
+    },
+    rootClass: {
+      type: String,
+      default: null,
     },
     width: {
       type: String,
@@ -31,8 +35,7 @@ export default {
       default: 'default',
     },
   },
-  setup() {
-
+  setup({ dropdownPos }) {
     /**
      * DOM elements.
      */
@@ -52,13 +55,14 @@ export default {
     /**
      * Dropdown position.
      */
-    const pos = ref('rb')
+    const pos = ref(dropdownPos || null)
 
     /**
      * Component mount action.
      */
     onMounted(() => {
-      pos.value = getPossiblePosition(root.value, dropdown.value)
+      if (!pos.value)
+        pos.value = getPossiblePosition(root.value, dropdown.value)
 
       window.addEventListener('resize', onResize)
     })

@@ -7,8 +7,6 @@
 
   width: 100%;
 
-  overflow: hidden;
-
   border-radius: 5px;
   border: 1px solid #b7b7b7;
 
@@ -17,17 +15,26 @@
   cursor: pointer;
 
   &:hover {
-    .edit {
+    .settings {
       opacity: 1;
     }
   }
 
-  .edit {
+  .text {
+    margin: 0;
+
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .trigger {
     position: absolute;
 
     top: 3px;
     right: 3px;
+  }
 
+  .settings {
     width: 22.5px;
     height: 22.5px;
 

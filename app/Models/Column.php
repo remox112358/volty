@@ -20,4 +20,14 @@ class Column extends Model
         'user_id',
         'board_id',
     ];
+
+    /**
+     * Returns the column cards.
+     *
+     * @return \App\Models\Card
+     */
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
 }

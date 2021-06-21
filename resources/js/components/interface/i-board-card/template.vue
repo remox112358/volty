@@ -1,8 +1,12 @@
 <template>
   <div :class="styles.root">
-    <span :class="styles.text">{{ text }}</span>
-    <div :class="styles.edit">
-      <i-icon name="pen" />
-    </div>
+    <p :class="styles.text">{{ text }}</p>
+    <i-dropdown type="select" width="120px" :actions="actions" :rootClass="styles.trigger" dropdownPos="lb">
+      <template #trigger>
+        <div :class="styles.settings">
+          <i-icon name="settings" />
+        </div>
+      </template>
+    </i-dropdown>
   </div>
 </template>

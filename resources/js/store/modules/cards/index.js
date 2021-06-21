@@ -5,24 +5,7 @@ export default {
 
   state: () => ({
     cards: [
-      {
-        id: 1,
-        index: 1,
-        column_id: 1,
-        text: 'Card #1',
-      },
-      {
-        id: 2,
-        index: 2,
-        column_id: 1,
-        text: 'Card #2',
-      },
-      {
-        id: 3,
-        index: 3,
-        column_id: 1,
-        text: 'Card #3',
-      },
+      // ...
     ],
   }),
 
