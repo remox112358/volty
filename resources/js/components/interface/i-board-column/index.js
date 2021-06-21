@@ -35,12 +35,12 @@ export default {
   computed: {
     cards: {
       get() {
-        return this.$store.getters['boards/cardsByColumnId'](this.id)
+        return this.$store.getters['cards/cardsByColumnId'](this.id)
       },
       set(value) {
-        this.$store.dispatch('boards/setCards', {
+        this.$store.dispatch('cards/updateCards', {
           value,
-          columnId: this.id,
+          column_id: this.id,
         })
       },
     },

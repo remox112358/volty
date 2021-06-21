@@ -16817,6 +16817,7 @@ __webpack_require__.r(__webpack_exports__);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       if (authorized.value) {
         store.dispatch('user/doFetch');
+        store.dispatch('cards/doFetch');
         store.dispatch('boards/doFetch');
         store.dispatch('columns/doFetch');
       }
@@ -18769,19 +18770,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/utils.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../services/AlertService */ "./resources/js/services/AlertService.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/utils.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
 
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_1__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
   props: {
     text: {
       type: String,
@@ -18798,27 +18812,27 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.useStore)();
     /**
      * Root DOM element.
      */
 
-    var root = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var root = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     /**
      * Root DOM element id.
      */
 
-    var componentId = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.generateRandomString)();
+    var componentId = (0,_utils__WEBPACK_IMPORTED_MODULE_6__.generateRandomString)();
     /**
      * Creating status.
      */
 
-    var creatingStatus = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var creatingStatus = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     /**
      * Creating card value.
      */
 
-    var value = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+    var value = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
     /**
      * Click handler.
      *
@@ -18852,22 +18866,53 @@ __webpack_require__.r(__webpack_exports__);
      */
 
 
-    var onSubmit = function onSubmit() {
-      var _value$value;
+    var onSubmit = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _value$value;
 
-      var text = (_value$value = value.value) === null || _value$value === void 0 ? void 0 : _value$value.trim();
+        var text;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                text = (_value$value = value.value) === null || _value$value === void 0 ? void 0 : _value$value.trim();
 
-      if (text !== null && text !== void 0 && text.length) {
-        store.commit('boards/addCard', {
-          columnId: columnId,
-          value: value.value
-        });
-        value.value = null;
-      }
-    };
+                if (!(text !== null && text !== void 0 && text.length)) {
+                  _context.next = 5;
+                  break;
+                }
+
+                store.commit('setLoading', true);
+                _context.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/cards', {
+                  text: text,
+                  column_id: columnId
+                }).then(function (response) {
+                  store.dispatch('cards/doFetch');
+                  value.value = null;
+                  endCreating();
+                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
+                })["catch"](function (error) {
+                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.message);
+                })["finally"](function () {
+                  store.commit('setLoading', false);
+                });
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function onSubmit() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
       root: root,
       value: value,
       componentId: componentId,
@@ -18987,12 +19032,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     cards: {
       get: function get() {
-        return this.$store.getters['boards/cardsByColumnId'](this.id);
+        return this.$store.getters['cards/cardsByColumnId'](this.id);
       },
       set: function set(value) {
-        this.$store.dispatch('boards/setCards', {
+        this.$store.dispatch('cards/updateCards', {
           value: value,
-          columnId: this.id
+          column_id: this.id
         });
       }
     },
@@ -20014,7 +20059,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/columns', {
                   name: name.value,
-                  board_id: data.value.boardId
+                  board_id: data.value.board_id
                 }).then(function (response) {
                   store.dispatch('columns/doFetch');
                   close();
@@ -20678,7 +20723,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     id: function id() {
-      return this.$router.currentRoute.value.params.boardId;
+      return this.$router.currentRoute.value.params.board_id;
     },
     data: function data() {
       return this.$store.getters['boards/boardById'](this.id);
@@ -20690,7 +20735,7 @@ __webpack_require__.r(__webpack_exports__);
       set: function set(value) {
         this.$store.dispatch('columns/updateColumns', {
           value: value,
-          boardId: this.id
+          board_id: this.id
         });
       }
     }
@@ -20703,7 +20748,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('modals/open', {
         modal: 'addNewColumn',
         data: {
-          boardId: this.id
+          board_id: this.id
         }
       });
     },
@@ -21042,7 +21087,7 @@ var routes = [{
     name: 'boards',
     component: __webpack_require__(/*! ../components/views/boards */ "./resources/js/components/views/boards/index.js").default
   }, {
-    path: 'boards/:boardId',
+    path: 'boards/:board_id',
     name: 'board',
     component: __webpack_require__(/*! ../components/views/boards/board */ "./resources/js/components/views/boards/board/index.js").default
   }, {
@@ -21184,13 +21229,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _modules_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/user */ "./resources/js/store/modules/user/index.js");
-/* harmony import */ var _modules_alerts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/alerts */ "./resources/js/store/modules/alerts/index.js");
-/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals/index.js");
-/* harmony import */ var _modules_boards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/boards */ "./resources/js/store/modules/boards/index.js");
-/* harmony import */ var _modules_columns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/columns */ "./resources/js/store/modules/columns/index.js");
-/* harmony import */ var _modules_sidebar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/sidebar */ "./resources/js/store/modules/sidebar/index.js");
+/* harmony import */ var _modules_cards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cards */ "./resources/js/store/modules/cards/index.js");
+/* harmony import */ var _modules_alerts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/alerts */ "./resources/js/store/modules/alerts/index.js");
+/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modals */ "./resources/js/store/modules/modals/index.js");
+/* harmony import */ var _modules_boards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/boards */ "./resources/js/store/modules/boards/index.js");
+/* harmony import */ var _modules_columns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/columns */ "./resources/js/store/modules/columns/index.js");
+/* harmony import */ var _modules_sidebar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/sidebar */ "./resources/js/store/modules/sidebar/index.js");
 
 
 
@@ -21198,7 +21244,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.createStore)({
+
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.createStore)({
   state: function state() {
     return {
       loading: false
@@ -21215,11 +21262,12 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.createStore)({
   },
   modules: {
     user: _modules_user__WEBPACK_IMPORTED_MODULE_0__.default,
-    alerts: _modules_alerts__WEBPACK_IMPORTED_MODULE_1__.default,
-    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_2__.default,
-    boards: _modules_boards__WEBPACK_IMPORTED_MODULE_3__.default,
-    columns: _modules_columns__WEBPACK_IMPORTED_MODULE_4__.default,
-    sidebar: _modules_sidebar__WEBPACK_IMPORTED_MODULE_5__.default
+    cards: _modules_cards__WEBPACK_IMPORTED_MODULE_1__.default,
+    alerts: _modules_alerts__WEBPACK_IMPORTED_MODULE_2__.default,
+    modals: _modules_modals__WEBPACK_IMPORTED_MODULE_3__.default,
+    boards: _modules_boards__WEBPACK_IMPORTED_MODULE_4__.default,
+    columns: _modules_columns__WEBPACK_IMPORTED_MODULE_5__.default,
+    sidebar: _modules_sidebar__WEBPACK_IMPORTED_MODULE_6__.default
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -21316,40 +21364,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
   state: function state() {
     return {
-      boards: [],
-      cards: [{
-        id: 1,
-        index: 1,
-        columnId: 1,
-        text: 'Card #1'
-      }, {
-        id: 2,
-        index: 2,
-        columnId: 1,
-        text: 'Card #2'
-      }, {
-        id: 3,
-        index: 3,
-        columnId: 1,
-        text: 'Card #3'
-      }]
+      boards: [// ...
+      ]
     };
   },
   getters: {
@@ -21365,57 +21386,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           return board.id == id;
         });
       };
-    },
-    cardsByColumnId: function cardsByColumnId(state) {
-      return function (id) {
-        var cards = _toConsumableArray(state.cards);
-
-        cards = cards.filter(function (card) {
-          return card.columnId === id;
-        });
-        cards.sort(function (a, b) {
-          return a.index > b.index ? 1 : -1;
-        });
-        return cards;
-      };
     }
   },
   mutations: {
     setBoards: function setBoards(state, payload) {
       state.boards = payload;
-    },
-    setCards: function setCards(state, _ref) {
-      var value = _ref.value,
-          columnId = _ref.columnId;
-      state.cards = state.cards.filter(function (card) {
-        return card.columnId != columnId;
-      });
-      state.cards = [].concat(_toConsumableArray(state.cards), _toConsumableArray(value));
-    },
-    addCard: function addCard(state, _ref2) {
-      var value = _ref2.value,
-          columnId = _ref2.columnId;
-      state.cards = [].concat(_toConsumableArray(state.cards), [{
-        id: Math.floor(Math.random() * 100),
-        index: 10,
-        columnId: columnId,
-        text: value
-      }]);
     }
   },
   actions: {
-    setCards: function setCards(context, _ref3) {
-      var value = _ref3.value,
-          columnId = _ref3.columnId;
-      value.forEach(function (card, index) {
-        card.index = index + 1;
-        card.columnId = columnId;
-      });
-      context.commit('setCards', {
-        value: value,
-        columnId: columnId
-      });
-    },
     doFetch: function () {
       var _doFetch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(context) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -21445,6 +21423,176 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }));
 
       function doFetch(_x) {
+        return _doFetch.apply(this, arguments);
+      }
+
+      return doFetch;
+    }()
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/cards/index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/store/modules/cards/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: function state() {
+    return {
+      cards: [{
+        id: 1,
+        index: 1,
+        column_id: 1,
+        text: 'Card #1'
+      }, {
+        id: 2,
+        index: 2,
+        column_id: 1,
+        text: 'Card #2'
+      }, {
+        id: 3,
+        index: 3,
+        column_id: 1,
+        text: 'Card #3'
+      }]
+    };
+  },
+  getters: {
+    cardsByColumnId: function cardsByColumnId(state) {
+      return function (id) {
+        var cards = _toConsumableArray(state.cards);
+
+        cards = cards.filter(function (card) {
+          return card.column_id === id;
+        });
+        cards.sort(function (a, b) {
+          return a.index > b.index ? 1 : -1;
+        });
+        return cards;
+      };
+    }
+  },
+  mutations: {
+    setCards: function setCards(state, payload) {
+      state.cards = payload;
+    },
+    updateCards: function updateCards(state, _ref) {
+      var value = _ref.value,
+          column_id = _ref.column_id;
+      state.cards = state.cards.filter(function (card) {
+        return card.column_id != column_id;
+      });
+      state.cards = [].concat(_toConsumableArray(state.cards), _toConsumableArray(value));
+    },
+    addCard: function addCard(state, _ref2) {
+      var value = _ref2.value,
+          column_id = _ref2.column_id;
+      state.cards = [].concat(_toConsumableArray(state.cards), [{
+        id: Math.floor(Math.random() * 100),
+        index: 10,
+        column_id: column_id,
+        text: value
+      }]);
+    }
+  },
+  actions: {
+    updateCards: function updateCards(context, _ref3) {
+      var value = _ref3.value,
+          column_id = _ref3.column_id;
+      value.forEach( /*#__PURE__*/function () {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(card, index) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  card.index = index + 1;
+                  card.column_id = column_id; // FIXME: Make chain of requests.
+
+                  _context.next = 4;
+                  return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/cards/".concat(card.id), {
+                    index: card.index,
+                    column_id: column_id
+                  });
+
+                case 4:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        }));
+
+        return function (_x, _x2) {
+          return _ref4.apply(this, arguments);
+        };
+      }()); // FIXME: Call after success chain.
+
+      context.commit('updateCards', {
+        value: value,
+        column_id: column_id
+      });
+    },
+    doFetch: function () {
+      var _doFetch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                context.commit('setLoading', true, {
+                  root: true
+                });
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/cards/fetch').then(function (response) {
+                  context.commit('setCards', response.data.data);
+                })["catch"](function (error) {
+                  console.log(error.response);
+                })["finally"](function () {
+                  context.commit('setLoading', false, {
+                    root: true
+                  });
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function doFetch(_x3) {
         return _doFetch.apply(this, arguments);
       }
 
@@ -21518,9 +21666,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     updateColumns: function updateColumns(state, _ref) {
       var value = _ref.value,
-          boardId = _ref.boardId;
+          board_id = _ref.board_id;
       state.columns = state.columns.filter(function (column) {
-        return column.board_id != boardId;
+        return column.board_id != board_id;
       });
       state.columns = [].concat(_toConsumableArray(state.columns), _toConsumableArray(value));
     }
@@ -21528,21 +21676,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   actions: {
     updateColumns: function updateColumns(context, _ref2) {
       var value = _ref2.value,
-          boardId = _ref2.boardId;
-      var steps = 0;
+          board_id = _ref2.board_id;
       value.forEach( /*#__PURE__*/function () {
         var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(column, index) {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  column.index = index + 1;
+                  column.index = index + 1; // FIXME: Make chain of requests.
+
                   _context.next = 3;
                   return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/columns/".concat(column.id), {
                     index: column.index
-                  }).then(function (response) {
-                    steps++;
-                  })["catch"](function (error) {// ...
                   });
 
                 case 3:
@@ -21556,11 +21701,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return function (_x, _x2) {
           return _ref3.apply(this, arguments);
         };
-      }()); // FIXME: Rewrite to better implementation
+      }()); // FIXME: Call after success chain.
 
-      if (steps == 3) context.commit('updateColumns', {
+      context.commit('updateColumns', {
         value: value,
-        boardId: boardId
+        board_id: board_id
       });
     },
     doFetch: function () {

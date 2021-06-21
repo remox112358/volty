@@ -37,6 +37,7 @@ export default {
     onMounted(() => {
       if (authorized.value) {
         store.dispatch('user/doFetch')
+        store.dispatch('cards/doFetch')
         store.dispatch('boards/doFetch')
         store.dispatch('columns/doFetch')
       }

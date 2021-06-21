@@ -13,7 +13,7 @@ export default {
   }),
   computed: {
     id() {
-      return this.$router.currentRoute.value.params.boardId
+      return this.$router.currentRoute.value.params.board_id
     },
     data() {
       return this.$store.getters['boards/boardById'](this.id)
@@ -25,7 +25,7 @@ export default {
       set(value) {
         this.$store.dispatch('columns/updateColumns', {
           value,
-          boardId: this.id,
+          board_id: this.id,
         })
       },
     },
@@ -38,7 +38,7 @@ export default {
       this.$store.dispatch('modals/open', {
         modal: 'addNewColumn',
         data: {
-          boardId: this.id,
+          board_id: this.id,
         },
       })
     },

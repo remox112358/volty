@@ -14,7 +14,7 @@ const routes = [
         component: require('../components/views/boards').default,
       },
       {
-        path: 'boards/:boardId',
+        path: 'boards/:board_id',
         name: 'board',
         component: require('../components/views/boards/board').default,
       },

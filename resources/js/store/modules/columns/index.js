@@ -24,34 +24,26 @@ export default {
     setColumns: (state, payload) => {
       state.columns = payload
     },
-    updateColumns: (state, { value, boardId }) => {
-      state.columns = state.columns.filter(column => column.board_id != boardId)
+    updateColumns: (state, { value, board_id }) => {
+      state.columns = state.columns.filter(column => column.board_id != board_id)
       state.columns = [...state.columns, ...value]
     },
   },
 
   actions: {
-    updateColumns: (context, { value, boardId }) => {
-      let steps = 0;
-
+    updateColumns: (context, { value, board_id }) => {
       value.forEach(async (column, index) => {
         column.index = index + 1
 
+        // FIXME: Make chain of requests.
         await axios
               .put(`/api/columns/${column.id}`, {
                 index: column.index
               })
-              .then(response => {
-                steps++
-              })
-              .catch(error => {
-                // ...
-              })
       })
 
-      // FIXME: Rewrite to better implementation
-      if (steps == 3)
-        context.commit('updateColumns', { value, boardId })
+      // FIXME: Call after success chain.
+      context.commit('updateColumns', { value, board_id })
     },
     doFetch: async (context) => {
       context.commit('setLoading', true, { root: true })

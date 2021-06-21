@@ -41,28 +41,36 @@ export default {
     setCards: (state, payload) => {
       state.cards = payload
     },
-    updateCards: (state, { value, columnId }) => {
-      state.cards = state.cards.filter(card => card.column_id != columnId)
+    updateCards: (state, { value, column_id }) => {
+      state.cards = state.cards.filter(card => card.column_id != column_id)
       state.cards = [...state.cards, ...value]
     },
-    addCard: (state, { value, columnId }) => {
+    addCard: (state, { value, column_id }) => {
       state.cards = [...state.cards, {
         id: Math.floor(Math.random() * 100),
         index: 10,
-        column_id: columnId,
+        column_id: column_id,
         text: value,
       }]
     },
   },
 
   actions: {
-    updateCards: (context, { value, columnId }) => {
-      value.forEach((card, index) => {
+    updateCards: (context, { value, column_id }) => {
+      value.forEach(async (card, index) => {
         card.index = index + 1
-        card.columnId = columnId
+        card.column_id = column_id
+
+        // FIXME: Make chain of requests.
+        await axios
+                .put(`/api/cards/${card.id}`, {
+                  index: card.index,
+                  column_id: column_id,
+                })
       })
 
-      context.commit('updateCards', { value, columnId })
+      // FIXME: Call after success chain.
+      context.commit('updateCards', { value, column_id })
     },
     doFetch: async (context) => {
       context.commit('setLoading', true, { root: true })

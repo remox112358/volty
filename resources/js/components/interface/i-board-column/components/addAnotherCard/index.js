@@ -1,6 +1,10 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 
+import axios from 'axios'
+
+import AlertService from '../../../../../services/AlertService'
+
 import template from './template'
 import styles from './style.module.scss'
 
@@ -78,16 +82,31 @@ export default {
     /**
      * Card creating submit handler.
      */
-    const onSubmit = () => {
+    const onSubmit = async () => {
       const text = value.value?.trim()
 
       if (text?.length) {
-        store.commit('boards/addCard', {
-          columnId,
-          value: value.value
-        })
+        store.commit('setLoading', true)
 
-        value.value = null
+        await axios
+                .post('/api/cards', {
+                  text: text,
+                  column_id: columnId,
+                })
+                .then(response => {
+                  store.dispatch('cards/doFetch')
+
+                  value.value = null
+                  endCreating()
+
+                  AlertService.success(response.data.message)
+                })
+                .catch(error => {
+                  AlertService.danger(error.response.message)
+                })
+                .finally(() => {
+                  store.commit('setLoading', false)
+                })
       }
     }
 

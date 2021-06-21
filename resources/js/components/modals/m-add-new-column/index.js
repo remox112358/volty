@@ -50,7 +50,7 @@ export default {
       await axios
               .post('/api/columns', {
                 name: name.value,
-                board_id: data.value.boardId,
+                board_id: data.value.board_id,
               })
               .then(response => {
                 store.dispatch('columns/doFetch')

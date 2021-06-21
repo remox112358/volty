@@ -5,10 +5,10 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Column;
+use App\Models\Card;
 use App\Http\Controllers\API\BaseController;
 
-class ColumnController extends BaseController
+class CardController extends BaseController
 {
     /**
      * Returns the authenticated user cards.
@@ -43,7 +43,7 @@ class ColumnController extends BaseController
             'index'     => $lastCardInColumn ? $lastCardInColumn->index + 1 : 1,
         ]);
 
-        return $this->sendResponse($column, 'Card created successfully');
+        return $this->sendResponse($card, 'Card created successfully');
     }
 
     /**
@@ -61,32 +61,27 @@ class ColumnController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Column  $column
+     * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Column $column)
+    public function update(Request $request, Card $card)
     {
-        // ...
+        $card->update([
+          'name'      => $request->input('name') ?? $card->name,
+          'index'     => $request->input('index') ?? $card->index,
+          'column_id' => $request->input('column_id') ?? $card->column_id
+        ]);
+
+        return $this->sendResponse($card, 'Card "' . $card->name . '" updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Column  $column
+     * @param  \App\Models\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Column $column)
-    {
-        // ...
-    }
-
-    /**
-     * Clear the column.
-     *
-     * @param \App\Models\Column $column
-     * @return \Illuminate\Http\Response
-     */
-    public function clear(Column $column)
+    public function destroy(Card $card)
     {
         // ...
     }
