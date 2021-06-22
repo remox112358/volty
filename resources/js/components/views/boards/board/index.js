@@ -31,6 +31,7 @@ export default {
     },
   },
   methods: {
+
     /**
      * Modal open action.
      */
@@ -55,5 +56,6 @@ export default {
         },
       })
     },
+
   },
 }

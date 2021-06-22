@@ -48,7 +48,7 @@ class BoardController extends BaseController
           'color'   => $request->input('color'),
         ]);
 
-        return $this->sendResponse($board, 'Board "' . $request->input('name') . '" created successfully');
+        return $this->sendResponse($board, 'Board created successfully');
     }
 
     /**
@@ -86,17 +86,19 @@ class BoardController extends BaseController
           'name' => $request->input('name'),
         ]);
 
-        return $this->sendResponse($board, 'Board "' . $board->name . '" updated successfully');
+        return $this->sendResponse($board, 'Board updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Board  $board
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Board $board)
     {
-        //
+        $board->delete();
+
+        return $this->sendResponse($board, 'Board deleted successfuly');
     }
 }

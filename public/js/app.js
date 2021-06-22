@@ -17724,7 +17724,7 @@ function render(_ctx, _cache) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_i_modal, {
     "class": _ctx.styles.root,
-    title: "Edit '".concat(_ctx.data.name, "' board"),
+    title: "Edit board",
     modelValue: _ctx.show,
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return _ctx.show = $event;
@@ -17774,7 +17774,7 @@ function render(_ctx, _cache) {
 
   }, 8
   /* PROPS */
-  , ["class", "title", "modelValue", "onClose"]);
+  , ["class", "modelValue", "onClose"]);
 }
 
 /***/ }),
@@ -20338,11 +20338,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.useStore)();
     /**
-     * Data.
-     */
-
-    var name = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
-    /**
      * Show status.
      */
 
@@ -20356,6 +20351,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var data = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.state.modals.editBoard.data;
     });
+    var name = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     /**
      * Close action.
      */
@@ -20365,9 +20361,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       store.dispatch('modals/close', 'editBoard');
     };
     /**
-     * Form submit handler.
+     * Show status watcher.
      */
 
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(show, function (value) {
+      if (value) name.value = data.value.name;
+    });
+    /**
+     * Form submit handler.
+     */
 
     var onSubmit = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {

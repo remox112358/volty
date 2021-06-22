@@ -72,7 +72,7 @@ class CardController extends BaseController
           'column_id' => $request->input('column_id') ?? $card->column_id
         ]);
 
-        return $this->sendResponse($card, 'Card "' . $card->name . '" updated successfully');
+        return $this->sendResponse($card, 'Card updated successfully');
     }
 
     /**
@@ -85,6 +85,6 @@ class CardController extends BaseController
     {
         $card->delete();
 
-        return $this->sendResponse($card, 'Card deleted');
+        return $this->sendResponse($card, 'Card deleted successfuly');
     }
 }

@@ -1,5 +1,5 @@
 import { useStore } from 'vuex'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 import axios from 'axios'
 
@@ -18,11 +18,6 @@ export default {
     const store = useStore()
 
     /**
-     * Data.
-     */
-    const name = ref(null)
-
-    /**
      * Show status.
      */
     const show = computed(() => store.state.modals.editBoard.show)
@@ -31,6 +26,7 @@ export default {
      * Data.
      */
     const data = computed(() => store.state.modals.editBoard.data)
+    const name = ref(null)
 
     /**
      * Close action.
@@ -40,6 +36,14 @@ export default {
 
       store.dispatch('modals/close', 'editBoard')
     }
+
+    /**
+     * Show status watcher.
+     */
+    watch(show, value => {
+      if (value)
+        name.value = data.value.name
+    })
 
     /**
      * Form submit handler.

@@ -43,7 +43,7 @@ class ColumnController extends BaseController
             'index'    => $lastColumnInBoard ? $lastColumnInBoard->index + 1 : 1,
         ]);
 
-        return $this->sendResponse($column, 'Column "' . $request->input('name') . '" created successfully');
+        return $this->sendResponse($column, 'Column created successfully');
     }
 
     /**
@@ -71,7 +71,7 @@ class ColumnController extends BaseController
           'index' => $request->input('index') ?? $column->index,
         ]);
 
-        return $this->sendResponse($column, 'Column "' . $column->name . '" updated successfully');
+        return $this->sendResponse($column, 'Column updated successfully');
     }
 
     /**
@@ -84,7 +84,7 @@ class ColumnController extends BaseController
     {
         $column->delete();
 
-        return $this->sendResponse($column, 'Column "' . $column->name . '" deleted');
+        return $this->sendResponse($column, 'Column deleted successfuly');
     }
 
     /**
@@ -99,6 +99,6 @@ class ColumnController extends BaseController
           $card->delete();
         }
 
-        return $this->sendResponse($column, 'Column "' . $column->name . '" cleared');
+        return $this->sendResponse($column, 'Column cleared successfuly');
     }
 }
