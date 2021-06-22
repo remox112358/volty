@@ -15,12 +15,21 @@ class AddColumnsTable extends Migration
     {
         Schema::create('columns', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('board_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('board_id');
             $table->integer('index');
             $table->string('name');
             $table->string('color')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('columns', function (Blueprint $table) {
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
+            $table->foreign('board_id')
+                  ->references('id')->on('boards')
+                  ->onDelete('cascade');
         });
     }
 
