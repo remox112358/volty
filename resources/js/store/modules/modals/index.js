@@ -2,13 +2,13 @@ export default {
   namespaced: true,
 
   state: () => ({
-    editBoard: {
+    addNewBoard: {
       show: false,
       data: {
         // ...
       },
     },
-    addNewBoard: {
+    editBoard: {
       show: false,
       data: {
         // ...
@@ -20,7 +20,13 @@ export default {
         // ...
       },
     },
-    renameColumn: {
+    editColumn: {
+      show: false,
+      data: {
+        // ...
+      },
+    },
+    editCard: {
       show: false,
       data: {
         // ...

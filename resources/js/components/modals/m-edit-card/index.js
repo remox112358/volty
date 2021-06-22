@@ -1,5 +1,5 @@
 import { useStore } from 'vuex'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 import axios from 'axios'
 
@@ -18,11 +18,6 @@ export default {
     const store = useStore()
 
     /**
-     * Data.
-     */
-    const name = ref(null)
-
-    /**
      * Show status.
      */
     const show = computed(() => store.state.modals.editCard.show)
@@ -31,46 +26,56 @@ export default {
      * Data.
      */
     const data = computed(() => store.state.modals.editCard.data)
+    const text = ref(null)
 
     /**
      * Close action.
      */
     const close = () => {
-      name.value = ''
+      text.value = ''
 
       store.dispatch('modals/close', 'editCard')
     }
 
     /**
+     * Show status watcher.
+     */
+    watch(show, value => {
+      if (value)
+        text.value = data.value.oldText
+    })
+
+    /**
      * Form submit handler.
      */
     const onSubmit = async () => {
-      // store.commit('setLoading', true)
+      store.commit('setLoading', true)
 
-      // await axios
-      //         .put(`/api/boards/${data.value.id}`, {
-      //           name: name.value,
-      //         })
-      //         .then(response => {
-      //           store.dispatch('boards/doFetch')
+      await axios
+              .put(`/api/cards/${data.value.id}`, {
+                text: text.value,
+                column_id: data.value.columnId,
+              })
+              .then(response => {
+                store.dispatch('cards/doFetch')
 
-      //           close()
+                close()
 
-      //           AlertService.success(response.data.message)
-      //         })
-      //         .catch(error => {
-      //           AlertService.danger(error.response.message)
-      //         })
-      //         .finally(() => {
-      //           store.commit('setLoading', false)
-      //         })
+                AlertService.success(response.data.message)
+              })
+              .catch(error => {
+                AlertService.danger(error.response.message)
+              })
+              .finally(() => {
+                store.commit('setLoading', false)
+              })
     }
 
     return {
       styles,
 
       show,
-      name,
+      text,
       data,
 
       close,

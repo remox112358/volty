@@ -1,5 +1,5 @@
 <template>
-  <i-modal :class="styles.root" :title="`Edit card`" v-model="show" @close="close">
+  <i-modal :class="styles.root" title="Edit card" v-model="show" @close="close">
     <form :class="styles.form" @submit.prevent="onSubmit">
       <div :class="styles.field">
         <i-input v-model="text" placeholder="Text" :stroke="1" :rounding="0" />

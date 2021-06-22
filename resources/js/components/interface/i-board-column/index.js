@@ -47,8 +47,8 @@ export default {
     actions() {
       return [
         {
-          name: 'Rename',
-          callback: this.rename,
+          name: 'Edit',
+          callback: this.edit,
         },
         {
           name: 'Delete',
@@ -62,9 +62,9 @@ export default {
     },
   },
   methods: {
-    rename() {
+    edit() {
       this.$store.dispatch('modals/open', {
-        modal: 'renameColumn',
+        modal: 'editColumn',
         data: {
           id: this.id,
           oldName: this.name,

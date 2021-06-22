@@ -1,5 +1,5 @@
 import { useStore } from 'vuex'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 import axios from 'axios'
 
@@ -18,19 +18,15 @@ export default {
     const store = useStore()
 
     /**
-     * Data.
-     */
-    const name = ref(null)
-
-    /**
      * Show status.
      */
-    const show = computed(() => store.state.modals.renameColumn.show)
+    const show = computed(() => store.state.modals.editColumn.show)
 
     /**
      * Data.
      */
-    const data = computed(() => store.state.modals.renameColumn.data)
+    const data = computed(() => store.state.modals.editColumn.data)
+    const name = ref(data.value.oldName)
 
     /**
      * Close action.
@@ -38,8 +34,16 @@ export default {
     const close = () => {
       name.value = ''
 
-      store.dispatch('modals/close', 'renameColumn')
+      store.dispatch('modals/close', 'editColumn')
     }
+
+    /**
+     * Show status watcher.
+     */
+    watch(show, value => {
+      if (value)
+        name.value = data.value.oldName
+    })
 
     /**
      * Form submit handler.

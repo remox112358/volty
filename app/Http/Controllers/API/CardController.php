@@ -67,7 +67,7 @@ class CardController extends BaseController
     public function update(Request $request, Card $card)
     {
         $card->update([
-          'name'      => $request->input('name') ?? $card->name,
+          'text'      => $request->input('text') ?? $card->text,
           'index'     => $request->input('index') ?? $card->index,
           'column_id' => $request->input('column_id') ?? $card->column_id
         ]);
@@ -83,6 +83,8 @@ class CardController extends BaseController
      */
     public function destroy(Card $card)
     {
-        // ...
+        $card->delete();
+
+        return $this->sendResponse($card, 'Card deleted');
     }
 }

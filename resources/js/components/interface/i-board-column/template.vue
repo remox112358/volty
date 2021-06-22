@@ -22,7 +22,7 @@
         v-model="cards"
       >
         <template #item="{element}">
-          <i-board-card :text="element.text" />
+          <i-board-card :id="element.id" :text="element.text" :columnId="id" />
         </template>
       </draggable>
     </div>

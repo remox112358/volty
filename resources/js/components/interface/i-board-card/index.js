@@ -11,12 +11,20 @@ import styles from './style.module.scss'
 export default {
   extends: template,
   props: {
+    id: {
+      type: Number,
+      default: null,
+    },
     text: {
       type: String,
       default: null,
     },
+    columnId: {
+      type: Number,
+      default: null,
+    },
   },
-  setup() {
+  setup(props) {
 
     /**
      * Global store.
@@ -43,14 +51,35 @@ export default {
      * Card edit action.
      */
     const edit = () => {
-      console.log('edit')
+      store.dispatch('modals/open', {
+        modal: 'editCard',
+        data: {
+          id: props.id,
+          oldText: props.text,
+          columnId: props.columnId,
+        }
+      })
     }
 
     /**
      * Card delete action.
      */
-    const remove = () => {
-      console.log('remove')
+    const remove = async () => {
+      store.commit('setLoading', true)
+
+      await axios
+              .delete(`/api/cards/${props.id}`)
+              .then(response => {
+                store.dispatch('cards/doFetch')
+
+                AlertService.success(response.data.message)
+              })
+              .catch(error => {
+                AlertService.danger(error.response.data.message)
+              })
+              .finally(() => {
+                store.commit('setLoading', false)
+              })
     }
 
     return {
