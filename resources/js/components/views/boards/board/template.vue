@@ -12,6 +12,16 @@
 
         outline
       >Add column</i-button>
+      <i-button
+        color="danger"
+        height="30px"
+
+        :class="styles.delete"
+
+        @click="deleteBoard"
+
+        outline
+      >Delete</i-button>
       <div :class="styles.settings" @click="openEditBoardModal">
         <i-icon name="settings" />
       </div>

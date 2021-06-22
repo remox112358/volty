@@ -1,5 +1,9 @@
 import draggable from 'vuedraggable'
 
+import axios from 'axios'
+
+import AlertService from '../../../../services/AlertService'
+
 import template from './template'
 import styles from './style.module.scss'
 
@@ -57,5 +61,26 @@ export default {
       })
     },
 
+    /**
+     * Board delete action.
+     */
+    async deleteBoard() {
+      this.$store.commit('setLoading', true)
+
+      await axios
+              .delete(`/api/boards/${this.id}`)
+              .then(response => {
+                this.$router.push({ name: 'boards' })
+                this.$store.dispatch('boards/doFetch')
+
+                AlertService.success(response.data.message)
+              })
+              .catch(error => {
+                AlertService.danger(error.response.message)
+              })
+              .finally(() => {
+                this.$store.commit('setLoading', false)
+              })
+    },
   },
 }
