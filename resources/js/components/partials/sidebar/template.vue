@@ -12,29 +12,6 @@
     </div>
 
     <div :class="styles.group">
-      <h4 :class="styles.heading">General</h4>
-      <router-link
-        :to="'/boards'"
-        :class="styles.tab"
-        :active-class="styles['tab--active']"
-
-        @click="redirectHandler"
-      >
-        <i-icon name="board" />
-        <span>Boards</span>
-      </router-link>
-      <router-link
-        :to="'/settings'"
-        :class="styles.tab"
-        :active-class="styles['tab--active']"
-
-        @click="redirectHandler"
-      >
-        <i-icon name="settings" />
-        <span>Settings</span>
-      </router-link>
-    </div>
-    <div :class="styles.group">
       <h4 :class="styles.heading">
         Boards
         <router-link :to="{ name: 'boards' }" :class="styles['see-all']">
