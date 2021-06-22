@@ -20,7 +20,8 @@ export default {
     /**
      * Data.
      */
-    const name = ref(null)
+    const name  = ref(null)
+    const color = ref('#ff0000')
 
     /**
      * Show status.
@@ -43,7 +44,10 @@ export default {
       store.commit('setLoading', true)
 
       await axios
-              .post('/api/boards', { name: name.value, color: '#ff0000' })
+              .post('/api/boards', {
+                name: name.value,
+                color: color.value
+              })
               .then(response => {
                 AlertService.success(response.data.message)
 
@@ -64,6 +68,7 @@ export default {
 
       show,
       name,
+      color,
 
       close,
       onSubmit,

@@ -8,6 +8,7 @@ export const ILoader = require('./i-loader').default
 export const IDropdown = require('./i-dropdown').default
 export const IBoardCard = require('./i-board-card').default
 export const IBoardColumn = require('./i-board-column').default
+export const IColorPicker = require('./i-color-picker').default
 
 export default {
   IIcon,
@@ -20,4 +21,5 @@ export default {
   IDropdown,
   IBoardCard,
   IBoardColumn,
+  IColorPicker,
 }

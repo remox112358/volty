@@ -1,6 +1,16 @@
 <template>
   <i-modal :class="styles.root" title="Add new board" v-model="show" @close="close">
     <form :class="styles.form" @submit.prevent="onSubmit">
+      <div
+        :class="{
+          [styles.field]: true,
+          [styles['field--row']]: true,
+          [styles['field--color']]: true,
+        }"
+      >
+        <span>Color: </span>
+        <i-color-picker v-model="color" />
+      </div>
       <div :class="styles.field">
         <i-input v-model="name" placeholder="Name" :stroke="1" :rounding="0" />
       </div>

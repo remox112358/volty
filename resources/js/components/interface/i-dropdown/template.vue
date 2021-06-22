@@ -16,7 +16,7 @@
 
       :class="{
         [styles.dropdown]: true,
-        dropdownClass: dropdownClass,
+        [dropdownClass]: dropdownClass,
         [styles[`dropdown--pos-${pos}`]]: pos,
         [styles['dropdown--select']]: type === 'select',
       }"
