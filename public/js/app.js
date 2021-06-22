@@ -18480,16 +18480,17 @@ function render(_ctx, _cache) {
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.boards
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(4, function ($i) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_board, {
-      key: $i,
-      href: "/boards/1",
-      name: "Fake ".concat($i)
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.recentlyViewedBoards, function (board) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_i_board, {
+      key: board.id,
+      name: board.name,
+      color: board.color,
+      href: "/boards/".concat(board.id)
     }, null, 8
     /* PROPS */
-    , ["name"]);
-  }), 64
-  /* STABLE_FRAGMENT */
+    , ["name", "color", "href"]);
+  }), 128
+  /* KEYED_FRAGMENT */
   ))], 2
   /* CLASS */
   )], 2
@@ -18504,7 +18505,7 @@ function render(_ctx, _cache) {
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
     "class": _ctx.styles.boards
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.boards, function (board) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.allBoards, function (board) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_i_board, {
       key: board.id,
       name: board.name,
@@ -20249,6 +20250,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   close();
                   store.dispatch('boards/doFetch');
                 })["catch"](function (error) {
+                  console.log(error.response);
                   _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.message);
                 })["finally"](function () {
                   store.commit('setLoading', false);
@@ -21245,6 +21247,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    mounted: function mounted() {
+      alert('mounted');
     }
   }
 });
@@ -21282,12 +21287,16 @@ __webpack_require__.r(__webpack_exports__);
      * Boards list.
      */
 
-    var boards = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    var allBoards = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.getters['boards/boards']();
+    });
+    var recentlyViewedBoards = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return store.getters['boards/recentlyViewedBoards']();
     });
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
-      boards: boards
+      allBoards: allBoards,
+      recentlyViewedBoards: recentlyViewedBoards
     };
   }
 });
@@ -21851,6 +21860,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   state: function state() {
     return {
       boards: [// ...
+      ],
+      recentlyViewedBoards: [// ...
       ]
     };
   },
@@ -21859,6 +21870,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return function () {
         var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.boards.length;
         return state.boards.slice(0, count);
+      };
+    },
+    recentlyViewedBoards: function recentlyViewedBoards(state) {
+      return function () {
+        var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : state.recentlyViewedBoards.length;
+        return state.recentlyViewedBoards.slice(0, count);
       };
     },
     boardById: function boardById(state) {

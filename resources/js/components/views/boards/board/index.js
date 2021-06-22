@@ -82,5 +82,8 @@ export default {
                 this.$store.commit('setLoading', false)
               })
     },
+    mounted() {
+      alert('mounted')
+    },
   },
 }

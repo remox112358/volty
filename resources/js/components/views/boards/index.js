@@ -16,12 +16,14 @@ export default {
     /**
      * Boards list.
      */
-    const boards = computed(() => store.getters['boards/boards']())
+    const allBoards            = computed(() => store.getters['boards/boards']())
+    const recentlyViewedBoards = computed(() => store.getters['boards/recentlyViewedBoards']())
 
     return {
       styles,
 
-      boards,
+      allBoards,
+      recentlyViewedBoards,
     }
 
   }

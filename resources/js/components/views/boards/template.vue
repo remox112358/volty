@@ -7,11 +7,12 @@
       </h3>
       <div :class="styles.boards">
         <i-board
-          :key="$i"
-          :href="`/boards/1`"
-          :name="`Fake ${$i}`"
+          :key="board.id"
+          :name="board.name"
+          :color="board.color"
+          :href="`/boards/${board.id}`"
 
-          v-for="$i in 4"
+          v-for="board in recentlyViewedBoards"
         />
       </div>
     </div>
@@ -27,7 +28,7 @@
           :color="board.color"
           :href="`/boards/${board.id}`"
 
-          v-for="board in boards"
+          v-for="board in allBoards"
         />
       </div>
     </div>

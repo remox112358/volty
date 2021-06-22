@@ -7,11 +7,17 @@ export default {
     boards: [
       // ...
     ],
+    recentlyViewedBoards: [
+      // ...
+    ],
   }),
 
   getters: {
     boards: (state) => (count = state.boards.length) => {
       return state.boards.slice(0, count)
+    },
+    recentlyViewedBoards: (state) => (count = state.recentlyViewedBoards.length) => {
+      return state.recentlyViewedBoards.slice(0, count)
     },
     boardById: (state) => (id) => {
       return state.boards.find(board => board.id == id)

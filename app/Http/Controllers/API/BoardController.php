@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 use App\Models\Board;
 use App\Http\Controllers\API\BaseController;
 
@@ -43,9 +45,9 @@ class BoardController extends BaseController
          * Create board.
          */
         $board = Board::create([
-          'user_id' => Auth::user()->id,
-          'name'    => $request->input('name'),
-          'color'   => $request->input('color'),
+          'user_id'   => Auth::user()->id,
+          'name'      => $request->input('name'),
+          'color'     => $request->input('color'),
         ]);
 
         return $this->sendResponse($board, 'Board created successfully');
@@ -83,7 +85,8 @@ class BoardController extends BaseController
     public function update(Request $request, Board $board)
     {
         $board->update([
-          'name' => $request->input('name'),
+          'name'      => $request->input('name') ?? $board->name,
+          'viewed_at' => Carbon::now(),
         ]);
 
         return $this->sendResponse($board, 'Board updated successfully');

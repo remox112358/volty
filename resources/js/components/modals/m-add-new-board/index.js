@@ -56,6 +56,7 @@ export default {
                 store.dispatch('boards/doFetch')
               })
               .catch(error => {
+                console.log(error.response)
                 AlertService.danger(error.response.message)
               })
               .finally(() => {
