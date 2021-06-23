@@ -30,6 +30,7 @@ class BoardController extends BaseController
      */
     public function fetch(Request $request)
     {
+
         return $this->sendResponse(Auth::user()->boards, 'User boards received');
     }
 
@@ -86,7 +87,6 @@ class BoardController extends BaseController
     {
         $board->update([
           'name'      => $request->input('name') ?? $board->name,
-          'viewed_at' => Carbon::now(),
         ]);
 
         return $this->sendResponse($board, 'Board updated successfully');
