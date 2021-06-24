@@ -1,10 +1,6 @@
 import { useStore } from 'vuex'
 import { ref, computed, watch } from 'vue'
 
-import axios from 'axios'
-
-import AlertService from '../../../services/AlertService'
-
 import template from './template'
 import styles from './style.module.scss'
 
@@ -49,26 +45,13 @@ export default {
      * Form submit handler.
      */
     const onSubmit = async () => {
-      store.commit('setLoading', true)
-
-      await axios
-              .put(`/api/cards/${data.value.id}`, {
-                text: text.value,
-                column_id: data.value.columnId,
-              })
-              .then(response => {
-                store.dispatch('cards/doFetch')
-
-                close()
-
-                AlertService.success(response.data.message)
-              })
-              .catch(error => {
-                AlertService.danger(error.response.message)
-              })
-              .finally(() => {
-                store.commit('setLoading', false)
-              })
+      store
+        .dispatch('cards/update', {
+          id: data.value.id,
+          text: text.value,
+          column_id: data.value.columnId,
+        })
+        .then(close)
     }
 
     return {

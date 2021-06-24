@@ -16817,7 +16817,7 @@ __webpack_require__.r(__webpack_exports__);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       if (authorized.value) {
         store.dispatch('user/fetch');
-        store.dispatch('cards/doFetch');
+        store.dispatch('cards/fetch');
         store.dispatch('boards/fetch');
         store.dispatch('columns/fetch');
       }
@@ -18958,18 +18958,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                store.commit('setLoading', true);
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/cards/".concat(props.id)).then(function (response) {
-                  store.dispatch('cards/doFetch');
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                })["catch"](function (error) {
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.data.message);
-                })["finally"](function () {
-                  store.commit('setLoading', false);
-                });
+                store.dispatch('cards/remove', props.id);
 
-              case 3:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -19002,32 +18993,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../services/AlertService */ "./resources/js/services/AlertService.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/utils.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/utils.js");
 
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_1__.default,
   props: {
     text: {
       type: String,
@@ -19044,27 +19022,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_7__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     /**
      * Root DOM element.
      */
 
-    var root = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    var root = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     /**
      * Root DOM element id.
      */
 
-    var componentId = (0,_utils__WEBPACK_IMPORTED_MODULE_6__.generateRandomString)();
+    var componentId = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.generateRandomString)();
     /**
      * Creating status.
      */
 
-    var creatingStatus = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var creatingStatus = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     /**
      * Creating card value.
      */
 
-    var value = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+    var value = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
     /**
      * Click handler.
      *
@@ -19098,53 +19076,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
 
 
-    var onSubmit = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var _value$value;
+    var onSubmit = function onSubmit() {
+      var _value$value;
 
-        var text;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                text = (_value$value = value.value) === null || _value$value === void 0 ? void 0 : _value$value.trim();
+      var text = (_value$value = value.value) === null || _value$value === void 0 ? void 0 : _value$value.trim();
 
-                if (!(text !== null && text !== void 0 && text.length)) {
-                  _context.next = 5;
-                  break;
-                }
-
-                store.commit('setLoading', true);
-                _context.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/cards', {
-                  text: text,
-                  column_id: columnId
-                }).then(function (response) {
-                  store.dispatch('cards/doFetch');
-                  value.value = null;
-                  endCreating();
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                })["catch"](function (error) {
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.message);
-                })["finally"](function () {
-                  store.commit('setLoading', false);
-                });
-
-              case 5:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function onSubmit() {
-        return _ref2.apply(this, arguments);
-      };
-    }();
+      if (text !== null && text !== void 0 && text.length) {
+        store.dispatch('cards/add', {
+          text: text,
+          column_id: columnId
+        }).then(function () {
+          value.value = null;
+          endCreating();
+        });
+      }
+    };
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
       root: root,
       value: value,
       componentId: componentId,
@@ -20432,14 +20381,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-card/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-card/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-card/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-card/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -20450,15 +20396,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_2__.default,
   setup: function setup() {
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     /**
      * Show status.
      */
@@ -20500,22 +20444,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                store.commit('setLoading', true);
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().put("/api/cards/".concat(data.value.id), {
+                store.dispatch('cards/update', {
+                  id: data.value.id,
                   text: text.value,
                   column_id: data.value.columnId
-                }).then(function (response) {
-                  store.dispatch('cards/doFetch');
-                  close();
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                })["catch"](function (error) {
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.message);
-                })["finally"](function () {
-                  store.commit('setLoading', false);
-                });
+                }).then(close);
 
-              case 3:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -20529,7 +20464,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_3___default()),
       show: show,
       text: text,
       data: data,
@@ -21958,16 +21893,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
+/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config.json */ "./resources/js/config.json");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -21981,6 +21910,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
   state: function state() {
@@ -21990,6 +21921,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   },
   getters: {
+    /**
+     * Returns the cards by columnId.
+     * 
+     * @param {Object} state
+     * @param {Number} id 
+     * @returns {Array}
+     */
     cardsByColumnId: function cardsByColumnId(state) {
       return function (id) {
         var cards = _toConsumableArray(state.cards);
@@ -22005,99 +21943,203 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mutations: {
-    setCards: function setCards(state, payload) {
+    /**
+     * Cards `set` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Array} payload 
+     */
+    set: function set(state, payload) {
       state.cards = payload;
     },
-    updateCards: function updateCards(state, _ref) {
-      var value = _ref.value,
-          column_id = _ref.column_id;
+
+    /**
+     * Cards `refresh` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Object} payload 
+     */
+    refresh: function refresh(state, payload) {
+      var value = payload.value,
+          column_id = payload.column_id;
       state.cards = state.cards.filter(function (card) {
         return card.column_id != column_id;
       });
       state.cards = [].concat(_toConsumableArray(state.cards), _toConsumableArray(value));
     },
-    addCard: function addCard(state, _ref2) {
-      var value = _ref2.value,
-          column_id = _ref2.column_id;
-      state.cards = [].concat(_toConsumableArray(state.cards), [{
-        id: Math.floor(Math.random() * 100),
-        index: 10,
-        column_id: column_id,
-        text: value
-      }]);
+
+    /**
+     * Card `add` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Object} payload 
+     */
+    add: function add(state, payload) {
+      state.cards = [].concat(_toConsumableArray(state.cards), [payload]);
+    },
+
+    /**
+     * Card `update` mutation.
+     * 
+     * FIXME: Make full assignment.
+     * 
+     * @param {Object} state 
+     * @param {Object} payload 
+     */
+    update: function update(state, payload) {
+      state.cards.find(function (card) {
+        return card.id == payload.id;
+      }).text = payload.text;
+    },
+
+    /**
+     * Card `remove` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Number} payload 
+     */
+    remove: function remove(state, payload) {
+      state.cards = state.cards.filter(function (card) {
+        return card.id != payload;
+      });
     }
   },
   actions: {
-    updateCards: function updateCards(context, _ref3) {
-      var value = _ref3.value,
-          column_id = _ref3.column_id;
-      value.forEach( /*#__PURE__*/function () {
-        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(card, index) {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  card.index = index + 1;
-                  card.column_id = column_id; // FIXME: Make chain of requests.
-
-                  _context.next = 4;
-                  return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/cards/".concat(card.id), {
-                    index: card.index,
-                    column_id: column_id
-                  });
-
-                case 4:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee);
-        }));
-
-        return function (_x, _x2) {
-          return _ref4.apply(this, arguments);
-        };
-      }()); // FIXME: Call after success chain.
-
-      context.commit('updateCards', {
-        value: value,
-        column_id: column_id
+    /**
+     * Cards `fetch` action.
+     * 
+     * @param {Object} context 
+     * @returns {Promise}
+     */
+    fetch: function fetch(context) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.fetch).then(function (response) {
+          context.commit('set', response.data.data);
+          resolve();
+        })["catch"](function (error) {
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
       });
     },
-    doFetch: function () {
-      var _doFetch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(context) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                context.commit('setLoading', true, {
-                  root: true
-                });
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/cards/fetch').then(function (response) {
-                  context.commit('setCards', response.data.data);
-                })["catch"](function (error) {
-                  console.log(error.response);
-                })["finally"](function () {
-                  context.commit('setLoading', false, {
-                    root: true
-                  });
-                });
 
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
+    /**
+     * Cards `refresh` action.
+     * 
+     * FIXME: Make chain of requests.
+     * 
+     * @param {Object} context 
+     * @param {Object} params 
+     * @returns {Promise}
+     */
+    refresh: function refresh(context, params) {
+      return new Promise(function (resolve, reject) {
+        var value = params.value,
+            column_id = params.column_id;
+        value.forEach(function (card, index) {
+          card.index = index + 1;
+          card.column_id = column_id;
+          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.update, "/").concat(card.id), {
+            index: card.index,
+            column_id: column_id
+          })["catch"](function (error) {
+            reject();
+          });
+        });
+        context.commit('refresh', {
+          value: value,
+          column_id: column_id
+        });
+        resolve();
+      });
+    },
 
-      function doFetch(_x3) {
-        return _doFetch.apply(this, arguments);
-      }
+    /**
+     * Card `add` action.
+     * 
+     * @param {Object} context
+     * @param {Object} params
+     * @returns {Promise}
+     */
+    add: function add(context, params) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.add, params).then(function (response) {
+          context.commit('add', response.data.data);
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.success(response.data.message);
+          resolve();
+        })["catch"](function (error) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.danger(error.response.message);
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    },
 
-      return doFetch;
-    }()
+    /**
+     * Card `update` action.
+     * 
+     * @param {Object} context 
+     * @param {Object} params
+     * @returns {Promise} 
+     */
+    update: function update(context, params) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.update, "/").concat(params.id), params).then(function (response) {
+          context.commit('update', params);
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.success(response.data.message);
+          resolve();
+        })["catch"](function (error) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.danger(error.response.message);
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    },
+
+    /**
+     * Card `remove` action.
+     * 
+     * @param {Object} context 
+     * @param {Number} cardId 
+     * @returns {Promise}
+     */
+    remove: function remove(context, cardId) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("".concat(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.remove, "/").concat(cardId)).then(function (response) {
+          context.commit('remove', cardId);
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.success(response.data.message);
+          resolve();
+        })["catch"](function (error) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.danger(error.response.data.message);
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    }
   }
 });
 
@@ -59664,7 +59706,7 @@ function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"api":{"routes":{"user":{"fetch":"/api/users/fetch"},"boards":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"},"columns":{"fetch":"/api/columns/fetch","add":"/api/columns","update":"/api/columns","remove":"/api/columns","clear":"/api/columns"}}}}');
+module.exports = JSON.parse('{"api":{"routes":{"user":{"fetch":"/api/users/fetch"},"boards":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"},"columns":{"fetch":"/api/columns/fetch","add":"/api/columns","update":"/api/columns","remove":"/api/columns","clear":"/api/columns"},"cards":{"fetch":"/api/cards/fetch","add":"/api/cards","update":"/api/cards","remove":"/api/cards"}}}}');
 
 /***/ })
 

@@ -65,21 +65,7 @@ export default {
      * Card delete action.
      */
     const remove = async () => {
-      store.commit('setLoading', true)
-
-      await axios
-              .delete(`/api/cards/${props.id}`)
-              .then(response => {
-                store.dispatch('cards/doFetch')
-
-                AlertService.success(response.data.message)
-              })
-              .catch(error => {
-                AlertService.danger(error.response.data.message)
-              })
-              .finally(() => {
-                store.commit('setLoading', false)
-              })
+      store.dispatch('cards/remove', props.id)
     }
 
     return {

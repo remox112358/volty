@@ -16,6 +16,12 @@
         "update": "/api/columns",
         "remove": "/api/columns",
         "clear": "/api/columns"
+      },
+      "cards": {
+        "fetch": "/api/cards/fetch",
+        "add": "/api/cards",
+        "update": "/api/cards",
+        "remove": "/api/cards"
       }
     }
   }
