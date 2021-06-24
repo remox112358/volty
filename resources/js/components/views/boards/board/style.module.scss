@@ -1,3 +1,5 @@
+@import '../../../../../scss/variables.scss';
+
 .root {
   display: flex;
   flex-direction: column;
@@ -23,11 +25,8 @@
       font-weight: 500;
     }
 
+    .delete,
     .add-column {
-      margin-left: 20px;
-    }
-
-    .delete {
       margin-left: 20px;
     }
 

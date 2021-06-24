@@ -16,14 +16,19 @@ export default {
     /**
      * Boards list.
      */
-    const allBoards            = computed(() => store.getters['boards/boards']())
-    const recentlyViewedBoards = computed(() => store.getters['boards/recentlyViewedBoards']())
+    const boards = computed(() => store.getters['boards/boards']())
+
+    /**
+     * Modal open action.
+     */
+    const openAddNewBoardModal = () => store.dispatch('modals/open', { modal: 'addNewBoard' })
 
     return {
       styles,
 
-      allBoards,
-      recentlyViewedBoards,
+      boards,
+
+      openAddNewBoardModal,
     }
 
   }
