@@ -39,7 +39,7 @@ export default {
         store.dispatch('user/fetch')
         store.dispatch('cards/doFetch')
         store.dispatch('boards/fetch')
-        store.dispatch('columns/doFetch')
+        store.dispatch('columns/fetch')
       }
     })
 

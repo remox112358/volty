@@ -16819,7 +16819,7 @@ __webpack_require__.r(__webpack_exports__);
         store.dispatch('user/fetch');
         store.dispatch('cards/doFetch');
         store.dispatch('boards/fetch');
-        store.dispatch('columns/doFetch');
+        store.dispatch('columns/fetch');
       }
     });
     return {
@@ -19217,13 +19217,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_addAnotherCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/addAnotherCard */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/index.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-column/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-column/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_addAnotherCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/addAnotherCard */ "./resources/js/components/interface/i-board-column/components/addAnotherCard/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19234,13 +19231,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_2__.default,
   components: {
     draggable: (vuedraggable__WEBPACK_IMPORTED_MODULE_1___default()),
-    addAnotherCard: _components_addAnotherCard__WEBPACK_IMPORTED_MODULE_6__.default
+    addAnotherCard: _components_addAnotherCard__WEBPACK_IMPORTED_MODULE_4__.default
   },
   props: {
     id: {
@@ -19258,7 +19253,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default())
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_3___default())
     };
   },
   computed: {
@@ -19279,7 +19274,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         callback: this.edit
       }, {
         name: 'Delete',
-        callback: this["delete"]
+        callback: this.remove
       }, {
         name: 'Clear',
         callback: this.clear
@@ -19296,7 +19291,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       });
     },
-    "delete": function _delete() {
+    remove: function remove() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -19304,20 +19299,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.$store.commit('setLoading', true);
+                _this.$store.dispatch('columns/remove', _this.id);
 
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().delete("/api/columns/".concat(_this.id)).then(function (response) {
-                  _this.$store.dispatch('columns/doFetch');
-
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                })["catch"](function (error) {
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.data.message);
-                })["finally"](function () {
-                  _this.$store.commit('setLoading', false);
-                });
-
-              case 3:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -19333,20 +19317,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this2.$store.commit('setLoading', true);
+                _this2.$store.dispatch('columns/clear', _this2.id);
 
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/columns/".concat(_this2.id, "/clear")).then(function (response) {
-                  _this2.$store.dispatch('cards/doFetch');
-
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                })["catch"](function (error) {
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.data.message);
-                })["finally"](function () {
-                  _this2.$store.commit('setLoading', false);
-                });
-
-              case 3:
+              case 1:
               case "end":
                 return _context2.stop();
             }
@@ -20274,14 +20247,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-new-column/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-add-new-column/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-new-column/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-add-new-column/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -20292,15 +20262,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_2__.default,
   setup: function setup() {
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     /**
      * Data.
      */
@@ -20339,22 +20307,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                store.commit('setLoading', true);
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/columns', {
+                store.dispatch('columns/add', {
                   name: name.value,
                   board_id: data.value.board_id
-                }).then(function (response) {
-                  store.dispatch('columns/doFetch');
-                  close();
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                })["catch"](function (error) {
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.message);
-                })["finally"](function () {
-                  store.commit('setLoading', false);
-                });
+                }).then(close);
 
-              case 3:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -20368,7 +20326,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_3___default()),
       show: show,
       name: name,
       close: close,
@@ -20594,22 +20552,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-column/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-column/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-column/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-column/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -20617,27 +20567,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_3__.default,
   setup: function setup() {
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
     /**
      * Show status.
      */
 
-    var show = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+    var show = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.state.modals.editColumn.show;
     });
     /**
      * Data.
      */
 
-    var data = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+    var data = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.state.modals.editColumn.data;
     });
-    var name = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(data.value.oldName);
+    var name = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(data.value.oldName);
     /**
      * Close action.
      */
@@ -20651,49 +20601,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
 
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(show, function (value) {
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(show, function (value) {
       if (value) name.value = data.value.oldName;
     });
     /**
      * Form submit handler.
      */
 
-    var onSubmit = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                store.commit('setLoading', true);
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().put("/api/columns/".concat(data.value.id), {
-                  name: name.value
-                }).then(function (response) {
-                  store.dispatch('columns/doFetch');
-                  close();
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                })["catch"](function (error) {
-                  console.log(error.response);
-                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.danger(error.response.message);
-                })["finally"](function () {
-                  store.commit('setLoading', false);
-                });
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function onSubmit() {
-        return _ref.apply(this, arguments);
-      };
-    }();
+    var onSubmit = function onSubmit() {
+      store.dispatch('columns/update', {
+        id: data.value.id,
+        name: name.value
+      }).then(close);
+    };
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_4___default()),
       show: show,
       name: name,
       data: data,
@@ -21923,7 +21846,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().get(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.board.fetch).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.fetch).then(function (response) {
           context.commit('set', response.data.data);
           resolve();
         })["catch"](function (error) {
@@ -21948,7 +21871,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.board.add, board).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.add, board).then(function (response) {
           context.commit('add', response.data.data);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
           resolve();
@@ -21975,7 +21898,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().delete("".concat(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.board.remove, "/").concat(boardId)).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().delete("".concat(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.remove, "/").concat(boardId)).then(function (response) {
           _router__WEBPACK_IMPORTED_MODULE_2__.default.push({
             name: 'boards'
           });
@@ -22005,7 +21928,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.board.update, "/").concat(board.id), board).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.update, "/").concat(board.id), board).then(function (response) {
           context.commit('update', board);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
           resolve();
@@ -22191,16 +22114,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config.json */ "./resources/js/config.json");
+/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -22214,6 +22131,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   namespaced: true,
   state: function state() {
@@ -22223,6 +22142,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     };
   },
   getters: {
+    /**
+     * Returns array of columns by boardId.
+     * 
+     * @param {Object} state 
+     * @returns {Array}
+     */
     columnsByBoardId: function columnsByBoardId(state) {
       return function (id) {
         var columns = _toConsumableArray(state.columns);
@@ -22238,87 +22163,216 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mutations: {
-    setColumns: function setColumns(state, payload) {
+    /**
+     * Columns `set` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Array} payload 
+     */
+    set: function set(state, payload) {
       state.columns = payload;
     },
-    updateColumns: function updateColumns(state, _ref) {
-      var value = _ref.value,
-          board_id = _ref.board_id;
+
+    /**
+     * Columns `refresh` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Object} payload
+     */
+    refresh: function refresh(state, payload) {
+      var value = payload.value,
+          board_id = payload.board_id;
       state.columns = state.columns.filter(function (column) {
         return column.board_id != board_id;
       });
       state.columns = [].concat(_toConsumableArray(state.columns), _toConsumableArray(value));
+    },
+
+    /**
+     * Columns `add` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Object} payload 
+     */
+    add: function add(state, payload) {
+      state.columns = [].concat(_toConsumableArray(state.columns), [payload]);
+    },
+
+    /**
+     * Columns `remove` mutation.
+     * 
+     * @param {Object} state 
+     * @param {Number} payload 
+     */
+    remove: function remove(state, payload) {
+      state.columns = state.columns.filter(function (column) {
+        return column.id != payload;
+      });
+    },
+
+    /**
+     * Column `update` mutation.
+     * 
+     * FIXME: Make full assignment.
+     * 
+     * @param {Object} state 
+     * @param {Object} payload 
+     */
+    update: function update(state, payload) {
+      state.columns.find(function (column) {
+        return column.id == payload.id;
+      }).name = payload.name;
     }
   },
   actions: {
-    updateColumns: function updateColumns(context, _ref2) {
-      var value = _ref2.value,
-          board_id = _ref2.board_id;
-      value.forEach( /*#__PURE__*/function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(column, index) {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  column.index = index + 1; // FIXME: Make chain of requests.
-
-                  _context.next = 3;
-                  return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/columns/".concat(column.id), {
-                    index: column.index
-                  });
-
-                case 3:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee);
-        }));
-
-        return function (_x, _x2) {
-          return _ref3.apply(this, arguments);
-        };
-      }()); // FIXME: Call after success chain.
-
-      context.commit('updateColumns', {
-        value: value,
-        board_id: board_id
+    /**
+     * Columns `refresh` action.
+     * 
+     * FIXME: Make chain of requests.
+     * 
+     * @param {Object} context 
+     * @param {Object} params 
+     */
+    refresh: function refresh(context, params) {
+      return new Promise(function (resolve, reject) {
+        var value = params.value,
+            board_id = params.board_id;
+        value.forEach(function (column, index) {
+          column.index = index + 1;
+          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.update, "/").concat(column.id), {
+            index: column.index
+          })["catch"](function (error) {
+            reject();
+          });
+        });
+        context.commit('update', {
+          value: value,
+          board_id: board_id
+        });
+        resolve();
       });
     },
-    doFetch: function () {
-      var _doFetch = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(context) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                context.commit('setLoading', true, {
-                  root: true
-                });
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/columns/fetch').then(function (response) {
-                  context.commit('setColumns', response.data.data);
-                })["catch"](function (error) {
-                  console.log(error.response);
-                })["finally"](function () {
-                  context.commit('setLoading', false, {
-                    root: true
-                  });
-                });
 
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
+    /**
+     * Columns `fetch` action.
+     * 
+     * @param {Object} context 
+     */
+    fetch: function fetch(context) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.fetch).then(function (response) {
+          context.commit('set', response.data.data);
+          resolve();
+        })["catch"](function (error) {
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    },
 
-      function doFetch(_x3) {
-        return _doFetch.apply(this, arguments);
-      }
+    /**
+     * Column `add` action.
+     * 
+     * @param {Object} context 
+     * @param {Object} params 
+     */
+    add: function add(context, params) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.add, params).then(function (response) {
+          context.commit('add', response.data.data);
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
+          resolve();
+        })["catch"](function (error) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.danger(error.response.message);
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    },
 
-      return doFetch;
-    }()
+    /**
+     * Column `remove` action.
+     * 
+     * @param {Object} context 
+     * @param {Number} columnId 
+     */
+    remove: function remove(context, columnId) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.remove, "/").concat(columnId)).then(function (response) {
+          context.commit('remove', columnId);
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
+          resolve();
+        })["catch"](function (error) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.danger(error.response.data.message);
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    },
+
+    /**
+     * Column `update` action.
+     * 
+     * TODO: Make commit to cards clear mutation.
+     * 
+     * @param {Object} context 
+     * @param {Object} params 
+     */
+    update: function update(context, params) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.update, "/").concat(params.id), params).then(function (response) {
+          context.commit('update', params);
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
+          resolve();
+        })["catch"](function (error) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.danger(error.response.message);
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    },
+    clear: function clear(context, columnId) {
+      return new Promise(function (resolve, reject) {
+        context.commit('setLoading', true, {
+          root: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.clear, "/").concat(columnId, "/clear")).then(function (response) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
+          resolve();
+        })["catch"](function (error) {
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.danger(error.response.data.message);
+          reject();
+        })["finally"](function () {
+          context.commit('setLoading', false, {
+            root: true
+          });
+        });
+      });
+    }
   }
 });
 
@@ -59610,7 +59664,7 @@ function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"api":{"routes":{"user":{"fetch":"/api/users/fetch"},"board":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"}}}}');
+module.exports = JSON.parse('{"api":{"routes":{"user":{"fetch":"/api/users/fetch"},"boards":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"},"columns":{"fetch":"/api/columns/fetch","add":"/api/columns","update":"/api/columns","remove":"/api/columns","clear":"/api/columns"}}}}');
 
 /***/ })
 

@@ -99,7 +99,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .get(config.api.routes.board.fetch)
+          .get(config.api.routes.boards.fetch)
           .then(response => {
             context.commit('set', response.data.data)
 
@@ -126,7 +126,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .post(config.api.routes.board.add, board)
+          .post(config.api.routes.boards.add, board)
           .then(response => {
             context.commit('add', response.data.data)
 
@@ -157,7 +157,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .delete(`${config.api.routes.board.remove}/${boardId}`)
+          .delete(`${config.api.routes.boards.remove}/${boardId}`)
           .then(response => {
             router.push({ name: 'boards' })
 
@@ -190,7 +190,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .put(`${config.api.routes.board.update}/${board.id}`, board)
+          .put(`${config.api.routes.boards.update}/${board.id}`, board)
           .then(response => {
             context.commit('update', board)
 

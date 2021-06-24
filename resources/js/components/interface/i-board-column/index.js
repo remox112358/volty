@@ -1,9 +1,5 @@
 import draggable from 'vuedraggable'
 
-import axios from 'axios'
-
-import AlertService from '../../../services/AlertService'
-
 import template from './template'
 import styles from './style.module.scss'
 
@@ -52,7 +48,7 @@ export default {
         },
         {
           name: 'Delete',
-          callback: this.delete,
+          callback: this.remove,
         },
         {
           name: 'Clear',
@@ -71,39 +67,11 @@ export default {
         },
       })
     },
-    async delete() {
-      this.$store.commit('setLoading', true)
-
-      await axios
-              .delete(`/api/columns/${this.id}`)
-              .then(response => {
-                this.$store.dispatch('columns/doFetch')
-
-                AlertService.success(response.data.message)
-              })
-              .catch(error => {
-                AlertService.danger(error.response.data.message)
-              })
-              .finally(() => {
-                this.$store.commit('setLoading', false)
-              })
+    async remove() {
+      this.$store.dispatch('columns/remove', this.id)
     },
     async clear() {
-      this.$store.commit('setLoading', true)
-
-      await axios
-              .post(`/api/columns/${this.id}/clear`)
-              .then(response => {
-                this.$store.dispatch('cards/doFetch')
-
-                AlertService.success(response.data.message)
-              })
-              .catch(error => {
-                AlertService.danger(error.response.data.message)
-              })
-              .finally(() => {
-                this.$store.commit('setLoading', false)
-              })
+      this.$store.dispatch('columns/clear', this.id)
     },
   },
 }

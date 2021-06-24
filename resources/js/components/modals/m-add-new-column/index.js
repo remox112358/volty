@@ -1,10 +1,6 @@
 import { useStore } from 'vuex'
 import { ref, computed } from 'vue'
 
-import axios from 'axios'
-
-import AlertService from '../../../services/AlertService'
-
 import template from './template'
 import styles from './style.module.scss'
 
@@ -45,26 +41,12 @@ export default {
      * Form submit handler.
      */
     const onSubmit = async () => {
-      store.commit('setLoading', true)
-
-      await axios
-              .post('/api/columns', {
-                name: name.value,
-                board_id: data.value.board_id,
-              })
-              .then(response => {
-                store.dispatch('columns/doFetch')
-
-                close()
-
-                AlertService.success(response.data.message)
-              })
-              .catch(error => {
-                AlertService.danger(error.response.message)
-              })
-              .finally(() => {
-                store.commit('setLoading', false)
-              })
+      store
+        .dispatch('columns/add', {
+          name: name.value,
+          board_id: data.value.board_id,
+        })
+        .then(close)
     }
 
     return {

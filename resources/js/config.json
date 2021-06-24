@@ -4,11 +4,18 @@
       "user": {
         "fetch": "/api/users/fetch"
       },
-      "board": {
+      "boards": {
         "fetch": "/api/boards/fetch",
         "add": "/api/boards",
         "update": "/api/boards",
         "remove": "/api/boards"
+      },
+      "columns": {
+        "fetch": "/api/columns/fetch",
+        "add": "/api/columns",
+        "update": "/api/columns",
+        "remove": "/api/columns",
+        "clear": "/api/columns"
       }
     }
   }

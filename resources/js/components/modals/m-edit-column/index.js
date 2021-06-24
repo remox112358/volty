@@ -48,27 +48,13 @@ export default {
     /**
      * Form submit handler.
      */
-    const onSubmit = async () => {
-      store.commit('setLoading', true)
-
-      await axios
-              .put(`/api/columns/${data.value.id}`, {
-                name: name.value,
-              })
-              .then(response => {
-                store.dispatch('columns/doFetch')
-
-                close()
-
-                AlertService.success(response.data.message)
-              })
-              .catch(error => {
-                console.log(error.response)
-                AlertService.danger(error.response.message)
-              })
-              .finally(() => {
-                store.commit('setLoading', false)
-              })
+    const onSubmit = () => {
+      store
+        .dispatch('columns/update', {
+          id: data.value.id,
+          name: name.value,
+        })
+        .then(close)
     }
 
     return {
