@@ -38,7 +38,7 @@ export default {
       if (authorized.value) {
         store.dispatch('user/doFetch')
         store.dispatch('cards/doFetch')
-        store.dispatch('boards/doFetch')
+        store.dispatch('boards/fetch')
         store.dispatch('columns/doFetch')
       }
     })

@@ -1,0 +1,12 @@
+{
+  "api": {
+    "routes": {
+      "board": {
+        "fetch": "/api/boards/fetch",
+        "add": "/api/boards",
+        "update": "/api/boards",
+        "remove": "/api/boards"
+      }
+    }
+  }
+}

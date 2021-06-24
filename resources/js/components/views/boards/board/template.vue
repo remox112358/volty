@@ -18,7 +18,7 @@
 
         :class="styles.delete"
 
-        @click="deleteBoard"
+        @click="removeBoard"
 
         outline
       >Delete</i-button>

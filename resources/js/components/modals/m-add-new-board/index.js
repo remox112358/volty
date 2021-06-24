@@ -1,10 +1,6 @@
 import { useStore } from 'vuex'
 import { ref, computed } from 'vue'
 
-import axios from 'axios'
-
-import AlertService from '../../../services/AlertService'
-
 import template from './template'
 import styles from './style.module.scss'
 
@@ -32,36 +28,28 @@ export default {
      * Close action.
      */
     const close = () => {
-      name.value = ''
+      clear()
 
       store.dispatch('modals/close', 'addNewBoard')
+    }
+
+    /**
+     * Clear action.
+     */
+    const clear = () => {
+      name.value = ''
     }
 
     /**
      * Form submit handler.
      */
     const onSubmit = async () => {
-      store.commit('setLoading', true)
-
-      await axios
-              .post('/api/boards', {
-                name: name.value,
-                color: color.value
-              })
-              .then(response => {
-                AlertService.success(response.data.message)
-
-                close()
-
-                store.dispatch('boards/doFetch')
-              })
-              .catch(error => {
-                console.log(error.response)
-                AlertService.danger(error.response.message)
-              })
-              .finally(() => {
-                store.commit('setLoading', false)
-              })
+      store
+        .dispatch('boards/add', {
+          name: name.value,
+          color: color.value,
+        })
+        .then(close)
     }
 
     return {
