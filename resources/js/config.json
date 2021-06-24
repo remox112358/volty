@@ -1,6 +1,9 @@
 {
   "api": {
     "routes": {
+      "user": {
+        "fetch": "/api/users/fetch"
+      },
       "board": {
         "fetch": "/api/boards/fetch",
         "add": "/api/boards",
