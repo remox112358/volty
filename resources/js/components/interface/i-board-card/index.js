@@ -1,10 +1,6 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 
-import axios from 'axios'
-
-import AlertService from '../../../services/AlertService'
-
 import template from './template'
 import styles from './style.module.scss'
 

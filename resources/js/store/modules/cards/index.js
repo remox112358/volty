@@ -17,9 +17,9 @@ export default {
 
     /**
      * Returns the cards by columnId.
-     * 
+     *
      * @param {Object} state
-     * @param {Number} id 
+     * @param {Number} id
      * @returns {Array}
      */
     cardsByColumnId: (state) => (id) => {
@@ -37,9 +37,9 @@ export default {
 
     /**
      * Cards `set` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Array} payload 
+     *
+     * @param {Object} state
+     * @param {Array} payload
      */
     set: (state, payload) => {
       state.cards = payload
@@ -47,9 +47,9 @@ export default {
 
     /**
      * Cards `refresh` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     refresh: (state, payload) => {
       const { value, column_id } = payload
@@ -60,9 +60,9 @@ export default {
 
     /**
      * Card `add` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     add: (state, payload) => {
       state.cards = [...state.cards, payload]
@@ -70,11 +70,11 @@ export default {
 
     /**
      * Card `update` mutation.
-     * 
+     *
      * FIXME: Make full assignment.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     update: (state, payload) => {
       state.cards.find(card => card.id == payload.id).text = payload.text
@@ -82,13 +82,23 @@ export default {
 
     /**
      * Card `remove` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Number} payload 
+     *
+     * @param {Object} state
+     * @param {Number} payload
      */
     remove: (state, payload) => {
       state.cards = state.cards.filter(card => card.id != payload)
     },
+
+    /**
+     * Cards `clear` mutation.
+     *
+     * @param {Object} state
+     * @param {Number} payload
+     */
+    clear: (state, payload) => {
+      state.cards = state.cards.filter(card => card.column_id != payload)
+    }
 
   },
 
@@ -96,8 +106,8 @@ export default {
 
     /**
      * Cards `fetch` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      * @returns {Promise}
      */
     fetch: (context) => {
@@ -122,21 +132,21 @@ export default {
 
     /**
      * Cards `refresh` action.
-     * 
+     *
      * FIXME: Make chain of requests.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      * @returns {Promise}
      */
     refresh: (context, params) => {
       return new Promise((resolve, reject) => {
         const { value, column_id } = params
-  
+
         value.forEach((card, index) => {
           card.index = index + 1
           card.column_id = column_id
-  
+
           axios
             .put(`${config.api.routes.cards.update}/${card.id}`, {
               index: card.index,
@@ -146,7 +156,7 @@ export default {
               reject()
             })
         })
-  
+
         context.commit('refresh', { value, column_id })
 
         resolve()
@@ -155,7 +165,7 @@ export default {
 
     /**
      * Card `add` action.
-     * 
+     *
      * @param {Object} context
      * @param {Object} params
      * @returns {Promise}
@@ -170,12 +180,12 @@ export default {
             context.commit('add', response.data.data)
 
             AlertService.success(response.data.message)
-            
+
             resolve()
           })
           .catch(error => {
             AlertService.danger(error.response.message)
-          
+
             reject()
           })
           .finally(() => {
@@ -186,10 +196,10 @@ export default {
 
     /**
      * Card `update` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      * @param {Object} params
-     * @returns {Promise} 
+     * @returns {Promise}
      */
     update: (context, params) => {
       return new Promise((resolve, reject) => {
@@ -206,7 +216,7 @@ export default {
           })
           .catch(error => {
             AlertService.danger(error.response.message)
-          
+
             reject()
           })
           .finally(() => {
@@ -217,9 +227,9 @@ export default {
 
     /**
      * Card `remove` action.
-     * 
-     * @param {Object} context 
-     * @param {Number} cardId 
+     *
+     * @param {Object} context
+     * @param {Number} cardId
      * @returns {Promise}
      */
     remove: (context, cardId) => {
@@ -232,12 +242,12 @@ export default {
             context.commit('remove', cardId)
 
             AlertService.success(response.data.message)
-          
+
             resolve()
           })
           .catch(error => {
             AlertService.danger(error.response.data.message)
-          
+
             reject()
           })
           .finally(() => {

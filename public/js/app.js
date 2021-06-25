@@ -18880,13 +18880,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-card/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-card/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/interface/i-board-card/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/interface/i-board-card/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -18897,10 +18894,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_4__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_2__.default,
   props: {
     id: {
       type: Number,
@@ -18919,7 +18914,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     /**
      * Card actions.
      */
@@ -18974,7 +18969,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_5___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_3___default()),
       actions: actions
     };
   }
@@ -21923,9 +21918,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   getters: {
     /**
      * Returns the cards by columnId.
-     * 
+     *
      * @param {Object} state
-     * @param {Number} id 
+     * @param {Number} id
      * @returns {Array}
      */
     cardsByColumnId: function cardsByColumnId(state) {
@@ -21945,9 +21940,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   mutations: {
     /**
      * Cards `set` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Array} payload 
+     *
+     * @param {Object} state
+     * @param {Array} payload
      */
     set: function set(state, payload) {
       state.cards = payload;
@@ -21955,9 +21950,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Cards `refresh` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     refresh: function refresh(state, payload) {
       var value = payload.value,
@@ -21970,9 +21965,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Card `add` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     add: function add(state, payload) {
       state.cards = [].concat(_toConsumableArray(state.cards), [payload]);
@@ -21980,11 +21975,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Card `update` mutation.
-     * 
+     *
      * FIXME: Make full assignment.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     update: function update(state, payload) {
       state.cards.find(function (card) {
@@ -21994,21 +21989,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Card `remove` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Number} payload 
+     *
+     * @param {Object} state
+     * @param {Number} payload
      */
     remove: function remove(state, payload) {
       state.cards = state.cards.filter(function (card) {
         return card.id != payload;
+      });
+    },
+
+    /**
+     * Cards `clear` mutation.
+     *
+     * @param {Object} state
+     * @param {Number} payload
+     */
+    clear: function clear(state, payload) {
+      state.cards = state.cards.filter(function (card) {
+        return card.column_id != payload;
       });
     }
   },
   actions: {
     /**
      * Cards `fetch` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      * @returns {Promise}
      */
     fetch: function fetch(context) {
@@ -22031,11 +22038,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Cards `refresh` action.
-     * 
+     *
      * FIXME: Make chain of requests.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      * @returns {Promise}
      */
     refresh: function refresh(context, params) {
@@ -22062,7 +22069,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Card `add` action.
-     * 
+     *
      * @param {Object} context
      * @param {Object} params
      * @returns {Promise}
@@ -22089,10 +22096,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Card `update` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      * @param {Object} params
-     * @returns {Promise} 
+     * @returns {Promise}
      */
     update: function update(context, params) {
       return new Promise(function (resolve, reject) {
@@ -22116,9 +22123,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Card `remove` action.
-     * 
-     * @param {Object} context 
-     * @param {Number} cardId 
+     *
+     * @param {Object} context
+     * @param {Number} cardId
      * @returns {Promise}
      */
     remove: function remove(context, cardId) {
@@ -22186,8 +22193,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   getters: {
     /**
      * Returns array of columns by boardId.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @returns {Array}
      */
     columnsByBoardId: function columnsByBoardId(state) {
@@ -22207,9 +22214,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   mutations: {
     /**
      * Columns `set` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Array} payload 
+     *
+     * @param {Object} state
+     * @param {Array} payload
      */
     set: function set(state, payload) {
       state.columns = payload;
@@ -22217,8 +22224,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Columns `refresh` mutation.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @param {Object} payload
      */
     refresh: function refresh(state, payload) {
@@ -22232,9 +22239,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Columns `add` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     add: function add(state, payload) {
       state.columns = [].concat(_toConsumableArray(state.columns), [payload]);
@@ -22242,9 +22249,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Columns `remove` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Number} payload 
+     *
+     * @param {Object} state
+     * @param {Number} payload
      */
     remove: function remove(state, payload) {
       state.columns = state.columns.filter(function (column) {
@@ -22254,11 +22261,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Column `update` mutation.
-     * 
+     *
      * FIXME: Make full assignment.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     update: function update(state, payload) {
       state.columns.find(function (column) {
@@ -22269,11 +22276,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   actions: {
     /**
      * Columns `refresh` action.
-     * 
+     *
      * FIXME: Make chain of requests.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      */
     refresh: function refresh(context, params) {
       return new Promise(function (resolve, reject) {
@@ -22297,8 +22304,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Columns `fetch` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      */
     fetch: function fetch(context) {
       return new Promise(function (resolve, reject) {
@@ -22320,9 +22327,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Column `add` action.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      */
     add: function add(context, params) {
       return new Promise(function (resolve, reject) {
@@ -22346,9 +22353,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Column `remove` action.
-     * 
-     * @param {Object} context 
-     * @param {Number} columnId 
+     *
+     * @param {Object} context
+     * @param {Number} columnId
      */
     remove: function remove(context, columnId) {
       return new Promise(function (resolve, reject) {
@@ -22372,11 +22379,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Column `update` action.
-     * 
+     *
      * TODO: Make commit to cards clear mutation.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      */
     update: function update(context, params) {
       return new Promise(function (resolve, reject) {
@@ -22397,12 +22404,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         });
       });
     },
+
+    /**
+     * Column `clear` action.
+     *
+     * @param {Object} context
+     * @param {Number} columnId
+     * @returns {Promise}
+     */
     clear: function clear(context, columnId) {
       return new Promise(function (resolve, reject) {
         context.commit('setLoading', true, {
           root: true
         });
         axios__WEBPACK_IMPORTED_MODULE_0___default().post("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.clear, "/").concat(columnId, "/clear")).then(function (response) {
+          context.commit('cards/clear', columnId, {
+            root: true
+          });
           _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
           resolve();
         })["catch"](function (error) {

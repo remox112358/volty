@@ -17,8 +17,8 @@ export default {
 
     /**
      * Returns array of columns by boardId.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @returns {Array}
      */
     columnsByBoardId: (state) => (id) => {
@@ -36,9 +36,9 @@ export default {
 
     /**
      * Columns `set` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Array} payload 
+     *
+     * @param {Object} state
+     * @param {Array} payload
      */
     set: (state, payload) => {
       state.columns = payload
@@ -46,8 +46,8 @@ export default {
 
     /**
      * Columns `refresh` mutation.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @param {Object} payload
      */
     refresh: (state, payload) => {
@@ -59,9 +59,9 @@ export default {
 
     /**
      * Columns `add` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     add: (state, payload) => {
       state.columns = [...state.columns, payload]
@@ -69,9 +69,9 @@ export default {
 
     /**
      * Columns `remove` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Number} payload 
+     *
+     * @param {Object} state
+     * @param {Number} payload
      */
     remove: (state, payload) => {
       state.columns = state.columns.filter(column => column.id != payload)
@@ -79,11 +79,11 @@ export default {
 
     /**
      * Column `update` mutation.
-     * 
+     *
      * FIXME: Make full assignment.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     update: (state, payload) => {
       state.columns.find(column => column.id == payload.id).name = payload.name
@@ -95,19 +95,19 @@ export default {
 
     /**
      * Columns `refresh` action.
-     * 
+     *
      * FIXME: Make chain of requests.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      */
     refresh: (context, params) => {
       return new Promise((resolve, reject) => {
         const { value, board_id } = params
-        
+
         value.forEach((column, index) => {
           column.index = index + 1
-  
+
           axios
             .put(`${config.api.routes.columns.update}/${column.id}`, {
               index: column.index
@@ -116,7 +116,7 @@ export default {
               reject()
             })
         })
-  
+
         context.commit('update', { value, board_id })
 
         resolve()
@@ -125,8 +125,8 @@ export default {
 
     /**
      * Columns `fetch` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      */
     fetch: (context) => {
       return new Promise((resolve, reject) => {
@@ -151,9 +151,9 @@ export default {
 
     /**
      * Column `add` action.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      */
     add: (context, params) => {
       return new Promise((resolve, reject) => {
@@ -181,9 +181,9 @@ export default {
 
     /**
      * Column `remove` action.
-     * 
-     * @param {Object} context 
-     * @param {Number} columnId 
+     *
+     * @param {Object} context
+     * @param {Number} columnId
      */
     remove: (context, columnId) => {
       return new Promise((resolve, reject) => {
@@ -211,11 +211,11 @@ export default {
 
     /**
      * Column `update` action.
-     * 
+     *
      * TODO: Make commit to cards clear mutation.
-     * 
-     * @param {Object} context 
-     * @param {Object} params 
+     *
+     * @param {Object} context
+     * @param {Object} params
      */
     update: (context, params) => {
       return new Promise((resolve, reject) => {
@@ -227,7 +227,7 @@ export default {
             context.commit('update', params)
 
             AlertService.success(response.data.message)
-            
+
             resolve()
           })
           .catch(error => {
@@ -241,6 +241,13 @@ export default {
       })
     },
 
+    /**
+     * Column `clear` action.
+     *
+     * @param {Object} context
+     * @param {Number} columnId
+     * @returns {Promise}
+     */
     clear: (context, columnId) => {
       return new Promise((resolve, reject) => {
         context.commit('setLoading', true, { root: true })
@@ -248,13 +255,15 @@ export default {
         axios
           .post(`${config.api.routes.columns.clear}/${columnId}/clear`)
           .then(response => {
+            context.commit('cards/clear', columnId, { root: true })
+
             AlertService.success(response.data.message)
-          
+
             resolve()
           })
           .catch(error => {
             AlertService.danger(error.response.data.message)
-          
+
             reject()
           })
           .finally(() => {
