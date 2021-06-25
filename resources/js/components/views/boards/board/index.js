@@ -53,6 +53,7 @@ export default {
         data: {
           id: this.id,
           name: this.data.name,
+          color: this.data.color,
         },
       })
     },

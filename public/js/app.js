@@ -17790,11 +17790,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("SUBMIT");
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "Color: ", -1
+/* HOISTED */
+);
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("SUBMIT");
 
 function render(_ctx, _cache) {
+  var _component_i_color_picker = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-color-picker");
+
   var _component_i_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-input");
 
   var _component_i_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("i-button");
@@ -17805,22 +17813,35 @@ function render(_ctx, _cache) {
     "class": _ctx.styles.root,
     title: "Edit board",
     modelValue: _ctx.show,
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return _ctx.show = $event;
     }),
     onClose: _ctx.close
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      var _class;
+
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
         "class": _ctx.styles.form,
-        onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return _ctx.onSubmit && _ctx.onSubmit.apply(_ctx, arguments);
         }, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+        "class": (_class = {}, _defineProperty(_class, _ctx.styles.field, true), _defineProperty(_class, _ctx.styles['field--row'], true), _defineProperty(_class, _ctx.styles['field--color'], true), _class)
+      }, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_color_picker, {
+        modelValue: _ctx.color,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.color = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])], 2
+      /* CLASS */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
         modelValue: _ctx.name,
-        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return _ctx.name = $event;
         }),
         placeholder: "Name",
@@ -17837,7 +17858,7 @@ function render(_ctx, _cache) {
         height: "37px"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_1];
+          return [_hoisted_2];
         }),
         _: 1
         /* STABLE */
@@ -20323,6 +20344,7 @@ __webpack_require__.r(__webpack_exports__);
       return store.state.modals.editBoard.data;
     });
     var name = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var color = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('#ff0000');
     /**
      * Close action.
      */
@@ -20337,7 +20359,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(show, function (value) {
-      if (value) name.value = data.value.name;
+      if (value) {
+        name.value = data.value.name;
+        color.value = data.value.color;
+      }
     });
     /**
      * Form submit handler.
@@ -20346,7 +20371,8 @@ __webpack_require__.r(__webpack_exports__);
     var onSubmit = function onSubmit() {
       store.dispatch('boards/update', {
         id: data.value.id,
-        name: name.value
+        name: name.value,
+        color: color.value
       }).then(close);
     };
 
@@ -20355,6 +20381,7 @@ __webpack_require__.r(__webpack_exports__);
       show: show,
       name: name,
       data: data,
+      color: color,
       close: close,
       onSubmit: onSubmit
     };
@@ -20995,7 +21022,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         modal: 'editBoard',
         data: {
           id: this.id,
-          name: this.data.name
+          name: this.data.name,
+          color: this.data.color
         }
       });
     },
@@ -21691,8 +21719,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   getters: {
     /**
      * Returns the boards by count.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @returns {Array}
      */
     boards: function boards(state) {
@@ -21704,8 +21732,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Returns the board by id.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @param {Number} id
      * @returns {Object}
      */
@@ -21720,9 +21748,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   mutations: {
     /**
      * Boards `set` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Array} payload 
+     *
+     * @param {Object} state
+     * @param {Array} payload
      */
     set: function set(state, payload) {
       state.boards = payload;
@@ -21730,9 +21758,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Board `add` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     add: function add(state, payload) {
       state.boards = [].concat(_toConsumableArray(state.boards), [payload]);
@@ -21740,9 +21768,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Board `remove` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Number} payload 
+     *
+     * @param {Object} state
+     * @param {Number} payload
      */
     remove: function remove(state, payload) {
       state.boards = state.boards.filter(function (board) {
@@ -21752,23 +21780,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Board `update` mutation.
-     * 
+     *
      * FIXME: Make full assignment
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     update: function update(state, payload) {
       state.boards.find(function (board) {
         return board.id == payload.id;
       }).name = payload.name;
+      state.boards.find(function (board) {
+        return board.id == payload.id;
+      }).color = payload.color;
     }
   },
   actions: {
     /**
      * Boards `fetch` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      * @returns {Promise}
      */
     fetch: function fetch(context) {
@@ -21791,9 +21822,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Board `add` action.
-     * 
-     * @param {Object} context 
-     * @param {Object} board 
+     *
+     * @param {Object} context
+     * @param {Object} board
      * @returns {Promise}
      */
     add: function add(context, board) {
@@ -21818,9 +21849,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Board `remove` action.
-     * 
-     * @param {Object} context 
-     * @param {Number} boardId 
+     *
+     * @param {Object} context
+     * @param {Number} boardId
      * @returns {Promise}
      */
     remove: function remove(context, boardId) {
@@ -21848,9 +21879,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     /**
      * Board `update` action.
-     * 
-     * @param {Object} context 
-     * @param {Object} board 
+     *
+     * @param {Object} context
+     * @param {Object} board
      * @returns {Promise}
      */
     update: function update(context, board) {
@@ -23427,12 +23458,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._1DKzE9drHHjQGnGIDDyuJe .GwNJyaixd-8wLNSuNafk5 {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n._1DKzE9drHHjQGnGIDDyuJe .GwNJyaixd-8wLNSuNafk5 .bIU_1wMWzTiXmSn8TvCkB:not(:last-of-type) {\n  margin-bottom: 10px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "._1DKzE9drHHjQGnGIDDyuJe .GwNJyaixd-8wLNSuNafk5 {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n._1DKzE9drHHjQGnGIDDyuJe .GwNJyaixd-8wLNSuNafk5 .bIU_1wMWzTiXmSn8TvCkB:not(:last-of-type) {\n  margin-bottom: 10px;\n}\n._1DKzE9drHHjQGnGIDDyuJe .GwNJyaixd-8wLNSuNafk5 ._1mUzdr1r2od2RWEVDM0LWP {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n._1DKzE9drHHjQGnGIDDyuJe .GwNJyaixd-8wLNSuNafk5 .M200N6HXegJMXxBcxP5Sm {\n  line-height: 1;\n}\n._1DKzE9drHHjQGnGIDDyuJe .GwNJyaixd-8wLNSuNafk5 .M200N6HXegJMXxBcxP5Sm span {\n  font-size: 12px;\n  font-weight: 600;\n  text-transform: uppercase;\n  margin-right: 10px;\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1DKzE9drHHjQGnGIDDyuJe",
 	"form": "GwNJyaixd-8wLNSuNafk5",
-	"field": "bIU_1wMWzTiXmSn8TvCkB"
+	"field": "bIU_1wMWzTiXmSn8TvCkB",
+	"field--row": "_1mUzdr1r2od2RWEVDM0LWP",
+	"field--color": "M200N6HXegJMXxBcxP5Sm"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

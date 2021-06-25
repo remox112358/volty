@@ -9,6 +9,24 @@
       &:not(:last-of-type) {
         margin-bottom: 10px;
       }
+
+      &--row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      &--color {
+        line-height: 1;
+
+        span {
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+
+          margin-right: 10px;
+        }
+      }
     }
   }
 }

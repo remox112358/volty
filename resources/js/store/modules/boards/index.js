@@ -19,8 +19,8 @@ export default {
 
     /**
      * Returns the boards by count.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @returns {Array}
      */
     boards: (state) => (count = state.boards.length) => {
@@ -29,8 +29,8 @@ export default {
 
     /**
      * Returns the board by id.
-     * 
-     * @param {Object} state 
+     *
+     * @param {Object} state
      * @param {Number} id
      * @returns {Object}
      */
@@ -44,9 +44,9 @@ export default {
 
     /**
      * Boards `set` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Array} payload 
+     *
+     * @param {Object} state
+     * @param {Array} payload
      */
     set: (state, payload) => {
       state.boards = payload
@@ -54,9 +54,9 @@ export default {
 
     /**
      * Board `add` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     add: (state, payload) => {
       state.boards = [...state.boards, payload]
@@ -64,9 +64,9 @@ export default {
 
     /**
      * Board `remove` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Number} payload 
+     *
+     * @param {Object} state
+     * @param {Number} payload
      */
     remove: (state, payload) => {
       state.boards = state.boards.filter(board => board.id != payload)
@@ -74,14 +74,15 @@ export default {
 
     /**
      * Board `update` mutation.
-     * 
+     *
      * FIXME: Make full assignment
-     * 
-     * @param {Object} state 
-     * @param {Object} payload 
+     *
+     * @param {Object} state
+     * @param {Object} payload
      */
     update: (state, payload) => {
       state.boards.find(board => board.id == payload.id).name = payload.name
+      state.boards.find(board => board.id == payload.id).color = payload.color
     },
 
   },
@@ -90,8 +91,8 @@ export default {
 
     /**
      * Boards `fetch` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      * @returns {Promise}
      */
     fetch: (context) => {
@@ -116,9 +117,9 @@ export default {
 
     /**
      * Board `add` action.
-     * 
-     * @param {Object} context 
-     * @param {Object} board 
+     *
+     * @param {Object} context
+     * @param {Object} board
      * @returns {Promise}
      */
     add: (context, board) => {
@@ -147,9 +148,9 @@ export default {
 
     /**
      * Board `remove` action.
-     * 
-     * @param {Object} context 
-     * @param {Number} boardId 
+     *
+     * @param {Object} context
+     * @param {Number} boardId
      * @returns {Promise}
      */
     remove: (context, boardId) => {
@@ -180,9 +181,9 @@ export default {
 
     /**
      * Board `update` action.
-     * 
-     * @param {Object} context 
-     * @param {Object} board 
+     *
+     * @param {Object} context
+     * @param {Object} board
      * @returns {Promise}
      */
     update: (context, board) => {

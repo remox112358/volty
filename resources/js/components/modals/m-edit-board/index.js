@@ -21,8 +21,9 @@ export default {
     /**
      * Data.
      */
-    const data = computed(() => store.state.modals.editBoard.data)
-    const name = ref(null)
+    const data  = computed(() => store.state.modals.editBoard.data)
+    const name  = ref(null)
+    const color = ref('#ff0000')
 
     /**
      * Close action.
@@ -37,8 +38,10 @@ export default {
      * Show status watcher.
      */
     watch(show, value => {
-      if (value)
-        name.value = data.value.name
+      if (value) {
+        name.value  = data.value.name
+        color.value = data.value.color
+      }
     })
 
     /**
@@ -49,6 +52,7 @@ export default {
         .dispatch('boards/update', {
           id: data.value.id,
           name: name.value,
+          color: color.value,
         })
         .then(close)
     }
@@ -59,6 +63,7 @@ export default {
       show,
       name,
       data,
+      color,
 
       close,
       onSubmit,
