@@ -34,7 +34,7 @@ export default {
         return this.$store.getters['cards/cardsByColumnId'](this.id)
       },
       set(value) {
-        this.$store.dispatch('cards/updateCards', {
+        this.$store.dispatch('cards/refresh', {
           value,
           column_id: this.id,
         })

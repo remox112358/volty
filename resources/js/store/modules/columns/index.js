@@ -86,6 +86,7 @@ export default {
      * @param {Object} payload
      */
     update: (state, payload) => {
+      console.log(state.columns, payload.id)
       state.columns.find(column => column.id == payload.id).name = payload.name
     },
 
@@ -117,7 +118,7 @@ export default {
             })
         })
 
-        context.commit('update', { value, board_id })
+        context.commit('refresh', { value, board_id })
 
         resolve()
       })

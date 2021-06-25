@@ -23,7 +23,7 @@ export default {
         return this.$store.getters['columns/columnsByBoardId'](this.id)
       },
       set(value) {
-        this.$store.dispatch('columns/updateColumns', {
+        this.$store.dispatch('columns/refresh', {
           value,
           board_id: this.id,
         })

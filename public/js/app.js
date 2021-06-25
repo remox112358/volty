@@ -19206,7 +19206,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return this.$store.getters['cards/cardsByColumnId'](this.id);
       },
       set: function set(value) {
-        this.$store.dispatch('cards/updateCards', {
+        this.$store.dispatch('cards/refresh', {
           value: value,
           column_id: this.id
         });
@@ -20967,7 +20967,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return this.$store.getters['columns/columnsByBoardId'](this.id);
       },
       set: function set(value) {
-        this.$store.dispatch('columns/updateColumns', {
+        this.$store.dispatch('columns/refresh', {
           value: value,
           board_id: this.id
         });
@@ -22268,6 +22268,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      * @param {Object} payload
      */
     update: function update(state, payload) {
+      console.log(state.columns, payload.id);
       state.columns.find(function (column) {
         return column.id == payload.id;
       }).name = payload.name;
@@ -22294,7 +22295,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             reject();
           });
         });
-        context.commit('update', {
+        context.commit('refresh', {
           value: value,
           board_id: board_id
         });
