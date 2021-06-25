@@ -101,6 +101,7 @@ export default {
      *
      * @param {Object} context
      * @param {Object} params
+     * @returns {Promise}
      */
     refresh: (context, params) => {
       return new Promise((resolve, reject) => {
@@ -128,6 +129,7 @@ export default {
      * Columns `fetch` action.
      *
      * @param {Object} context
+     * @returns {Promise}
      */
     fetch: (context) => {
       return new Promise((resolve, reject) => {
@@ -155,6 +157,7 @@ export default {
      *
      * @param {Object} context
      * @param {Object} params
+     * @returns {Promise}
      */
     add: (context, params) => {
       return new Promise((resolve, reject) => {
@@ -185,6 +188,7 @@ export default {
      *
      * @param {Object} context
      * @param {Number} columnId
+     * @returns {Promise}
      */
     remove: (context, columnId) => {
       return new Promise((resolve, reject) => {
@@ -217,6 +221,7 @@ export default {
      *
      * @param {Object} context
      * @param {Object} params
+     * @returns {Promise}
      */
     update: (context, params) => {
       return new Promise((resolve, reject) => {

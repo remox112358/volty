@@ -22282,6 +22282,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      *
      * @param {Object} context
      * @param {Object} params
+     * @returns {Promise}
      */
     refresh: function refresh(context, params) {
       return new Promise(function (resolve, reject) {
@@ -22307,6 +22308,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      * Columns `fetch` action.
      *
      * @param {Object} context
+     * @returns {Promise}
      */
     fetch: function fetch(context) {
       return new Promise(function (resolve, reject) {
@@ -22331,6 +22333,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      *
      * @param {Object} context
      * @param {Object} params
+     * @returns {Promise}
      */
     add: function add(context, params) {
       return new Promise(function (resolve, reject) {
@@ -22357,6 +22360,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      *
      * @param {Object} context
      * @param {Number} columnId
+     * @returns {Promise}
      */
     remove: function remove(context, columnId) {
       return new Promise(function (resolve, reject) {
@@ -22385,6 +22389,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      *
      * @param {Object} context
      * @param {Object} params
+     * @returns {Promise}
      */
     update: function update(context, params) {
       return new Promise(function (resolve, reject) {
