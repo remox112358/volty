@@ -12,7 +12,17 @@
         <i-color-picker v-model="color" />
       </div>
       <div :class="styles.field">
-        <i-input v-model="name" placeholder="Name" :stroke="1" :rounding="0" />
+        <i-input
+          placeholder="Name"
+
+          v-model="name"
+
+          :stroke="1"
+          :rounding="0"
+          :error="nameError"
+          :valid="nameMeta.validated && nameMeta.valid"
+          :invalid="nameMeta.validated && !nameMeta.valid"
+        />
       </div>
       <div :class="styles.field">
         <i-button width="100%" height="37px">SUBMIT</i-button>

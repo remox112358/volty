@@ -17843,16 +17843,19 @@ function render(_ctx, _cache) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
+        placeholder: "Name",
         modelValue: _ctx.name,
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return _ctx.name = $event;
         }),
-        placeholder: "Name",
         stroke: 1,
-        rounding: 0
+        rounding: 0,
+        error: _ctx.nameError,
+        valid: _ctx.nameMeta.validated && _ctx.nameMeta.valid,
+        invalid: _ctx.nameMeta.validated && !_ctx.nameMeta.valid
       }, null, 8
       /* PROPS */
-      , ["modelValue"])], 2
+      , ["modelValue", "error", "valid", "invalid"])], 2
       /* CLASS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
@@ -20123,8 +20126,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-new-board/template.vue");
@@ -20158,7 +20161,8 @@ __webpack_require__.r(__webpack_exports__);
       validationSchema: schema
     }),
         meta = _useForm.meta,
-        setErrors = _useForm.setErrors;
+        setErrors = _useForm.setErrors,
+        resetForm = _useForm.resetForm;
     /**
      * Form fields.
      */
@@ -20184,6 +20188,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var close = function close() {
       clear();
+      resetForm();
       store.dispatch('modals/close', 'addNewBoard');
     };
     /**
@@ -20337,22 +20342,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-board/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-board/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-board/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-board/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_1__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_2__.default,
   setup: function setup() {
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     /**
      * Show status.
      */
@@ -20367,15 +20376,52 @@ __webpack_require__.r(__webpack_exports__);
     var data = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.state.modals.editBoard.data;
     });
-    var name = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    /**
+     * Validation schema.
+     */
+
+    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
+      name: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(4).max(16)
+    });
+    /**
+     * Form context.
+     */
+
+    var _useForm = (0,vee_validate__WEBPACK_IMPORTED_MODULE_5__.useForm)({
+      validationSchema: schema
+    }),
+        meta = _useForm.meta,
+        setErrors = _useForm.setErrors,
+        resetForm = _useForm.resetForm;
+    /**
+     * Form fields.
+     */
+
+
     var color = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('#ff0000');
+
+    var _useField = (0,vee_validate__WEBPACK_IMPORTED_MODULE_5__.useField)('name'),
+        name = _useField.value,
+        nameMeta = _useField.meta,
+        nameError = _useField.errorMessage;
     /**
      * Close action.
      */
 
+
     var close = function close() {
-      name.value = '';
+      clear();
+      resetForm();
       store.dispatch('modals/close', 'editBoard');
+    };
+    /**
+     * Clear action.
+     */
+
+
+    var clear = function clear() {
+      name.value = '';
+      color.value = '#ff0000';
     };
     /**
      * Show status watcher.
@@ -20393,6 +20439,7 @@ __webpack_require__.r(__webpack_exports__);
      */
 
     var onSubmit = function onSubmit() {
+      if (!meta.value.valid) return;
       store.dispatch('boards/update', {
         id: data.value.id,
         name: name.value,
@@ -20401,9 +20448,11 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_2___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_3___default()),
       show: show,
       name: name,
+      nameMeta: nameMeta,
+      nameError: nameError,
       data: data,
       color: color,
       close: close,

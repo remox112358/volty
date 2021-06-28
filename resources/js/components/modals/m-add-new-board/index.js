@@ -1,6 +1,5 @@
-import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-
+import { ref, computed } from 'vue'
 import { useForm, useField } from 'vee-validate'
 
 import * as yup from 'yup'
@@ -27,7 +26,7 @@ export default {
     /**
      * Form context.
      */
-    const { meta, setErrors } = useForm({
+    const { meta, setErrors, resetForm } = useForm({
       validationSchema: schema,
     })
 
@@ -52,6 +51,7 @@ export default {
      */
     const close = () => {
       clear()
+      resetForm()
 
       store.dispatch('modals/close', 'addNewBoard')
     }
