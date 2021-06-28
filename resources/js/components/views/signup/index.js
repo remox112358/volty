@@ -38,7 +38,7 @@ export default {
     /**
      * Form context.
      */
-    const { meta, setErrors } = useForm({
+    const { meta, setErrors, resetForm } = useForm({
       validationSchema: schema,
     })
 
@@ -78,11 +78,11 @@ export default {
           password: password.value,
         })
         .then(response => {
-          if (response.status === 200) {
-            router.push({ name: 'login' })
+          resetForm()
 
-            AlertService.success(response.data.message)
-          }
+          router.push({ name: 'login' })
+
+          AlertService.success(response.data.message)
         })
         .catch(error => {
           setErrors(error.response.data.data)

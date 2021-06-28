@@ -17742,16 +17742,19 @@ function render(_ctx, _cache) {
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
+        placeholder: "Name",
         modelValue: _ctx.name,
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.name = $event;
         }),
-        placeholder: "Name",
         stroke: 1,
-        rounding: 0
+        rounding: 0,
+        error: _ctx.nameError,
+        valid: _ctx.nameMeta.validated && _ctx.nameMeta.valid,
+        invalid: _ctx.nameMeta.validated && !_ctx.nameMeta.valid
       }, null, 8
       /* PROPS */
-      , ["modelValue"])], 2
+      , ["modelValue", "error", "valid", "invalid"])], 2
       /* CLASS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
@@ -19260,11 +19263,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: 'Edit',
         callback: this.edit
       }, {
-        name: 'Delete',
-        callback: this.remove
-      }, {
         name: 'Clear',
         callback: this.clear
+      }, {
+        name: 'Delete',
+        callback: this.remove
       }];
     }
   },
@@ -20241,11 +20244,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-new-column/template.vue");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-add-new-column/style.module.scss");
-/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-new-column/template.vue");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-add-new-column/style.module.scss");
+/* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -20256,21 +20261,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  "extends": _template__WEBPACK_IMPORTED_MODULE_2__.default,
+  "extends": _template__WEBPACK_IMPORTED_MODULE_3__.default,
   setup: function setup() {
     /**
      * Global store.
      */
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
     /**
-     * Data.
+     * Validation schema.
      */
 
-    var name = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    var schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
+      name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required().min(4).max(16)
+    });
+    /**
+     * Form context.
+     */
+
+    var _useForm = (0,vee_validate__WEBPACK_IMPORTED_MODULE_6__.useForm)({
+      validationSchema: schema
+    }),
+        meta = _useForm.meta,
+        setErrors = _useForm.setErrors,
+        resetForm = _useForm.resetForm;
+    /**
+     * Form fields.
+     */
+
+
+    var _useField = (0,vee_validate__WEBPACK_IMPORTED_MODULE_6__.useField)('name'),
+        name = _useField.value,
+        nameMeta = _useField.meta,
+        nameError = _useField.errorMessage;
     /**
      * Show status.
      */
+
 
     var show = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.state.modals.addNewColumn.show;
@@ -20287,8 +20316,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
 
     var close = function close() {
-      name.value = '';
+      clear();
+      resetForm();
       store.dispatch('modals/close', 'addNewColumn');
+    };
+    /**
+     * Clear action.
+     */
+
+
+    var clear = function clear() {
+      name.value = '';
     };
     /**
      * Form submit handler.
@@ -20301,12 +20339,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (meta.value.valid) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 2:
                 store.dispatch('columns/add', {
                   name: name.value,
                   board_id: data.value.board_id
                 }).then(close);
 
-              case 1:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -20320,9 +20366,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     return {
-      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_3___default()),
+      styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_4___default()),
       show: show,
       name: name,
+      nameMeta: nameMeta,
+      nameError: nameError,
       close: close,
       onSubmit: onSubmit
     };
@@ -21248,7 +21296,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       validationSchema: schema
     }),
         meta = _useForm.meta,
-        setErrors = _useForm.setErrors;
+        setErrors = _useForm.setErrors,
+        resetForm = _useForm.resetForm;
     /**
      * Form fields.
      */
@@ -21296,6 +21345,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     (0,_utils_localstorage__WEBPACK_IMPORTED_MODULE_3__.__ls_save)('access_token', token);
 
                     store.dispatch('user/login', user);
+                    resetForm();
                     _router__WEBPACK_IMPORTED_MODULE_5__.default.push({
                       name: 'home'
                     });
@@ -21429,7 +21479,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       validationSchema: schema
     }),
         meta = _useForm.meta,
-        setErrors = _useForm.setErrors;
+        setErrors = _useForm.setErrors,
+        resetForm = _useForm.resetForm;
     /**
      * Form fields.
      */
@@ -21475,12 +21526,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   username: username.value,
                   password: password.value
                 }).then(function (response) {
-                  if (response.status === 200) {
-                    _router__WEBPACK_IMPORTED_MODULE_4__.default.push({
-                      name: 'login'
-                    });
-                    _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
-                  }
+                  resetForm();
+                  _router__WEBPACK_IMPORTED_MODULE_4__.default.push({
+                    name: 'login'
+                  });
+                  _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
                 })["catch"](function (error) {
                   setErrors(error.response.data.data);
                 })["finally"](function () {

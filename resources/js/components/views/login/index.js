@@ -39,7 +39,7 @@ export default {
     /**
      * Form context.
      */
-    const { meta, setErrors } = useForm({
+    const { meta, setErrors, resetForm } = useForm({
       validationSchema: schema,
     })
 
@@ -78,6 +78,8 @@ export default {
             __ls_save('access_token', token)
 
             store.dispatch('user/login', user)
+
+            resetForm()
 
             router.push({ name: 'home' })
 

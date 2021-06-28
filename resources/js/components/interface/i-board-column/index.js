@@ -47,13 +47,13 @@ export default {
           callback: this.edit,
         },
         {
+          name: 'Clear',
+          callback: this.clear,
+        },
+        {
           name: 'Delete',
           callback: this.remove,
         },
-        {
-          name: 'Clear',
-          callback: this.clear,
-        }
       ]
     },
   },
