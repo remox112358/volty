@@ -11,11 +11,11 @@
       </section>
 
       <!-- Modals -->
+      <m-add-board />
       <m-edit-card />
+      <m-add-column />
       <m-edit-board />
       <m-edit-column />
-      <m-add-new-board />
-      <m-add-new-column />
     </main>
   </div>
 </template>

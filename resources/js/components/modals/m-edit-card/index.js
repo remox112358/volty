@@ -1,5 +1,8 @@
 import { useStore } from 'vuex'
-import { ref, computed, watch } from 'vue'
+import { computed, watch } from 'vue'
+import { useForm, useField } from 'vee-validate'
+
+import * as yup from 'yup'
 
 import template from './template'
 import styles from './style.module.scss'
@@ -22,15 +25,45 @@ export default {
      * Data.
      */
     const data = computed(() => store.state.modals.editCard.data)
-    const text = ref(null)
+
+    /**
+     * Validation schema.
+     */
+    const schema = yup.object({
+      text: yup.string().required().max(256),
+    })
+
+    /**
+     * Form context.
+     */
+    const { meta, setErrors, resetForm } = useForm({
+      validationSchema: schema,
+    })
+
+    /**
+     * Form fields.
+     */
+    const {
+      value: text,
+      meta: textMeta,
+      errorMessage: textError
+    } = useField('text')
 
     /**
      * Close action.
      */
     const close = () => {
-      text.value = ''
+      clear()
+      resetForm()
 
       store.dispatch('modals/close', 'editCard')
+    }
+
+    /**
+     * Clear action.
+     */
+    const clear = () => {
+      text.value = ''
     }
 
     /**
@@ -44,7 +77,9 @@ export default {
     /**
      * Form submit handler.
      */
-    const onSubmit = async () => {
+    const onSubmit = () => {
+      if (!meta.value.valid) return
+
       store
         .dispatch('cards/update', {
           id: data.value.id,
@@ -58,7 +93,11 @@ export default {
       styles,
 
       show,
+
       text,
+      textMeta,
+      textError,
+
       data,
 
       close,
