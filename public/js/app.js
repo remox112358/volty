@@ -18587,31 +18587,37 @@ function render(_ctx, _cache) {
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
+        placeholder: "Email",
         modelValue: _ctx.email,
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return _ctx.email = $event;
         }),
-        placeholder: "Email",
         stroke: 1,
-        rounding: 0
+        rounding: 0,
+        error: _ctx.emailError,
+        valid: _ctx.emailMeta.validated && _ctx.emailMeta.valid,
+        invalid: _ctx.emailMeta.validated && !_ctx.emailMeta.valid
       }, null, 8
       /* PROPS */
-      , ["modelValue"])], 2
+      , ["modelValue", "error", "valid", "invalid"])], 2
       /* CLASS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_input, {
+        type: "password",
+        placeholder: "Password",
         modelValue: _ctx.password,
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return _ctx.password = $event;
         }),
-        type: "password",
-        placeholder: "Password",
         stroke: 1,
-        rounding: 0
+        rounding: 0,
+        error: _ctx.passwordError,
+        valid: _ctx.passwordMeta.validated && _ctx.passwordMeta.valid,
+        invalid: _ctx.passwordMeta.validated && !_ctx.passwordMeta.valid
       }, null, 8
       /* PROPS */
-      , ["modelValue"])], 2
+      , ["modelValue", "error", "valid", "invalid"])], 2
       /* CLASS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
         "class": _ctx.styles.field
@@ -21131,8 +21137,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_localstorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/localstorage */ "./resources/js/utils/localstorage.js");
@@ -21157,6 +21164,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   "extends": _template__WEBPACK_IMPORTED_MODULE_6__.default,
   components: {
@@ -21168,14 +21176,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_9__.useStore)();
     /**
-     * Form data.
+     * Validation schema.
      */
 
-    var email = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
-    var password = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
+      email: yup__WEBPACK_IMPORTED_MODULE_1__.string().required(),
+      password: yup__WEBPACK_IMPORTED_MODULE_1__.string().required()
+    });
+    /**
+     * Form context.
+     */
+
+    var _useForm = (0,vee_validate__WEBPACK_IMPORTED_MODULE_10__.useForm)({
+      validationSchema: schema
+    }),
+        meta = _useForm.meta,
+        setErrors = _useForm.setErrors;
+    /**
+     * Form fields.
+     */
+
+
+    var _useField = (0,vee_validate__WEBPACK_IMPORTED_MODULE_10__.useField)('email'),
+        email = _useField.value,
+        emailMeta = _useField.meta,
+        emailError = _useField.errorMessage;
+
+    var _useField2 = (0,vee_validate__WEBPACK_IMPORTED_MODULE_10__.useField)('password'),
+        password = _useField2.value,
+        passwordMeta = _useField2.meta,
+        passwordError = _useField2.errorMessage;
     /**
      * Form submit handler.
      */
+
 
     var onSubmit = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -21183,8 +21217,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                if (meta.value.valid) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 2:
                 store.commit('setLoading', true);
-                _context.next = 3;
+                _context.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/login', {
                   email: email.value,
                   password: password.value
@@ -21209,7 +21251,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   store.commit('setLoading', false);
                 });
 
-              case 3:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -21225,7 +21267,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       styles: (_style_module_scss__WEBPACK_IMPORTED_MODULE_7___default()),
       email: email,
+      emailMeta: emailMeta,
+      emailError: emailError,
       password: password,
+      passwordMeta: passwordMeta,
+      passwordError: passwordError,
       onSubmit: onSubmit
     };
   }
