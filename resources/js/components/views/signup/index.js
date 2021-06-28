@@ -1,5 +1,7 @@
-import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { useForm, useField } from 'vee-validate'
+
+import * as yup from 'yup'
 
 import axios from 'axios'
 
@@ -25,16 +27,48 @@ export default {
     const store = useStore()
 
     /**
-     * Form data.
+     * Validation schema.
      */
-    const email    = ref(null)
-    const username = ref(null)
-    const password = ref(null)
+    const schema = yup.object({
+      email: yup.string().required().email(),
+      username: yup.string().required().min(6).max(16),
+      password: yup.string().required().min(8).max(16),
+    })
+
+    /**
+     * Form context.
+     */
+    const { meta, setErrors } = useForm({
+      validationSchema: schema,
+    })
+
+    /**
+     * Form fields.
+     */
+    const {
+      value: email,
+      meta: emailMeta,
+      errorMessage: emailError
+    } = useField('email')
+
+    const {
+      value: username,
+      meta: usernameMeta,
+      errorMessage: usernameError
+    } = useField('username')
+
+    const {
+      value: password,
+      meta: passwordMeta,
+      errorMessage: passwordError
+    } = useField('password')
 
     /**
      * Form submit handler.
      */
     const onSubmit = async () => {
+      if (!meta.value.valid) return
+
       store.commit('setLoading', true)
 
       await axios
@@ -51,7 +85,7 @@ export default {
           }
         })
         .catch(error => {
-          AlertService.danger(error.response.data.error)
+          setErrors(error.response.data.data)
         })
         .finally(() => {
           store.commit('setLoading', false)
@@ -62,8 +96,16 @@ export default {
       styles,
 
       email,
+      emailMeta,
+      emailError,
+
       username,
+      usernameMeta,
+      usernameError,
+
       password,
+      passwordMeta,
+      passwordError,
 
       onSubmit,
     }
