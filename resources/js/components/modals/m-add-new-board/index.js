@@ -1,5 +1,9 @@
-import { useStore } from 'vuex'
 import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
+
+import { useForm, useField } from 'vee-validate'
+
+import * as yup from 'yup'
 
 import template from './template'
 import styles from './style.module.scss'
@@ -14,10 +18,29 @@ export default {
     const store = useStore()
 
     /**
-     * Data.
+     * Validation schema.
      */
-    const name  = ref(null)
+    const schema = yup.object({
+      name: yup.string().required().min(4).max(16),
+    })
+
+    /**
+     * Form context.
+     */
+    const { meta, setErrors } = useForm({
+      validationSchema: schema,
+    })
+
+    /**
+     * Form fields.
+     */
     const color = ref('#ff0000')
+
+    const {
+      value: name,
+      meta: nameMeta,
+      errorMessage: nameError
+    } = useField('name')
 
     /**
      * Show status.
@@ -38,12 +61,15 @@ export default {
      */
     const clear = () => {
       name.value = ''
+      color.value = '#ff0000'
     }
 
     /**
      * Form submit handler.
      */
-    const onSubmit = async () => {
+    const onSubmit = () => {
+      if (!meta.value.valid) return
+
       store
         .dispatch('boards/add', {
           name: name.value,
@@ -56,7 +82,11 @@ export default {
       styles,
 
       show,
+
       name,
+      nameMeta,
+      nameError,
+
       color,
 
       close,
