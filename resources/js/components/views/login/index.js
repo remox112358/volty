@@ -87,7 +87,6 @@ export default {
           }
         })
         .catch(error => {
-          console.log(error.response)
           AlertService.danger(error.response.data.error)
         })
         .finally(() => {

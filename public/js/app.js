@@ -21412,7 +21412,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _services_AlertService__WEBPACK_IMPORTED_MODULE_4__.default.success(response.data.message);
                   }
                 })["catch"](function (error) {
-                  console.log(error.response);
                   _services_AlertService__WEBPACK_IMPORTED_MODULE_4__.default.danger(error.response.data.error);
                 })["finally"](function () {
                   store.commit('setLoading', false);
@@ -22569,7 +22568,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
      * @param {Object} payload
      */
     update: function update(state, payload) {
-      console.log(state.columns, payload.id);
       state.columns.find(function (column) {
         return column.id == payload.id;
       }).name = payload.name;
