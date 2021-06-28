@@ -1,9 +1,8 @@
 import { useStore } from 'vuex'
-import { ref, computed, watch } from 'vue'
+import { computed, watch } from 'vue'
+import { useForm, useField } from 'vee-validate'
 
-import axios from 'axios'
-
-import AlertService from '../../../services/AlertService'
+import * as yup from 'yup'
 
 import template from './template'
 import styles from './style.module.scss'
@@ -26,15 +25,45 @@ export default {
      * Data.
      */
     const data = computed(() => store.state.modals.editColumn.data)
-    const name = ref(data.value.oldName)
+
+    /**
+     * Validation schema.
+     */
+    const schema = yup.object({
+      name: yup.string().required().min(4).max(16),
+    })
+
+    /**
+     * Form context.
+     */
+    const { meta, setErrors, resetForm } = useForm({
+      validationSchema: schema,
+    })
+
+    /**
+     * Form fields.
+     */
+    const {
+      value: name,
+      meta: nameMeta,
+      errorMessage: nameError
+    } = useField('name')
 
     /**
      * Close action.
      */
     const close = () => {
-      name.value = ''
+      clear()
+      resetForm()
 
       store.dispatch('modals/close', 'editColumn')
+    }
+
+    /**
+     * Clear action.
+     */
+    const clear = () => {
+      name.value = ''
     }
 
     /**
@@ -49,6 +78,8 @@ export default {
      * Form submit handler.
      */
     const onSubmit = () => {
+      if (!meta.value.valid) return
+
       store
         .dispatch('columns/update', {
           id: data.value.id,
@@ -61,7 +92,11 @@ export default {
       styles,
 
       show,
+
       name,
+      nameMeta,
+      nameError,
+
       data,
 
       close,
