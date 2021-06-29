@@ -20138,7 +20138,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _config_schemas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/schemas */ "./resources/js/config/schemas.js");
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-board/template.vue");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-add-board/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
@@ -20159,9 +20159,7 @@ __webpack_require__.r(__webpack_exports__);
      * Validation schema.
      */
 
-    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
-      name: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(4).max(16)
-    });
+    var schema = _config_schemas__WEBPACK_IMPORTED_MODULE_1__.default.board.add;
     /**
      * Form context.
      */
@@ -20253,7 +20251,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _config_schemas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config/schemas */ "./resources/js/config/schemas.js");
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-add-column/template.vue");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-add-column/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_4__);
@@ -20280,9 +20278,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Validation schema.
      */
 
-    var schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
-      name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required().min(1).max(16)
-    });
+    var schema = _config_schemas__WEBPACK_IMPORTED_MODULE_2__.default.column.add;
     /**
      * Form context.
      */
@@ -20399,7 +20395,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _config_schemas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/schemas */ "./resources/js/config/schemas.js");
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-board/template.vue");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-board/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
@@ -20434,9 +20430,7 @@ __webpack_require__.r(__webpack_exports__);
      * Validation schema.
      */
 
-    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
-      name: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(4).max(16)
-    });
+    var schema = _config_schemas__WEBPACK_IMPORTED_MODULE_1__.default.board.edit;
     /**
      * Form context.
      */
@@ -20531,7 +20525,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _config_schemas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/schemas */ "./resources/js/config/schemas.js");
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-card/template.vue");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-card/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
@@ -20566,9 +20560,7 @@ __webpack_require__.r(__webpack_exports__);
      * Validation schema.
      */
 
-    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
-      text: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().max(256)
-    });
+    var schema = _config_schemas__WEBPACK_IMPORTED_MODULE_1__.default.card.edit;
     /**
      * Form context.
      */
@@ -20656,7 +20648,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _config_schemas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/schemas */ "./resources/js/config/schemas.js");
 /* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template */ "./resources/js/components/modals/m-edit-column/template.vue");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.module.scss */ "./resources/js/components/modals/m-edit-column/style.module.scss");
 /* harmony import */ var _style_module_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_module_scss__WEBPACK_IMPORTED_MODULE_3__);
@@ -20691,9 +20683,7 @@ __webpack_require__.r(__webpack_exports__);
      * Validation schema.
      */
 
-    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
-      name: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(4).max(16)
-    });
+    var schema = _config_schemas__WEBPACK_IMPORTED_MODULE_1__.default.column.edit;
     /**
      * Form context.
      */
@@ -21304,7 +21294,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _config_schemas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/schemas */ "./resources/js/config/schemas.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _utils_localstorage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/localstorage */ "./resources/js/utils/localstorage.js");
@@ -21344,10 +21334,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Validation schema.
      */
 
-    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
-      email: yup__WEBPACK_IMPORTED_MODULE_1__.string().required(),
-      password: yup__WEBPACK_IMPORTED_MODULE_1__.string().required()
-    });
+    var schema = _config_schemas__WEBPACK_IMPORTED_MODULE_1__.default.user.login;
     /**
      * Form context.
      */
@@ -21487,7 +21474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var _config_schemas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/schemas */ "./resources/js/config/schemas.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
@@ -21525,11 +21512,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      * Validation schema.
      */
 
-    var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
-      email: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().email(),
-      username: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(4).max(16),
-      password: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(8).max(32)
-    });
+    var schema = _config_schemas__WEBPACK_IMPORTED_MODULE_1__.default.user.signup;
     /**
      * Form context.
      */
@@ -21622,6 +21605,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       passwordError: passwordError,
       onSubmit: onSubmit
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/config/schemas.js":
+/*!****************************************!*\
+  !*** ./resources/js/config/schemas.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  user: {
+    signup: yup__WEBPACK_IMPORTED_MODULE_0__.object({
+      email: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().email(),
+      username: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().min(4).max(16),
+      password: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().min(8).max(32)
+    }),
+    login: yup__WEBPACK_IMPORTED_MODULE_0__.object({
+      email: yup__WEBPACK_IMPORTED_MODULE_0__.string().required(),
+      password: yup__WEBPACK_IMPORTED_MODULE_0__.string().required()
+    })
+  },
+  board: {
+    add: yup__WEBPACK_IMPORTED_MODULE_0__.object({
+      name: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().min(4).max(16)
+    }),
+    edit: yup__WEBPACK_IMPORTED_MODULE_0__.object({
+      name: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().min(4).max(16)
+    })
+  },
+  column: {
+    add: yup__WEBPACK_IMPORTED_MODULE_0__.object({
+      name: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().max(16)
+    }),
+    edit: yup__WEBPACK_IMPORTED_MODULE_0__.object({
+      name: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().max(16)
+    })
+  },
+  card: {
+    edit: yup__WEBPACK_IMPORTED_MODULE_0__.object({
+      text: yup__WEBPACK_IMPORTED_MODULE_0__.string().required().max(256)
+    })
   }
 });
 
@@ -21956,7 +21989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../config.json */ "./resources/js/config.json");
+/* harmony import */ var _config_api_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../config/api.json */ "./resources/js/config/api.json");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
@@ -22076,7 +22109,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().get(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.fetch).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get(_config_api_json__WEBPACK_IMPORTED_MODULE_0__.routes.boards.fetch).then(function (response) {
           context.commit('set', response.data.data);
           resolve();
         })["catch"](function (error) {
@@ -22101,7 +22134,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.add, board).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post(_config_api_json__WEBPACK_IMPORTED_MODULE_0__.routes.boards.add, board).then(function (response) {
           context.commit('add', response.data.data);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
           resolve();
@@ -22128,7 +22161,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().delete("".concat(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.remove, "/").concat(boardId)).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().delete("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_0__.routes.boards.remove, "/").concat(boardId)).then(function (response) {
           _router__WEBPACK_IMPORTED_MODULE_2__.default.push({
             name: 'boards'
           });
@@ -22158,7 +22191,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_0__.api.routes.boards.update, "/").concat(board.id), board).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_0__.routes.boards.update, "/").concat(board.id), board).then(function (response) {
           context.commit('update', board);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
           resolve();
@@ -22191,7 +22224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
-/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config.json */ "./resources/js/config.json");
+/* harmony import */ var _config_api_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config/api.json */ "./resources/js/config/api.json");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -22323,7 +22356,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.fetch).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_api_json__WEBPACK_IMPORTED_MODULE_2__.routes.cards.fetch).then(function (response) {
           context.commit('set', response.data.data);
           resolve();
         })["catch"](function (error) {
@@ -22352,7 +22385,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         value.forEach(function (card, index) {
           card.index = index + 1;
           card.column_id = column_id;
-          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.update, "/").concat(card.id), {
+          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_2__.routes.cards.update, "/").concat(card.id), {
             index: card.index,
             column_id: column_id
           })["catch"](function (error) {
@@ -22379,7 +22412,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.add, params).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(_config_api_json__WEBPACK_IMPORTED_MODULE_2__.routes.cards.add, params).then(function (response) {
           context.commit('add', response.data.data);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.success(response.data.message);
           resolve();
@@ -22406,7 +22439,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.update, "/").concat(params.id), params).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_2__.routes.cards.update, "/").concat(params.id), params).then(function (response) {
           context.commit('update', params);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.success(response.data.message);
           resolve();
@@ -22433,7 +22466,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("".concat(_config_json__WEBPACK_IMPORTED_MODULE_2__.api.routes.cards.remove, "/").concat(cardId)).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_2__.routes.cards.remove, "/").concat(cardId)).then(function (response) {
           context.commit('remove', cardId);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.success(response.data.message);
           resolve();
@@ -22465,7 +22498,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config.json */ "./resources/js/config.json");
+/* harmony import */ var _config_api_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/api.json */ "./resources/js/config/api.json");
 /* harmony import */ var _services_AlertService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/AlertService */ "./resources/js/services/AlertService.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -22589,7 +22622,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             board_id = params.board_id;
         value.forEach(function (column, index) {
           column.index = index + 1;
-          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.update, "/").concat(column.id), {
+          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.update, "/").concat(column.id), {
             index: column.index
           })["catch"](function (error) {
             reject();
@@ -22614,7 +22647,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.fetch).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.fetch).then(function (response) {
           context.commit('set', response.data.data);
           resolve();
         })["catch"](function (error) {
@@ -22639,7 +22672,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.add, params).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.add, params).then(function (response) {
           context.commit('add', response.data.data);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
           resolve();
@@ -22666,7 +22699,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.remove, "/").concat(columnId)).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.remove, "/").concat(columnId)).then(function (response) {
           context.commit('remove', columnId);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
           resolve();
@@ -22695,7 +22728,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.update, "/").concat(params.id), params).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.update, "/").concat(params.id), params).then(function (response) {
           context.commit('update', params);
           _services_AlertService__WEBPACK_IMPORTED_MODULE_2__.default.success(response.data.message);
           resolve();
@@ -22722,7 +22755,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().post("".concat(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.columns.clear, "/").concat(columnId, "/clear")).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.clear, "/").concat(columnId, "/clear")).then(function (response) {
           context.commit('cards/clear', columnId, {
             root: true
           });
@@ -22928,7 +22961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config.json */ "./resources/js/config.json");
+/* harmony import */ var _config_api_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/api.json */ "./resources/js/config/api.json");
 /* harmony import */ var _utils_localstorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/localstorage */ "./resources/js/utils/localstorage.js");
 /* harmony import */ var _utils_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/axios */ "./resources/js/utils/axios.js");
 
@@ -22949,9 +22982,9 @@ __webpack_require__.r(__webpack_exports__);
   mutations: {
     /**
      * User `setAuthorize` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Boolean} status 
+     *
+     * @param {Object} state
+     * @param {Boolean} status
      */
     setAuthorize: function setAuthorize(state, status) {
       state.authorized = status;
@@ -22959,9 +22992,9 @@ __webpack_require__.r(__webpack_exports__);
 
     /**
      * User `setData` mutation.
-     * 
-     * @param {Object} state 
-     * @param {Object} data 
+     *
+     * @param {Object} state
+     * @param {Object} data
      */
     setData: function setData(state, data) {
       state.data = data;
@@ -22970,9 +23003,9 @@ __webpack_require__.r(__webpack_exports__);
   actions: {
     /**
      * User `login` action.
-     * 
-     * @param {Object} context 
-     * @param {Object} data 
+     *
+     * @param {Object} context
+     * @param {Object} data
      */
     login: function login(context, data) {
       return new Promise(function (resolve, reject) {
@@ -22991,8 +23024,8 @@ __webpack_require__.r(__webpack_exports__);
 
     /**
      * User `logout` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      */
     logout: function logout(context) {
       return new Promise(function (resolve, reject) {
@@ -23012,15 +23045,15 @@ __webpack_require__.r(__webpack_exports__);
 
     /**
      * User `fetch` action.
-     * 
-     * @param {Object} context 
+     *
+     * @param {Object} context
      */
     fetch: function fetch(context) {
       return new Promise(function (resolve, reject) {
         context.commit('setLoading', true, {
           root: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_json__WEBPACK_IMPORTED_MODULE_1__.api.routes.user.fetch).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.user.fetch).then(function (response) {
           context.commit('setData', response.data.data);
           resolve();
         })["catch"](function (error) {
@@ -70723,14 +70756,14 @@ function toArray(value) {
 
 /***/ }),
 
-/***/ "./resources/js/config.json":
-/*!**********************************!*\
-  !*** ./resources/js/config.json ***!
-  \**********************************/
+/***/ "./resources/js/config/api.json":
+/*!**************************************!*\
+  !*** ./resources/js/config/api.json ***!
+  \**************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"api":{"routes":{"user":{"fetch":"/api/users/fetch"},"boards":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"},"columns":{"fetch":"/api/columns/fetch","add":"/api/columns","update":"/api/columns","remove":"/api/columns","clear":"/api/columns"},"cards":{"fetch":"/api/cards/fetch","add":"/api/cards","update":"/api/cards","remove":"/api/cards"}}}}');
+module.exports = JSON.parse('{"routes":{"user":{"fetch":"/api/users/fetch"},"boards":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"},"columns":{"fetch":"/api/columns/fetch","add":"/api/columns","update":"/api/columns","remove":"/api/columns","clear":"/api/columns"},"cards":{"fetch":"/api/cards/fetch","add":"/api/cards","update":"/api/cards","remove":"/api/cards"}}}');
 
 /***/ })
 

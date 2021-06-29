@@ -1,0 +1,26 @@
+{
+  "routes": {
+    "user": {
+      "fetch": "/api/users/fetch"
+    },
+    "boards": {
+      "fetch": "/api/boards/fetch",
+      "add": "/api/boards",
+      "update": "/api/boards",
+      "remove": "/api/boards"
+    },
+    "columns": {
+      "fetch": "/api/columns/fetch",
+      "add": "/api/columns",
+      "update": "/api/columns",
+      "remove": "/api/columns",
+      "clear": "/api/columns"
+    },
+    "cards": {
+      "fetch": "/api/cards/fetch",
+      "add": "/api/cards",
+      "update": "/api/cards",
+      "remove": "/api/cards"
+    }
+  }
+}

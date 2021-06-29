@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import AlertService from '../../../services/AlertService'
 
-import config from '../../../config.json'
+import config from '../../../config/api.json'
 
 export default {
   namespaced: true,
@@ -115,7 +115,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .get(config.api.routes.cards.fetch)
+          .get(config.routes.cards.fetch)
           .then(response => {
             context.commit('set', response.data.data)
 
@@ -148,7 +148,7 @@ export default {
           card.column_id = column_id
 
           axios
-            .put(`${config.api.routes.cards.update}/${card.id}`, {
+            .put(`${config.routes.cards.update}/${card.id}`, {
               index: card.index,
               column_id: column_id,
             })
@@ -175,7 +175,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .post(config.api.routes.cards.add, params)
+          .post(config.routes.cards.add, params)
           .then(response => {
             context.commit('add', response.data.data)
 
@@ -206,7 +206,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .put(`${config.api.routes.cards.update}/${params.id}`, params)
+          .put(`${config.routes.cards.update}/${params.id}`, params)
           .then(response => {
             context.commit('update', params)
 
@@ -237,7 +237,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .delete(`${config.api.routes.cards.remove}/${cardId}`)
+          .delete(`${config.routes.cards.remove}/${cardId}`)
           .then(response => {
             context.commit('remove', cardId)
 

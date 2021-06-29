@@ -1,7 +1,7 @@
 import { useStore } from 'vuex'
 import { useForm, useField } from 'vee-validate'
 
-import * as yup from 'yup'
+import schemas from '../../../config/schemas'
 
 import axios from 'axios'
 
@@ -29,11 +29,7 @@ export default {
     /**
      * Validation schema.
      */
-    const schema = yup.object({
-      email: yup.string().required().email(),
-      username: yup.string().required().min(4).max(16),
-      password: yup.string().required().min(8).max(32),
-    })
+    const schema = schemas.user.signup
 
     /**
      * Form context.

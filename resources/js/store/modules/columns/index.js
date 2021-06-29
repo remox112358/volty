@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import config from '../../../config.json'
+import config from '../../../config/api.json'
 
 import AlertService from '../../../services/AlertService'
 
@@ -110,7 +110,7 @@ export default {
           column.index = index + 1
 
           axios
-            .put(`${config.api.routes.columns.update}/${column.id}`, {
+            .put(`${config.routes.columns.update}/${column.id}`, {
               index: column.index
             })
             .catch(error => {
@@ -135,7 +135,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .get(config.api.routes.columns.fetch)
+          .get(config.routes.columns.fetch)
           .then(response => {
             context.commit('set', response.data.data)
 
@@ -163,7 +163,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .post(config.api.routes.columns.add, params)
+          .post(config.routes.columns.add, params)
           .then(response => {
             context.commit('add', response.data.data)
 
@@ -194,7 +194,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .delete(`${config.api.routes.columns.remove}/${columnId}`)
+          .delete(`${config.routes.columns.remove}/${columnId}`)
           .then(response => {
             context.commit('remove', columnId)
 
@@ -227,7 +227,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .put(`${config.api.routes.columns.update}/${params.id}`, params)
+          .put(`${config.routes.columns.update}/${params.id}`, params)
           .then(response => {
             context.commit('update', params)
 
@@ -258,7 +258,7 @@ export default {
         context.commit('setLoading', true, { root: true })
 
         axios
-          .post(`${config.api.routes.columns.clear}/${columnId}/clear`)
+          .post(`${config.routes.columns.clear}/${columnId}/clear`)
           .then(response => {
             context.commit('cards/clear', columnId, { root: true })
 

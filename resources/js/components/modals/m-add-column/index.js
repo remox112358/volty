@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useForm, useField } from 'vee-validate'
 
-import * as yup from 'yup'
+import schemas from '../../../config/schemas'
 
 import template from './template'
 import styles from './style.module.scss'
@@ -19,9 +19,7 @@ export default {
     /**
      * Validation schema.
      */
-    const schema = yup.object({
-      name: yup.string().required().min(1).max(16),
-    })
+    const schema = schemas.column.add
 
     /**
      * Form context.
