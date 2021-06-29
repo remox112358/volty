@@ -184,7 +184,7 @@ export default {
             resolve()
           })
           .catch(error => {
-            AlertService.danger(error.response.message)
+            AlertService.danger(error.response.data.data.text[0])
 
             reject()
           })

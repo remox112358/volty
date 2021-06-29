@@ -8,8 +8,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Column;
 use App\Http\Controllers\API\BaseController;
 
+use Validator;
+
 class ColumnController extends BaseController
 {
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    private $rules = [
+        'name' => 'required|max:16',
+    ];
+
     /**
      * Returns the authenticated user columns.
      *
@@ -29,9 +40,24 @@ class ColumnController extends BaseController
      */
     public function store(Request $request)
     {
+        /**
+         * Validation of transmitted parameters.
+         */
+        $validator = Validator::make($request->all(), $this->rules);
+
+        /**
+         * Sending error response if the validation fails.
+         */
+        if ($validator->fails()) {
+            return $this->sendError('Validation error', $validator->errors());
+        }
+
+        /**
+         * Getting the last column in list.
+         */
         $lastColumnInBoard = Column::where('board_id', $request->input('board_id'))
-                          ->orderBy('index', 'desc')
-                          ->first();
+                                    ->orderBy('index', 'desc')
+                                    ->first();
 
         /**
          * Create column.
@@ -43,18 +69,7 @@ class ColumnController extends BaseController
             'index'    => $lastColumnInBoard ? $lastColumnInBoard->index + 1 : 1,
         ]);
 
-        return $this->sendResponse($column, 'Column created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return $this->sendResponse($column, 'Column created');
     }
 
     /**
@@ -66,12 +81,27 @@ class ColumnController extends BaseController
      */
     public function update(Request $request, Column $column)
     {
+        /**
+         * Validation of transmitted parameters.
+         */
+        $validator = Validator::make($request->all(), $this->rules);
+
+        /**
+         * Sending error response if the validation fails.
+         */
+        if ($validator->fails()) {
+            return $this->sendError('Validation error', $validator->errors());
+        }
+
+        /**
+         * Column update.
+         */
         $column->update([
           'name'  => $request->input('name') ?? $column->name,
           'index' => $request->input('index') ?? $column->index,
         ]);
 
-        return $this->sendResponse($column, 'Column updated successfully');
+        return $this->sendResponse($column, 'Column updated');
     }
 
     /**
@@ -84,7 +114,7 @@ class ColumnController extends BaseController
     {
         $column->delete();
 
-        return $this->sendResponse($column, 'Column deleted successfuly');
+        return $this->sendResponse($column, 'Column deleted');
     }
 
     /**
@@ -99,6 +129,6 @@ class ColumnController extends BaseController
           $card->delete();
         }
 
-        return $this->sendResponse($column, 'Column cleared successfuly');
+        return $this->sendResponse($column, 'Column cleared');
     }
 }

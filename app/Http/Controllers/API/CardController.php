@@ -8,8 +8,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Card;
 use App\Http\Controllers\API\BaseController;
 
+use Validator;
+
 class CardController extends BaseController
 {
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    private $rules = [
+        'text' => 'required|max:256',
+    ];
+
     /**
      * Returns the authenticated user cards.
      *
@@ -29,9 +40,24 @@ class CardController extends BaseController
      */
     public function store(Request $request)
     {
+        /**
+         * Validation of transmitted parameters.
+         */
+        $validator = Validator::make($request->all(), $this->rules);
+
+        /**
+         * Sending error response if the validation fails.
+         */
+        if ($validator->fails()) {
+            return $this->sendError('Validation error', $validator->errors());
+        }
+
+        /**
+         * Getting the last card in list.
+         */
         $lastCardInColumn = Card::where('column_id', $request->input('column_id'))
-                          ->orderBy('index', 'desc')
-                          ->first();
+                                ->orderBy('index', 'desc')
+                                ->first();
 
         /**
          * Create card.
@@ -43,18 +69,7 @@ class CardController extends BaseController
             'index'     => $lastCardInColumn ? $lastCardInColumn->index + 1 : 1,
         ]);
 
-        return $this->sendResponse($card, 'Card created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return $this->sendResponse($card, 'Card created');
     }
 
     /**
@@ -66,13 +81,28 @@ class CardController extends BaseController
      */
     public function update(Request $request, Card $card)
     {
+        /**
+         * Validation of transmitted parameters.
+         */
+        $validator = Validator::make($request->all(), $this->rules);
+
+        /**
+         * Sending error response if the validation fails.
+         */
+        if ($validator->fails()) {
+            return $this->sendError('Validation error', $validator->errors());
+        }
+
+        /**
+         * Card update.
+         */
         $card->update([
           'text'      => $request->input('text') ?? $card->text,
           'index'     => $request->input('index') ?? $card->index,
           'column_id' => $request->input('column_id') ?? $card->column_id
         ]);
 
-        return $this->sendResponse($card, 'Card updated successfully');
+        return $this->sendResponse($card, 'Card updated');
     }
 
     /**
@@ -85,6 +115,6 @@ class CardController extends BaseController
     {
         $card->delete();
 
-        return $this->sendResponse($card, 'Card deleted successfuly');
+        return $this->sendResponse($card, 'Card deleted');
     }
 }

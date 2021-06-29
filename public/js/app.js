@@ -20281,7 +20281,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
      */
 
     var schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
-      name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required().min(4).max(16)
+      name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required().min(1).max(16)
     });
     /**
      * Form context.
@@ -22384,7 +22384,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.success(response.data.message);
           resolve();
         })["catch"](function (error) {
-          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.danger(error.response.message);
+          _services_AlertService__WEBPACK_IMPORTED_MODULE_1__.default.danger(error.response.data.data.text[0]);
           reject();
         })["finally"](function () {
           context.commit('setLoading', false, {

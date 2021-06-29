@@ -20,7 +20,7 @@ export default {
      * Validation schema.
      */
     const schema = yup.object({
-      name: yup.string().required().min(4).max(16),
+      name: yup.string().required().min(1).max(16),
     })
 
     /**
