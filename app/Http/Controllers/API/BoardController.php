@@ -92,7 +92,8 @@ class BoardController extends BaseController
          * Board update.
          */
         $board->update([
-          'name' => $request->input('name') ?? $board->name,
+          'name'  => $request->input('name'),
+          'color' => $request->input('color'),
         ]);
 
         return $this->sendResponse($board, 'Board updated');
