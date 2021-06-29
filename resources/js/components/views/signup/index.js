@@ -31,8 +31,8 @@ export default {
      */
     const schema = yup.object({
       email: yup.string().required().email(),
-      username: yup.string().required().min(6).max(16),
-      password: yup.string().required().min(8).max(16),
+      username: yup.string().required().min(4).max(16),
+      password: yup.string().required().min(8).max(32),
     })
 
     /**
@@ -85,7 +85,8 @@ export default {
           AlertService.success(response.data.message)
         })
         .catch(error => {
-          setErrors(error.response.data.data)
+          if (error.response.data.data)
+            setErrors(error.response.data.data)
         })
         .finally(() => {
           store.commit('setLoading', false)

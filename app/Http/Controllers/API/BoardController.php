@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use App\Models\Board;
 use App\Http\Controllers\API\BaseController;
 
+use Validator;
+
 class BoardController extends BaseController
 {
     /**
@@ -18,8 +20,8 @@ class BoardController extends BaseController
      * @var array
      */
     private $rules = [
-        'name'  => 'required|string|min:4|max:32',
-        'color' => 'required|string|min:4|max:32',
+        'name'  => 'required|string|min:4|max:16',
+        'color' => 'required|string',
     ];
 
     /**
@@ -30,7 +32,6 @@ class BoardController extends BaseController
      */
     public function fetch(Request $request)
     {
-
         return $this->sendResponse(Auth::user()->boards, 'User boards received');
     }
 
@@ -43,37 +44,27 @@ class BoardController extends BaseController
     public function store(Request $request)
     {
         /**
+         * Validation of transmitted parameters.
+         */
+        $validator = Validator::make($request->all(), $this->rules);
+
+        /**
+         * Sending error response if the validation fails.
+         */
+        if ($validator->fails()) {
+            return $this->sendError('Validation error', $validator->errors());
+        }
+
+        /**
          * Create board.
          */
         $board = Board::create([
-          'user_id'   => Auth::user()->id,
-          'name'      => $request->input('name'),
-          'color'     => $request->input('color'),
+          'user_id' => Auth::user()->id,
+          'name'    => $request->input('name'),
+          'color'   => $request->input('color'),
         ]);
 
         return $this->sendResponse($board, 'Board created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -85,11 +76,26 @@ class BoardController extends BaseController
      */
     public function update(Request $request, Board $board)
     {
+        /**
+         * Validation of transmitted parameters.
+         */
+        $validator = Validator::make($request->all(), $this->rules);
+
+        /**
+         * Sending error response if the validation fails.
+         */
+        if ($validator->fails()) {
+            return $this->sendError('Validation error', $validator->errors());
+        }
+
+        /**
+         * Board update.
+         */
         $board->update([
-          'name'      => $request->input('name') ?? $board->name,
+          'name' => $request->input('name') ?? $board->name,
         ]);
 
-        return $this->sendResponse($board, 'Board updated successfully');
+        return $this->sendResponse($board, 'Board updated');
     }
 
     /**
@@ -102,6 +108,6 @@ class BoardController extends BaseController
     {
         $board->delete();
 
-        return $this->sendResponse($board, 'Board deleted successfuly');
+        return $this->sendResponse($board, 'Board deleted');
     }
 }

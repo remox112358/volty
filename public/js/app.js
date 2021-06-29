@@ -21407,7 +21407,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     store.dispatch('user/login', user);
                     resetForm();
                     _router__WEBPACK_IMPORTED_MODULE_5__.default.push({
-                      name: 'home'
+                      name: 'boards'
                     });
                     _services_AlertService__WEBPACK_IMPORTED_MODULE_4__.default.success(response.data.message);
                   }
@@ -21527,8 +21527,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var schema = yup__WEBPACK_IMPORTED_MODULE_1__.object({
       email: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().email(),
-      username: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(6).max(16),
-      password: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(8).max(16)
+      username: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(4).max(16),
+      password: yup__WEBPACK_IMPORTED_MODULE_1__.string().required().min(8).max(32)
     });
     /**
      * Form context.
@@ -21591,7 +21591,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                   _services_AlertService__WEBPACK_IMPORTED_MODULE_3__.default.success(response.data.message);
                 })["catch"](function (error) {
-                  setErrors(error.response.data.data);
+                  if (error.response.data.data) setErrors(error.response.data.data);
                 })["finally"](function () {
                   store.commit('setLoading', false);
                 });

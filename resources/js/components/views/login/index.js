@@ -81,7 +81,7 @@ export default {
 
             resetForm()
 
-            router.push({ name: 'home' })
+            router.push({ name: 'boards' })
 
             AlertService.success(response.data.message)
           }

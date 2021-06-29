@@ -13,6 +13,17 @@ use Validator;
 class AuthController extends BaseController
 {
     /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    private $rules = [
+        'username' => 'required|min:4|max:16',
+        'email'    => 'required|email|unique:users',
+        'password' => 'required|min:8|max:32',
+    ];
+
+    /**
      * Signup API user.
      *
      * @param Request $request
@@ -23,11 +34,7 @@ class AuthController extends BaseController
         /**
          * Validation of transmitted parameters.
          */
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required',
-        ]);
+        $validator = Validator::make($request->all(), $this->rules);
 
         /**
          * Sending error response if the validation fails.
@@ -48,7 +55,7 @@ class AuthController extends BaseController
          */
         $user = User::create($input);
 
-        return $this->sendResponse([], 'User registered successfuly');
+        return $this->sendResponse([], 'User registered');
     }
 
     /**
@@ -75,11 +82,11 @@ class AuthController extends BaseController
             $success['user']  = $user;
             $success['token'] = $user->createToken('MyApp')-> accessToken;
 
-            return $this->sendResponse($success, 'User logged in successfully');
+            return $this->sendResponse($success, 'User logged in');
 
         }
 
-        return $this->sendError('Invalid details');
+        return $this->sendError('Incorrect email or password');
     }
 
     /**
@@ -95,6 +102,6 @@ class AuthController extends BaseController
          */
         $request->user()->token()->revoke();
 
-        return $this->sendResponse([], 'User successfully logged out');
+        return $this->sendResponse([], 'User logged out');
     }
 }
