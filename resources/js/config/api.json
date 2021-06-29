@@ -14,13 +14,15 @@
       "add": "/api/columns",
       "update": "/api/columns",
       "remove": "/api/columns",
-      "clear": "/api/columns"
+      "clear": "/api/columns",
+      "refresh": "/api/columns"
     },
     "cards": {
       "fetch": "/api/cards/fetch",
       "add": "/api/cards",
       "update": "/api/cards",
-      "remove": "/api/cards"
+      "remove": "/api/cards",
+      "refresh": "/api/cards"
     }
   }
 }

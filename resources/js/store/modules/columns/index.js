@@ -110,7 +110,7 @@ export default {
           column.index = index + 1
 
           axios
-            .put(`${config.routes.columns.update}/${column.id}`, {
+            .put(`${config.routes.columns.refresh}/${column.id}/refresh`, {
               index: column.index
             })
             .catch(error => {

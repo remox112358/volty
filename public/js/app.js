@@ -16820,6 +16820,7 @@ __webpack_require__.r(__webpack_exports__);
         store.dispatch('cards/fetch');
         store.dispatch('boards/fetch');
         store.dispatch('columns/fetch');
+        if (window.innerWidth <= 576) store.dispatch('sidebar/hide');
       }
     });
     return {
@@ -18183,13 +18184,7 @@ function render(_ctx, _cache) {
 
   }, 8
   /* PROPS */
-  , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-    "class": _ctx.styles.trigger
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_i_icon, {
-    name: "search"
-  })], 2
-  /* CLASS */
-  )], 2
+  , ["class"])], 2
   /* CLASS */
   );
 }
@@ -22385,7 +22380,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         value.forEach(function (card, index) {
           card.index = index + 1;
           card.column_id = column_id;
-          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_2__.routes.cards.update, "/").concat(card.id), {
+          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_2__.routes.cards.refresh, "/").concat(card.id, "/refresh"), {
             index: card.index,
             column_id: column_id
           })["catch"](function (error) {
@@ -22622,7 +22617,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             board_id = params.board_id;
         value.forEach(function (column, index) {
           column.index = index + 1;
-          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.update, "/").concat(column.id), {
+          axios__WEBPACK_IMPORTED_MODULE_0___default().put("".concat(_config_api_json__WEBPACK_IMPORTED_MODULE_1__.routes.columns.refresh, "/").concat(column.id, "/refresh"), {
             index: column.index
           })["catch"](function (error) {
             reject();
@@ -23910,7 +23905,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1UktbUkVxn4PJkhxoP6JI7 {\n  position: relative;\n  z-index: 10;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  height: 50px;\n  color: #fff;\n  background-color: #1f1f1f;\n}\n._1UktbUkVxn4PJkhxoP6JI7::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  height: 2px;\n  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);\n  background-size: 400% 400%;\n  -webkit-animation: Zl6lNunfLDLJKzZ5gd-mG 15s ease infinite;\n          animation: Zl6lNunfLDLJKzZ5gd-mG 15s ease infinite;\n}\n._1UktbUkVxn4PJkhxoP6JI7 ._3a7WOdiqNjOzg_bKn3SHFb {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 50px;\n  height: 50px;\n}\n._1UktbUkVxn4PJkhxoP6JI7 ._3lPNbStYqb_H6uSJ6zqKk1 {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 50px;\n  height: 50px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1UktbUkVxn4PJkhxoP6JI7 ._3lPNbStYqb_H6uSJ6zqKk1:hover {\n  background-color: #393939;\n}\n\n@-webkit-keyframes Zl6lNunfLDLJKzZ5gd-mG {\n  0% {\n    background-position: 0% 50%;\n  }\n  50% {\n    background-position: 100% 50%;\n  }\n  100% {\n    background-position: 0% 50%;\n  }\n}\n\n@keyframes Zl6lNunfLDLJKzZ5gd-mG {\n  0% {\n    background-position: 0% 50%;\n  }\n  50% {\n    background-position: 100% 50%;\n  }\n  100% {\n    background-position: 0% 50%;\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* ---------------- SCREENS ---------------- */\n/* ---------------- COLORS ---------------- */\n._1UktbUkVxn4PJkhxoP6JI7 {\n  position: relative;\n  z-index: 10;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  height: 50px;\n  color: #fff;\n  background-color: #1f1f1f;\n}\n._1UktbUkVxn4PJkhxoP6JI7::after {\n  content: \"\";\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  height: 2px;\n  background-size: 400% 400%;\n  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);\n  -webkit-animation: Zl6lNunfLDLJKzZ5gd-mG 15s ease infinite;\n          animation: Zl6lNunfLDLJKzZ5gd-mG 15s ease infinite;\n}\n._1UktbUkVxn4PJkhxoP6JI7 ._3a7WOdiqNjOzg_bKn3SHFb {\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 50px;\n  height: 50px;\n}\n._1UktbUkVxn4PJkhxoP6JI7 ._3lPNbStYqb_H6uSJ6zqKk1 {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 50px;\n  height: 50px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color;\n}\n._1UktbUkVxn4PJkhxoP6JI7 ._3lPNbStYqb_H6uSJ6zqKk1:hover {\n  background-color: #393939;\n}\n\n@-webkit-keyframes Zl6lNunfLDLJKzZ5gd-mG {\n  0% {\n    background-position: 0% 50%;\n  }\n  50% {\n    background-position: 100% 50%;\n  }\n  100% {\n    background-position: 0% 50%;\n  }\n}\n\n@keyframes Zl6lNunfLDLJKzZ5gd-mG {\n  0% {\n    background-position: 0% 50%;\n  }\n  50% {\n    background-position: 100% 50%;\n  }\n  100% {\n    background-position: 0% 50%;\n  }\n}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"root": "_1UktbUkVxn4PJkhxoP6JI7",
@@ -70763,7 +70758,7 @@ function toArray(value) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"routes":{"user":{"fetch":"/api/users/fetch"},"boards":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"},"columns":{"fetch":"/api/columns/fetch","add":"/api/columns","update":"/api/columns","remove":"/api/columns","clear":"/api/columns"},"cards":{"fetch":"/api/cards/fetch","add":"/api/cards","update":"/api/cards","remove":"/api/cards"}}}');
+module.exports = JSON.parse('{"routes":{"user":{"fetch":"/api/users/fetch"},"boards":{"fetch":"/api/boards/fetch","add":"/api/boards","update":"/api/boards","remove":"/api/boards"},"columns":{"fetch":"/api/columns/fetch","add":"/api/columns","update":"/api/columns","remove":"/api/columns","clear":"/api/columns","refresh":"/api/columns"},"cards":{"fetch":"/api/cards/fetch","add":"/api/cards","update":"/api/cards","remove":"/api/cards","refresh":"/api/cards"}}}');
 
 /***/ })
 

@@ -148,7 +148,7 @@ export default {
           card.column_id = column_id
 
           axios
-            .put(`${config.routes.cards.update}/${card.id}`, {
+            .put(`${config.routes.cards.refresh}/${card.id}/refresh`, {
               index: card.index,
               column_id: column_id,
             })

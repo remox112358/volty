@@ -97,8 +97,26 @@ class ColumnController extends BaseController
          * Column update.
          */
         $column->update([
-          'name'  => $request->input('name') ?? $column->name,
-          'index' => $request->input('index') ?? $column->index,
+          'name'  => $request->input('name'),
+        ]);
+
+        return $this->sendResponse($column, 'Column updated');
+    }
+
+    /**
+     * Refresh the specified column index.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Column  $column
+     * @return \Illuminate\Http\Response
+     */
+    public function refresh(Request $request, Column $column)
+    {
+        /**
+         * Column update.
+         */
+        $column->update([
+          'index' => $request->input('index'),
         ]);
 
         return $this->sendResponse($column, 'Column updated');

@@ -33,8 +33,10 @@ Route::group(['middleware' => 'auth:api'], function() {
 
   Route::get('/columns/fetch', [ColumnController::class, 'fetch']);
   Route::post('/columns/{column}/clear', [ColumnController::class, 'clear']);
+  Route::put('/columns/{column}/refresh', [ColumnController::class, 'refresh']);
   Route::resource('columns', ColumnController::class);
 
   Route::get('/cards/fetch', [CardController::class, 'fetch']);
+  Route::put('/cards/{card}/refresh', [CardController::class, 'refresh']);
   Route::resource('cards', CardController::class);
 });

@@ -40,6 +40,9 @@ export default {
         store.dispatch('cards/fetch')
         store.dispatch('boards/fetch')
         store.dispatch('columns/fetch')
+
+        if (window.innerWidth <= 576)
+          store.dispatch('sidebar/hide')
       }
     })
 

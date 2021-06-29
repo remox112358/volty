@@ -97,9 +97,27 @@ class CardController extends BaseController
          * Card update.
          */
         $card->update([
-          'text'      => $request->input('text') ?? $card->text,
-          'index'     => $request->input('index') ?? $card->index,
-          'column_id' => $request->input('column_id') ?? $card->column_id
+          'text' => $request->input('text')
+        ]);
+
+        return $this->sendResponse($card, 'Card updated');
+    }
+
+    /**
+     * Refresh the specified card index.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Card  $card
+     * @return \Illuminate\Http\Response
+     */
+    public function refresh(Request $request, Card $card)
+    {
+        /**
+         * Card update.
+         */
+        $card->update([
+          'index'     => $request->input('index'),
+          'column_id' => $request->input('column_id')
         ]);
 
         return $this->sendResponse($card, 'Card updated');
