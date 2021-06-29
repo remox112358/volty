@@ -24,19 +24,44 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::group(['middleware' => 'auth:api'], function() {
+
+  /**
+   * Auth controller routes.
+   */
   Route::get('/logout', [AuthController::class, 'logout']);
 
-  Route::get('/users/fetch', [UserController::class, 'fetch']);
+  /**
+   * User controller routes.
+   */
+  Route::prefix('users')->group(function() {
+    Route::get('/fetch', [UserController::class, 'fetch']);
+  });
 
-  Route::get('/boards/fetch', [BoardController::class, 'fetch']);
+  /**
+   * Board controller routes.
+   */
+  Route::prefix('boards')->group(function() {
+    Route::get('/fetch', [BoardController::class, 'fetch']);
+  });
   Route::resource('boards', BoardController::class);
 
-  Route::get('/columns/fetch', [ColumnController::class, 'fetch']);
-  Route::post('/columns/{column}/clear', [ColumnController::class, 'clear']);
-  Route::put('/columns/{column}/refresh', [ColumnController::class, 'refresh']);
+  /**
+   * Column controller routes.
+   */
+  Route::prefix('columns')->group(function() {
+    Route::get('/fetch', [ColumnController::class, 'fetch']);
+    Route::post('/{column}/clear', [ColumnController::class, 'clear']);
+    Route::put('/{column}/refresh', [ColumnController::class, 'refresh']);
+  });
   Route::resource('columns', ColumnController::class);
 
-  Route::get('/cards/fetch', [CardController::class, 'fetch']);
-  Route::put('/cards/{card}/refresh', [CardController::class, 'refresh']);
+  /**
+   * Card controller routes.
+   */
+  Route::prefix('cards')->group(function() {
+    Route::get('/fetch', [CardController::class, 'fetch']);
+    Route::put('/{card}/refresh', [CardController::class, 'refresh']);
+  });
   Route::resource('cards', CardController::class);
+
 });
