@@ -7,6 +7,7 @@
       </h3>
       <div :class="styles.boards">
         <i-board
+          :id="board.id"
           :key="board.id"
           :name="board.name"
           :color="board.color"
